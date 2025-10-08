@@ -7,6 +7,46 @@ import BlogBanner from '~/components/BlogBanner.astro';
 // Get current locale
 const currentLocale = 'en';
 
+// 博客文章数据
+const posts = [
+  {
+    title: "AI Reshapes Marketing: Full-Chain Revolution from Content Production to Delivery",
+    description: "In-depth analysis of how AI changes every aspect of marketing, from copywriting and visual design to data analysis, with practical cases and tool recommendations",
+    slug: "ai-marketing-revolution",
+    pubDate: "2025-01-08",
+    category: "AI Marketing",
+    categorySlug: "ai-marketing",
+    tags: ["AI Marketing", "Digital Marketing", "Marketing Automation"]
+  },
+  {
+    title: "10 Essential AI Tools for 2025: Secret Weapons to Boost Productivity",
+    description: "Selected 10 AI tools verified by practical experience, covering writing, programming, design, data analysis and other scenarios, with usage tips and comparison reviews",
+    slug: "ai-tools-2025",
+    pubDate: "2025-01-07",
+    category: "AI Tools",
+    categorySlug: "ai-tools",
+    tags: ["AI Tools", "Productivity", "ChatGPT", "Midjourney"]
+  },
+  {
+    title: "Keywords for AI in the Next Decade: Redefining the Boundaries of the Intelligent Era",
+    description: "From AGI to multimodal, from open source revolution to ethical awakening, interpreting 10 core keywords that will dominate AI development in the next decade",
+    slug: "ai-future-decade-keywords",
+    pubDate: "2025-01-06",
+    category: "AI Trends",
+    categorySlug: "ai-trends",
+    tags: ["AI", "Future Trends", "AGI", "Multimodal AI"]
+  },
+  {
+    title: "Prompt Engineering: The New Programming Language of the AI Era",
+    description: "In-depth exploration of the core principles, practical skills and best practices of Prompt Engineering, mastering the art of conversing with AI",
+    slug: "prompt-engineering",
+    pubDate: "2025-01-05",
+    category: "Tech Tutorial",
+    categorySlug: "tech-tutorial",
+    tags: ["Prompt Engineering", "AI", "Tech Tutorial"]
+  }
+];
+
 // SEO 优化
 const seoTitle = "AI Kids - Facing AI, We Are All Learners | AI Learning Community";
 const seoDescription = "AI Kids is a warm community focused on AI learning, providing cutting-edge insights, practical tools, and deep thinking. Making AI a learning partner for everyone, restarting your second childhood.";
@@ -129,73 +169,33 @@ const seoKeywords = "AI learning,artificial intelligence learning,AI tools,AI co
         </a>
       </div>
       <div class="grid gap-6 sm:gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
-        <article class="group flex flex-col overflow-hidden rounded-lg border border-gray-200 transition-all hover:shadow-lg dark:border-gray-800">
-          <div class="aspect-video bg-gradient-to-br from-primary/20 to-accent/20">
-            <div class="flex h-full items-center justify-center">
-              <span class="text-3xl">🤖</span>
+        {posts.map((post) => (
+          <article class="group flex flex-col overflow-hidden rounded-lg border border-gray-200 transition-all hover:shadow-lg dark:border-gray-800">
+            <!-- Banner Image -->
+            <div class="aspect-video">
+              <BlogBanner 
+                post={post} 
+                config={{
+                  width: 400,
+                  height: 200,
+                  style: 'modern',
+                  colorScheme: 'gradient'
+                }}
+                className="h-full"
+              />
             </div>
-          </div>
-          <div class="flex flex-1 flex-col p-4 sm:p-6">
-            <span class="text-xs text-primary mb-2">AI Marketing</span>
-            <h3 class="mb-2 sm:mb-3 text-lg sm:text-xl font-bold group-hover:text-primary line-clamp-2">
-              <a href="/blog/ai-marketing-revolution">{getTranslation(currentLocale, 'blog.posts.ai_marketing.title')}</a>
-            </h3>
+            
+            <div class="flex flex-1 flex-col p-4 sm:p-6">
+              <span class="text-xs text-primary mb-2">{post.category}</span>
+              <h3 class="mb-2 sm:mb-3 text-lg sm:text-xl font-bold group-hover:text-primary line-clamp-2">
+                <a href={`/blog/${post.slug}`}>{post.title}</a>
+              </h3>
               <p class="text-sm sm:text-base text-gray-600 dark:text-gray-400 line-clamp-2">
-              {getTranslation(currentLocale, 'blog.posts.ai_marketing.description')}
-            </p>
-          </div>
-        </article>
-
-        <article class="group flex flex-col overflow-hidden rounded-lg border border-gray-200 transition-all hover:shadow-lg dark:border-gray-800">
-          <div class="aspect-video bg-gradient-to-br from-primary/20 to-accent/20">
-            <div class="flex h-full items-center justify-center">
-              <span class="text-3xl">🤖</span>
+                {post.description}
+              </p>
             </div>
-          </div>
-          <div class="flex flex-1 flex-col p-4 sm:p-6">
-            <span class="text-xs text-primary mb-2">AI Tools</span>
-            <h3 class="mb-2 sm:mb-3 text-lg sm:text-xl font-bold group-hover:text-primary line-clamp-2">
-              <a href="/blog/ai-tools-2025">{getTranslation(currentLocale, 'blog.posts.ai_tools.title')}</a>
-            </h3>
-              <p class="text-sm sm:text-base text-gray-600 dark:text-gray-400 line-clamp-2">
-              {getTranslation(currentLocale, 'blog.posts.ai_tools.description')}
-            </p>
-          </div>
-        </article>
-
-        <article class="group flex flex-col overflow-hidden rounded-lg border border-gray-200 transition-all hover:shadow-lg dark:border-gray-800">
-          <div class="aspect-video bg-gradient-to-br from-primary/20 to-accent/20">
-            <div class="flex h-full items-center justify-center">
-              <span class="text-3xl">🤖</span>
-            </div>
-          </div>
-          <div class="flex flex-1 flex-col p-4 sm:p-6">
-            <span class="text-xs text-primary mb-2">AI Trends</span>
-            <h3 class="mb-2 sm:mb-3 text-lg sm:text-xl font-bold group-hover:text-primary line-clamp-2">
-              <a href="/blog/ai-future-decade-keywords">{getTranslation(currentLocale, 'blog.posts.ai_trends.title')}</a>
-            </h3>
-              <p class="text-sm sm:text-base text-gray-600 dark:text-gray-400 line-clamp-2">
-              {getTranslation(currentLocale, 'blog.posts.ai_trends.description')}
-            </p>
-          </div>
-        </article>
-
-        <article class="group flex flex-col overflow-hidden rounded-lg border border-gray-200 transition-all hover:shadow-lg dark:border-gray-800">
-          <div class="aspect-video bg-gradient-to-br from-primary/20 to-accent/20">
-            <div class="flex h-full items-center justify-center">
-              <span class="text-3xl">🤖</span>
-            </div>
-          </div>
-          <div class="flex flex-1 flex-col p-4 sm:p-6">
-            <span class="text-xs text-primary mb-2">Tech Tutorial</span>
-            <h3 class="mb-2 sm:mb-3 text-lg sm:text-xl font-bold group-hover:text-primary line-clamp-2">
-              <a href="/blog/prompt-engineering">{getTranslation(currentLocale, 'blog.posts.prompt_engineering.title')}</a>
-            </h3>
-              <p class="text-sm sm:text-base text-gray-600 dark:text-gray-400 line-clamp-2">
-              {getTranslation(currentLocale, 'blog.posts.prompt_engineering.description')}
-            </p>
-          </div>
-        </article>
+          </article>
+        ))}
       </div>
     </div>
   </section>
