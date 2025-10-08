@@ -1,6 +1,5 @@
 ---
 import PageLayout from './PageLayout.astro';
-import Newsletter from '~/components/Newsletter.astro';
 
 interface Props {
   frontmatter: {
@@ -74,11 +73,6 @@ const formatDate = (date: string) => {
         </div>
       </div>
     </footer>
-
-    <!-- Newsletter 订阅 -->
-    <div class="mt-16">
-      <Newsletter />
-    </div>
 
     <!-- Giscus 评论系统 -->
     <div class="mt-16">

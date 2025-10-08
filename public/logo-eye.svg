@@ -1,0 +1,27 @@
+<!-- 方案五：探索之眼 - 象征好奇与探索 -->
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- 外圆背景 -->
+  <circle cx="16" cy="16" r="15" fill="#2563EB" stroke="#1d4ed8" stroke-width="2"/>
+  
+  <!-- 眼睛轮廓 -->
+  <ellipse cx="16" cy="16" rx="8" ry="6" fill="none" stroke="#ffffff" stroke-width="2"/>
+  
+  <!-- 瞳孔 -->
+  <circle cx="16" cy="16" r="4" fill="#f97316"/>
+  
+  <!-- 瞳孔高光 -->
+  <circle cx="17" cy="15" r="1.5" fill="#fbbf24"/>
+  
+  <!-- 眼睛上方的眉毛 -->
+  <path d="M8 12 Q16 10 24 12" stroke="#ffffff" stroke-width="2" stroke-linecap="round" fill="none"/>
+  
+  <!-- 睫毛 -->
+  <path d="M10 10 L12 8" stroke="#fbbf24" stroke-width="1" stroke-linecap="round"/>
+  <path d="M14 9 L15 7" stroke="#fbbf24" stroke-width="1" stroke-linecap="round"/>
+  <path d="M18 9 L17 7" stroke="#fbbf24" stroke-width="1" stroke-linecap="round"/>
+  <path d="M22 10 L20 8" stroke="#fbbf24" stroke-width="1" stroke-linecap="round"/>
+  
+  <!-- 探索的星星 -->
+  <path d="M6 6 L7 8 L9 8 L7.5 9.5 L8 11.5 L6 10 L4 11.5 L4.5 9.5 L3 8 L5 8 Z" fill="#fbbf24" opacity="0.8"/>
+  <path d="M26 6 L27 8 L29 8 L27.5 9.5 L28 11.5 L26 10 L24 11.5 L24.5 9.5 L23 8 L25 8 Z" fill="#fbbf24" opacity="0.8"/>
+</svg>

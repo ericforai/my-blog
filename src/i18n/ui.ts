@@ -18,7 +18,7 @@ export const ui = {
     'brand.description': 'In this intelligent era, we are no longer bystanders, but children who learn to "ask, explore and create" again.',
     
     // Homepage
-    'home.hero.title': '🧭 Welcome to AI Kids',
+    'home.hero.title': '😊 Welcome to AI Kids',
     'home.hero.subtitle': 'Facing AI, we are all learners.',
     'home.hero.description': 'In this intelligent era, we are no longer bystanders, but children who learn to "ask, explore and create" again. AI is not a threat, but a partner for growth.',
     'home.hero.start_learning': 'Start Learning',
@@ -552,7 +552,7 @@ export const ui = {
     'brand.description': '在这个智能时代，我们不再是旁观者，而是重新学会"提问、探索与创造"的孩子。',
     
     // Homepage
-    'home.hero.title': '🧭 欢迎来到 AI小孩',
+    'home.hero.title': '😊 欢迎来到 AI小孩',
     'home.hero.subtitle': '「面对AI，我们都是学习者。」',
     'home.hero.description': '在这个智能时代，我们不再是旁观者，而是重新学会"提问、探索与创造"的孩子。AI不是威胁，而是成长的伙伴。',
     'home.hero.start_learning': '开始学习',
