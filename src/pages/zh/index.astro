@@ -2,6 +2,7 @@
 import PageLayout from '~/layouts/PageLayout.astro';
 import { SITE } from '~/config.mjs';
 import { getTranslation } from '~/i18n/ui.ts';
+import BlogBanner from '~/components/BlogBanner.astro';
 
 // Get current locale
 const currentLocale = 'zh';
@@ -10,6 +11,46 @@ const currentLocale = 'zh';
 const seoTitle = "AI小孩 - 面对AI，我们都是学习者 | AI学习社区";
 const seoDescription = "AI小孩是专注于AI学习的温暖社区，提供前沿洞察、实用工具和深度思考。让AI成为每个人的学习伙伴，重启你的第二次童年。";
 const seoKeywords = "AI学习,人工智能学习,AI工具,AI社区,机器学习,深度学习,ChatGPT,AI营销,Prompt Engineering";
+
+// 文章数据
+const posts = [
+  {
+    title: "AI 重塑营销：从内容生产到精准投放的全链路革命",
+    description: "深度解析 AI 如何改变营销的每个环节，从文案创作、视觉设计到数据分析，附实战案例与工具推荐",
+    slug: "ai-marketing-revolution",
+    pubDate: "2025-01-08",
+    category: "AI 营销",
+    categorySlug: "ai-marketing",
+    tags: ["AI 营销", "数字营销", "营销自动化"]
+  },
+  {
+    title: "2025 年必备的 10 个 AI 工具：让生产力飞跃的秘密武器",
+    description: "精选 10 个经过实战检验的 AI 工具，涵盖写作、编程、设计、数据分析等场景，附使用技巧与对比评测",
+    slug: "ai-tools-2025",
+    pubDate: "2025-01-07",
+    category: "AI 工具",
+    categorySlug: "ai-tools",
+    tags: ["AI 工具", "生产力", "自动化"]
+  },
+  {
+    title: "未来十年的 AI 关键词：重新定义智能时代的边界",
+    description: "从 AGI 到多模态，从开源革命到伦理觉醒，解读未来十年将主导 AI 发展的 10 个核心关键词",
+    slug: "ai-future-decade-keywords",
+    pubDate: "2025-01-06",
+    category: "AI 趋势",
+    categorySlug: "ai-trends",
+    tags: ["AI 趋势", "未来", "创新"]
+  },
+  {
+    title: "Prompt Engineering：AI 时代的新编程语言",
+    description: "深入探索 Prompt Engineering 的核心原理、实战技巧与最佳实践，掌握与 AI 对话的艺术",
+    slug: "prompt-engineering",
+    pubDate: "2025-01-05",
+    category: "技术实践",
+    categorySlug: "tech-tutorial",
+    tags: ["Prompt Engineering", "AI", "技术教程"]
+  }
+];
 ---
 
 <PageLayout 
@@ -141,60 +182,47 @@ const seoKeywords = "AI学习,人工智能学习,AI工具,AI社区,机器学习,
       </div>
       
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- 示例文章卡片 -->
-        <article class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-          <div class="p-6">
-            <div class="flex items-center gap-2 mb-3">
-              <span class="px-2 py-1 bg-primary/10 text-primary text-sm rounded">AI 趋势</span>
-              <span class="text-sm text-gray-500">2025-01-08</span>
+        {posts.map((post) => (
+          <article class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+            <!-- Banner Image -->
+            <div class="h-48">
+              <BlogBanner 
+                post={post} 
+                config={{
+                  width: 400,
+                  height: 200,
+                  style: 'modern',
+                  colorScheme: 'gradient',
+                  useAIImage: true  // 🔥 启用 AI 图片生成
+                }}
+                className="h-full"
+              />
             </div>
-            <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">
-              AI 重塑营销：从内容生产到精准投放的全链路革命
-            </h3>
-            <p class="text-gray-600 dark:text-gray-400 mb-4">
-              深度解析 AI 如何改变营销的每个环节，从文案创作、视觉设计到数据分析，附实战案例与工具推荐...
-            </p>
-            <a href="/zh/blog/ai-marketing-revolution" class="text-primary hover:text-primary/80 font-medium">
-              {getTranslation(currentLocale, 'blog.read_more')} →
-            </a>
-          </div>
-        </article>
-        
-        <article class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-          <div class="p-6">
-            <div class="flex items-center gap-2 mb-3">
-              <span class="px-2 py-1 bg-accent/10 text-accent text-sm rounded">AI 工具</span>
-              <span class="text-sm text-gray-500">2025-01-07</span>
+            
+            <div class="p-6">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="px-2 py-1 bg-primary/10 text-primary text-sm rounded">{post.category}</span>
+                <span class="text-sm text-gray-500">{post.pubDate}</span>
+              </div>
+              <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">
+                <a href={`/zh/blog/${post.slug}`}>{post.title}</a>
+              </h3>
+              <p class="text-gray-600 dark:text-gray-400 mb-4">
+                {post.description}...
+              </p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                {post.tags.map(tag => (
+                  <span class="px-2 py-1 text-xs bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              <a href={`/zh/blog/${post.slug}`} class="text-primary hover:text-primary/80 font-medium">
+                {getTranslation(currentLocale, 'blog.read_more')} →
+              </a>
             </div>
-            <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">
-              2025 年必备的 10 个 AI 工具：让生产力飞跃的秘密武器
-            </h3>
-            <p class="text-gray-600 dark:text-gray-400 mb-4">
-              精选 10 个经过实战检验的 AI 工具，涵盖写作、编程、设计、数据分析等场景，附使用技巧与对比评测...
-            </p>
-            <a href="/zh/blog/ai-tools-2025" class="text-primary hover:text-primary/80 font-medium">
-              {getTranslation(currentLocale, 'blog.read_more')} →
-            </a>
-          </div>
-        </article>
-        
-        <article class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-          <div class="p-6">
-            <div class="flex items-center gap-2 mb-3">
-              <span class="px-2 py-1 bg-green-100 text-green-600 text-sm rounded">技术实践</span>
-              <span class="text-sm text-gray-500">2025-01-06</span>
-            </div>
-            <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">
-              Prompt Engineering：AI 时代的新编程语言
-            </h3>
-            <p class="text-gray-600 dark:text-gray-400 mb-4">
-              深入探索 Prompt Engineering 的核心原理、实用技巧与最佳实践，掌握与 AI 对话的艺术...
-            </p>
-            <a href="/zh/blog/prompt-engineering" class="text-primary hover:text-primary/80 font-medium">
-              {getTranslation(currentLocale, 'blog.read_more')} →
-            </a>
-          </div>
-        </article>
+          </article>
+        ))}
       </div>
       
       <div class="text-center mt-12">
