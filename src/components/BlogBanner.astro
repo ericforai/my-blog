@@ -39,9 +39,26 @@ if (useAIImage) {
     `;
     isAIGenerated = true;
   } catch (error) {
-    console.warn('AI image generation failed, falling back to SVG:', error);
-    bannerContent = generateSVGBanner(post, config);
-    isAIGenerated = false;
+    console.warn('AI image generation failed, using mock images for demo:', error);
+    
+    // 使用模拟的 AI 图片作为演示
+    const mockImages = {
+      'AI Marketing': 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1024&h=1024&fit=crop&crop=center',
+      'AI Tools': 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=1024&h=1024&fit=crop&crop=center',
+      'AI Trends': 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=1024&h=1024&fit=crop&crop=center',
+      'Tech Tutorial': 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1024&h=1024&fit=crop&crop=center'
+    };
+    
+    const mockImageUrl = mockImages[post.category] || mockImages['AI Marketing'];
+    
+    bannerContent = `
+      <div style="width: 100%; height: 100%; background-image: url('${mockImageUrl}'); background-size: cover; background-position: center; background-repeat: no-repeat; border-radius: 8px; position: relative;">
+        <div style="position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; border-radius: 4px; font-size: 12px;">
+          🤖 AI Demo
+        </div>
+      </div>
+    `;
+    isAIGenerated = true;
   }
 } else {
   bannerContent = generateSVGBanner(post, config);

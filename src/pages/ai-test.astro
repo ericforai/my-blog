@@ -61,7 +61,10 @@ const testPosts = [
           {import.meta.env.OPENAI_API_KEY ? '✅ API Key 已配置' : '❌ API Key 未配置'}
         </p>
         <p class="text-sm text-blue-600 dark:text-blue-400 mt-2">
-          当前使用: {import.meta.env.OPENAI_API_KEY ? 'AI 图片生成' : 'SVG Banner'}
+          当前使用: {import.meta.env.OPENAI_API_KEY ? 'AI 图片生成 (网络问题时会使用演示图片)' : 'SVG Banner'}
+        </p>
+        <p class="text-xs text-blue-500 dark:text-blue-300 mt-1">
+          💡 如果看到 "🤖 AI Demo" 标签，说明正在使用演示图片
         </p>
       </div>
     </div>
