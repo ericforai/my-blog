@@ -80,11 +80,6 @@ export function generateSVGBanner(post: BlogPost, config: BannerImageConfig) {
       <text x="50%" y="50%" font-family="system-ui" font-size="140" text-anchor="middle" fill="white" opacity="0.9">
         ${bannerData.icon}
       </text>
-      
-      <!-- Brand - smaller and at bottom -->
-      <text x="50%" y="85%" font-family="system-ui" font-size="20" font-weight="600" text-anchor="middle" fill="white" opacity="0.8">
-        AI小孩
-      </text>
     </svg>
   `;
 }
