@@ -50,14 +50,20 @@ const seoKeywords = "AI周刊订阅,AI资讯,AI工具推荐,AI学习社群,Newsl
               placeholder="输入你的邮箱"
               required
               class="flex-1 rounded-lg border border-gray-300 px-4 py-3 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 dark:border-gray-700 dark:bg-gray-800 dark:text-white"
+              id="email-input"
             />
             <button
               type="submit"
-              class="rounded-lg bg-primary px-6 py-3 font-semibold text-white transition-colors hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary/50"
+              class="rounded-lg bg-primary px-6 py-3 font-semibold text-white transition-colors hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary/50 disabled:opacity-50 disabled:cursor-not-allowed"
+              id="submit-btn"
             >
-              立即订阅
+              <span id="btn-text">立即订阅</span>
+              <span id="btn-loading" class="hidden">订阅中...</span>
             </button>
           </form>
+          
+          <!-- 状态提示 -->
+          <div id="status-message" class="mt-4 hidden"></div>
           
           <p class="mt-4 text-xs text-gray-500 dark:text-gray-500">
             🔒 我们尊重您的隐私，随时可退订
@@ -188,28 +194,115 @@ const seoKeywords = "AI周刊订阅,AI资讯,AI工具推荐,AI学习社群,Newsl
 <script>
   // Newsletter 表单提交处理
   const form = document.getElementById('newsletter-form');
+  const emailInput = document.getElementById('email-input') as HTMLInputElement;
+  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+  const btnText = document.getElementById('btn-text');
+  const btnLoading = document.getElementById('btn-loading');
+  const statusMessage = document.getElementById('status-message');
   
   if (form) {
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       
-      const formData = new FormData(form as HTMLFormElement);
-      const email = formData.get('email');
+      const email = emailInput.value.trim();
       
-      // 这里可以集成实际的邮件服务（Mailchimp, ConvertKit, Resend 等）
-      // 示例：发送到后端 API
+      // 验证邮箱格式
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        showStatus('请输入有效的邮箱地址', 'error');
+        return;
+      }
+      
+      // 设置加载状态
+      setLoadingState(true);
+      
       try {
-        // const response = await fetch('/api/subscribe', {
-        //   method: 'POST',
-        //   headers: { 'Content-Type': 'application/json' },
-        //   body: JSON.stringify({ email })
-        // });
+        const response = await fetch('/api/subscribe', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email })
+        });
         
-        // 模拟成功订阅
-        alert('订阅成功！感谢您的关注 🎉\n我们会将最新的 AI 资讯发送到您的邮箱。');
-        (form as HTMLFormElement).reset();
+        const result = await response.json();
+        
+        if (result.success) {
+          showStatus(result.message, 'success');
+          form.reset();
+          
+          // Google Analytics 事件追踪
+          if (typeof gtag !== 'undefined') {
+            gtag('event', 'newsletter_signup', {
+              'event_category': 'engagement',
+              'event_label': 'newsletter_page',
+              'value': 1
+            });
+          }
+          
+          // 额外的成功处理
+          setTimeout(() => {
+            showStatus('🎉 欢迎加入 AI 小孩大家庭！', 'success');
+          }, 2000);
+          
+        } else {
+          showStatus(result.message, 'error');
+        }
+        
       } catch (error) {
-        alert('订阅失败，请稍后重试');
+        console.error('Newsletter subscription error:', error);
+        showStatus('订阅失败，请检查网络连接后重试', 'error');
+      } finally {
+        setLoadingState(false);
+      }
+    });
+  }
+  
+  // 设置加载状态
+  function setLoadingState(loading: boolean) {
+    if (loading) {
+      submitBtn.disabled = true;
+      btnText?.classList.add('hidden');
+      btnLoading?.classList.remove('hidden');
+    } else {
+      submitBtn.disabled = false;
+      btnText?.classList.remove('hidden');
+      btnLoading?.classList.add('hidden');
+    }
+  }
+  
+  // 显示状态消息
+  function showStatus(message: string, type: 'success' | 'error') {
+    if (!statusMessage) return;
+    
+    statusMessage.textContent = message;
+    statusMessage.className = `mt-4 p-3 rounded-lg text-sm font-medium ${
+      type === 'success' 
+        ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' 
+        : 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'
+    }`;
+    statusMessage.classList.remove('hidden');
+    
+    // 3秒后自动隐藏成功消息
+    if (type === 'success') {
+      setTimeout(() => {
+        statusMessage.classList.add('hidden');
+      }, 5000);
+    }
+  }
+  
+  // 邮箱输入实时验证
+  if (emailInput) {
+    emailInput.addEventListener('input', () => {
+      const email = emailInput.value.trim();
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      
+      if (email && !emailRegex.test(email)) {
+        emailInput.classList.add('border-red-500');
+        emailInput.classList.remove('border-gray-300', 'dark:border-gray-700');
+      } else {
+        emailInput.classList.remove('border-red-500');
+        emailInput.classList.add('border-gray-300', 'dark:border-gray-700');
       }
     });
   }
