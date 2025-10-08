@@ -1,17 +1,45 @@
 ---
 import PageLayout from '~/layouts/PageLayout.astro';
 
-// 博客文章列表
-const posts = [
+// 获取所有标签
+export async function getStaticPaths() {
+  return [
+    { params: { tag: 'AI' } },
+    { params: { tag: 'AI营销' } },
+    { params: { tag: 'AI工具' } },
+    { params: { tag: '未来趋势' } },
+    { params: { tag: 'AGI' } },
+    { params: { tag: '多模态AI' } },
+    { params: { tag: '数字营销' } },
+    { params: { tag: '营销自动化' } },
+    { params: { tag: '生产力' } },
+    { params: { tag: 'ChatGPT' } },
+    { params: { tag: 'Midjourney' } },
+    { params: { tag: 'Prompt Engineering' } },
+    { params: { tag: '技术教程' } },
+    { params: { tag: '开源' } },
+  ];
+}
+
+const { tag } = Astro.params;
+
+// 所有文章
+const allPosts = [
+  {
+    title: "AI 未来十年的关键词：重新定义智能时代的边界",
+    description: "从 AGI 到多模态，从开源革命到伦理觉醒，解读未来十年将主导 AI 发展的 10 个核心关键词",
+    pubDate: "2025-10-07",
+    slug: "ai-future-decade-keywords",
+    category: "AI 趋势",
+    tags: ["AI", "未来趋势", "AGI", "多模态AI", "开源"]
+  },
   {
     title: "AI 重塑营销：从内容生产到精准投放的全链路革命",
     description: "深度解析 AI 如何改变营销的每个环节，从文案创作、视觉设计到数据分析，附实战案例与工具推荐",
     pubDate: "2025-10-07",
     slug: "ai-marketing-revolution",
     category: "AI 营销",
-    categorySlug: "ai-marketing",
-    tags: ["AI营销", "数字营销", "营销自动化"],
-    cover: "/assets/blog/ai-marketing.jpg"
+    tags: ["AI营销", "数字营销", "营销自动化", "内容创作"]
   },
   {
     title: "2025 年必备的 10 个 AI 工具：让生产力飞跃的秘密武器",
@@ -19,19 +47,7 @@ const posts = [
     pubDate: "2025-10-07",
     slug: "ai-tools-2025",
     category: "AI 工具",
-    categorySlug: "ai-tools",
-    tags: ["AI工具", "生产力", "ChatGPT", "Midjourney"],
-    cover: "/assets/blog/ai-tools-2025.jpg"
-  },
-  {
-    title: "AI 未来十年的关键词：重新定义智能时代的边界",
-    description: "从 AGI 到多模态，从开源革命到伦理觉醒，解读未来十年将主导 AI 发展的 10 个核心关键词",
-    pubDate: "2025-10-07",
-    slug: "ai-future-decade-keywords",
-    category: "AI 趋势",
-    categorySlug: "ai-trends",
-    tags: ["AI", "未来趋势", "AGI", "多模态AI"],
-    cover: "/assets/blog/ai-future-decade.jpg"
+    tags: ["AI工具", "生产力", "ChatGPT", "Midjourney", "GitHub Copilot"]
   },
   {
     title: "Prompt Engineering：AI 时代的新编程语言",
@@ -39,21 +55,12 @@ const posts = [
     pubDate: "2025-10-07",
     slug: "prompt-engineering",
     category: "技术实践",
-    categorySlug: "tech-tutorial",
-    tags: ["AI", "Prompt Engineering", "ChatGPT", "技术教程"],
-    cover: "/assets/blog/prompt-engineering-cover.jpg"
+    tags: ["AI", "Prompt Engineering", "ChatGPT", "技术教程"]
   }
 ];
 
-// 分类列表
-const categories = [
-  { name: 'AI 趋势', slug: 'ai-trends', icon: '🔮', count: 1 },
-  { name: 'AI 营销', slug: 'ai-marketing', icon: '📈', count: 1 },
-  { name: 'AI 工具', slug: 'ai-tools', icon: '🛠️', count: 1 },
-  { name: '技术实践', slug: 'tech-tutorial', icon: '💻', count: 1 },
-  { name: '思考洞察', slug: 'insights', icon: '💡', count: 0 },
-  { name: '资源合集', slug: 'resources', icon: '📚', count: 0 },
-];
+// 筛选包含当前标签的文章
+const posts = allPosts.filter(post => post.tags.includes(tag as string));
 
 // 格式化日期
 const formatDate = (date: string) => {
@@ -65,36 +72,29 @@ const formatDate = (date: string) => {
 };
 ---
 
-<PageLayout title="博客 - AI小孩" description="探索AI、营销与技术的文章集合">
+<PageLayout 
+  title={`标签: ${tag} - AI小孩`} 
+  description={`查看所有标记为 "${tag}" 的文章`}
+>
   <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-    <h1 class="text-page-title mb-8">博客文章</h1>
-    
-    <!-- 分类导航 -->
+    <!-- 标签标题 -->
     <div class="mb-12">
-      <h2 class="text-lg font-semibold mb-4 text-gray-700 dark:text-gray-300">按分类浏览</h2>
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-        {categories.map((cat) => (
-          <a 
-            href={`/category/${cat.slug}`}
-            class="group flex flex-col items-center p-4 rounded-lg border border-gray-200 dark:border-gray-800 hover:border-primary hover:shadow-md transition-all"
-          >
-            <span class="text-3xl mb-2">{cat.icon}</span>
-            <span class="text-sm font-medium text-center group-hover:text-primary">
-              {cat.name}
-            </span>
-            <span class="text-xs text-gray-500 mt-1">
-              {cat.count} 篇
-            </span>
-          </a>
-        ))}
+      <div class="flex items-center gap-3 mb-4">
+        <span class="text-4xl">🏷️</span>
+        <h1 class="text-page-title">标签: {tag}</h1>
+      </div>
+      <p class="text-lg text-gray-600 dark:text-gray-400">
+        共找到 {posts.length} 篇相关文章
+      </p>
+      <div class="mt-4">
+        <a href="/blog" class="text-primary hover:underline">
+          ← 返回所有文章
+        </a>
       </div>
     </div>
-    
+
     <!-- 文章列表 -->
-    <div>
-      <h2 class="text-lg font-semibold mb-6 text-gray-700 dark:text-gray-300">
-        最新文章 ({posts.length})
-      </h2>
+    {posts.length > 0 ? (
       <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         {posts.map((post) => (
           <article class="group flex flex-col overflow-hidden rounded-lg border border-gray-200 transition-all hover:shadow-lg dark:border-gray-800">
@@ -109,12 +109,9 @@ const formatDate = (date: string) => {
             <div class="flex flex-1 flex-col p-6">
               <!-- 分类标签 -->
               <div class="mb-2">
-                <a 
-                  href={`/category/${post.categorySlug}`}
-                  class="inline-block rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary hover:bg-primary/20 transition-colors"
-                >
+                <span class="inline-block rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
                   {post.category}
-                </a>
+                </span>
               </div>
 
               <div class="mb-2 flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
@@ -134,12 +131,16 @@ const formatDate = (date: string) => {
               <!-- 标签 -->
               {post.tags && post.tags.length > 0 && (
                 <div class="flex flex-wrap gap-2">
-                  {post.tags.slice(0, 3).map((tag) => (
-                    <a
-                      href={`/tag/${tag}`}
-                      class="rounded-full bg-gray-100 px-2 py-1 text-xs text-gray-700 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700 transition-colors"
+                  {post.tags.map((t) => (
+                    <a 
+                      href={`/tag/${t}`}
+                      class={`rounded-full px-2 py-1 text-xs transition-colors ${
+                        t === tag 
+                          ? 'bg-primary text-white' 
+                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700'
+                      }`}
                     >
-                      {tag}
+                      {t}
                     </a>
                   ))}
                 </div>
@@ -158,13 +159,11 @@ const formatDate = (date: string) => {
           </article>
         ))}
       </div>
-    </div>
-    
-    <!-- 空状态提示 -->
-    {posts.length === 0 && (
-      <div class="rounded-lg border border-gray-200 p-8 text-center dark:border-gray-800">
-        <p class="text-gray-600 dark:text-gray-400">
-          文章即将发布，敬请期待！
+    ) : (
+      <div class="rounded-lg border border-gray-200 p-12 text-center dark:border-gray-800">
+        <span class="text-6xl mb-4 block">🏷️</span>
+        <p class="text-xl text-gray-600 dark:text-gray-400">
+          未找到包含标签 "{tag}" 的文章
         </p>
       </div>
     )}

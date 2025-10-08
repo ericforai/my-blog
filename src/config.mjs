@@ -1,7 +1,7 @@
 export const SITE = {
-  title: "Eric's AI Blog",
+  title: "AI小孩",
   description: "探索AI、营销与技术的前沿思考",
-  author: "Eric",
+  author: "AI小孩",
   lang: "zh-CN",
   ogImage: "/og-image.png",
   defaultImage: "/default.jpg",

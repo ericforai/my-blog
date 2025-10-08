@@ -1,0 +1,21 @@
+---
+import PostLayout from '~/layouts/PostLayout.astro';
+
+const postData = {
+  title: "用 AI 写爆款文案：5 个 Prompt 模板直接套用",
+  description: "实战验证的 AI 文案生成模板，涵盖营销文案、社交媒体、电商详情页等场景，让你 10 分钟产出专业级文案",
+  pubDate: "2025-10-09",
+  author: "Eric",
+  category: "AI 营销",
+  tags: ["AI营销", "文案创作", "Prompt模板", "营销文案", "ChatGPT"],
+  readingTime: "8 分钟"
+};
+
+const content = await Astro.glob('../../content/ai-copywriting-prompts.md');
+const post = content[0];
+---
+
+<PostLayout frontmatter={postData}>
+  <div set:html={post.compiledContent()} />
+</PostLayout>
+

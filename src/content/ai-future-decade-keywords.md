@@ -4,7 +4,8 @@ description: "从 AGI 到多模态，从开源革命到伦理觉醒，解读未�
 pubDate: "2025-10-07"
 updateDate: "2025-10-07"
 author: "Eric"
-category: "AI趋势"
+category: "AI 趋势"
+categorySlug: "ai-trends"
 tags: ["AI", "未来趋势", "AGI", "多模态AI", "开源"]
 cover: "/assets/blog/ai-future-decade.jpg"
 slug: "ai-future-decade-keywords"

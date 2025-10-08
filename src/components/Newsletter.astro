@@ -1,0 +1,105 @@
+---
+// Newsletter 订阅组件
+---
+
+<section class="bg-gradient-to-br from-primary/10 to-accent/10 py-12 rounded-2xl">
+  <div class="mx-auto max-w-2xl px-6 text-center">
+    <div class="mb-4">
+      <span class="text-4xl">📬</span>
+    </div>
+    <h3 class="text-2xl font-bold mb-3">订阅 AI 周刊</h3>
+    <p class="text-gray-600 dark:text-gray-400 mb-6">
+      每周精选最值得关注的 AI 动态、工具推荐与深度文章<br />
+      加入 <strong>5000+</strong> AI 从业者的学习社群
+    </p>
+    
+    <!-- 订阅表单 -->
+    <form 
+      class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
+      id="newsletter-form"
+    >
+      <input
+        type="email"
+        name="email"
+        placeholder="输入你的邮箱"
+        required
+        class="flex-1 rounded-lg border border-gray-300 px-4 py-3 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 dark:border-gray-700 dark:bg-gray-800 dark:text-white"
+      />
+      <button
+        type="submit"
+        class="rounded-lg bg-primary px-6 py-3 font-semibold text-white transition-colors hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary/50"
+      >
+        立即订阅
+      </button>
+    </form>
+    
+    <p class="mt-4 text-xs text-gray-500 dark:text-gray-500">
+      🔒 我们尊重您的隐私，随时可退订
+    </p>
+
+    <!-- 订阅福利 -->
+    <div class="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
+      <div class="flex items-center justify-center gap-2">
+        <span class="text-primary">✓</span>
+        <span>AI 工具清单</span>
+      </div>
+      <div class="flex items-center justify-center gap-2">
+        <span class="text-primary">✓</span>
+        <span>Prompt 模板库</span>
+      </div>
+      <div class="flex items-center justify-center gap-2">
+        <span class="text-primary">✓</span>
+        <span>独家深度文章</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Newsletter 表单提交处理
+  const form = document.getElementById('newsletter-form');
+  
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const formData = new FormData(form as HTMLFormElement);
+      const email = formData.get('email');
+      
+      // 这里可以集成实际的邮件服务（Mailchimp, ConvertKit, Resend 等）
+      // 示例：发送到后端 API
+      try {
+        // const response = await fetch('/api/subscribe', {
+        //   method: 'POST',
+        //   headers: { 'Content-Type': 'application/json' },
+        //   body: JSON.stringify({ email })
+        // });
+        
+        // 模拟成功订阅
+        alert('订阅成功！感谢您的关注 🎉\n我们会将最新的 AI 资讯发送到您的邮箱。');
+        (form as HTMLFormElement).reset();
+      } catch (error) {
+        alert('订阅失败，请稍后重试');
+      }
+    });
+  }
+</script>
+
+<style>
+  /* 添加动画效果 */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  section {
+    animation: fadeInUp 0.6s ease-out;
+  }
+</style>
+

@@ -1,0 +1,83 @@
+---
+import PostLayout from '~/layouts/PostLayout.astro';
+import { SITE } from '~/config.mjs';
+
+const postData = {
+  title: "2025 AI 大模型排行榜：GPT-5 vs Claude 4 vs Gemini 2.0 全面对比",
+  description: "最新 AI 大模型实测对比，涵盖性能、价格、应用场景全方位评测，帮你选出最适合的 AI 模型",
+  pubDate: "2025-10-08",
+  author: "Eric",
+  category: "AI趋势",
+  tags: ["AI模型", "GPT-5", "Claude", "Gemini", "大模型对比", "AI排行榜"],
+  readingTime: "10 分钟"
+};
+
+// 读取 markdown 内容
+const content = await Astro.glob('../../content/ai-model-ranking-2025.md');
+const post = content[0];
+---
+
+<PostLayout
+  title={postData.title}
+  description={postData.description}
+  pubDate={postData.pubDate}
+  author={postData.author}
+>
+  <article class="prose prose-lg dark:prose-invert mx-auto">
+    <!-- 文章头部 -->
+    <header class="mb-8 not-prose">
+      <div class="mb-4">
+        <a 
+          href="/category/ai-trends"
+          class="inline-block rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-primary hover:bg-primary/20 transition-colors"
+        >
+          {postData.category}
+        </a>
+      </div>
+      <h1 class="text-4xl font-bold mb-4">{postData.title}</h1>
+      <div class="flex items-center gap-4 text-gray-600 dark:text-gray-400">
+        <span>作者：{postData.author}</span>
+        <span>•</span>
+        <time>{postData.pubDate}</time>
+        <span>•</span>
+        <span>{postData.readingTime}</span>
+      </div>
+      <div class="mt-4 flex flex-wrap gap-2">
+        {postData.tags.map((tag: string) => (
+          <a
+            href={`/tag/${tag}`}
+            class="rounded-full bg-gray-100 px-3 py-1 text-sm text-gray-700 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700 transition-colors"
+          >
+            {tag}
+          </a>
+        ))}
+      </div>
+    </header>
+
+    <!-- 文章内容 -->
+    <div set:html={post.compiledContent()} />
+
+    <!-- 文章底部 -->
+    <footer class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-800 not-prose">
+      <div class="flex items-center justify-between">
+        <a
+          href="/blog"
+          class="inline-flex items-center text-primary hover:underline"
+        >
+          ← 返回博客列表
+        </a>
+        <div class="flex gap-4">
+          <a
+            href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(postData.title)}&url=${encodeURIComponent('https://yourdomain.com/blog/ai-model-ranking-2025')}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary"
+          >
+            分享到 Twitter
+          </a>
+        </div>
+      </div>
+    </footer>
+  </article>
+</PostLayout>
+

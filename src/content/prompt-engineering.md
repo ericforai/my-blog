@@ -2,9 +2,23 @@
 title: "Prompt Engineering：AI 时代的新编程语言"
 description: "深入探索 Prompt Engineering 的核心原理、实用技巧与最佳实践，掌握与 AI 对话的艺术"
 pubDate: "2025-10-07"
+updateDate: "2025-10-07"
+author: "Eric"
+category: "技术实践"
+categorySlug: "tech-tutorial"
 tags: ["AI", "Prompt Engineering", "ChatGPT", "技术教程"]
 cover: "/assets/blog/prompt-engineering-cover.jpg"
-author: "Eric"
+slug: "prompt-engineering"
+readingTime: "6 分钟"
+draft: false
+seo:
+  keywords: ["Prompt Engineering", "AI提示词", "ChatGPT", "AI技巧", "AI对话"]
+  canonical: "https://yourdomain.com/blog/prompt-engineering"
+  ogTitle: "Prompt Engineering：AI 时代的新编程语言 | AI小孩"
+  ogDescription: "深入探索 Prompt Engineering 的核心原理、实用技巧与最佳实践"
+  ogImage: "/assets/blog/prompt-engineering-cover.jpg"
+  ogType: "article"
+  twitterCard: "summary_large_image"
 ---
 
 # Prompt Engineering：AI 时代的新编程语言

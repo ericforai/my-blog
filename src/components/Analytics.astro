@@ -1,0 +1,80 @@
+---
+// Google Analytics 4 组件
+// 使用方式：在 BaseLayout.astro 中引入
+
+const GA_ID = import.meta.env.PUBLIC_GA_ID || 'G-XXXXXXXXXX';  // 从环境变量读取
+const isDev = import.meta.env.DEV;  // 开发环境不加载
+---
+
+{!isDev && GA_ID && GA_ID !== 'G-XXXXXXXXXX' && (
+  <>
+    <!-- Google tag (gtag.js) -->
+    <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}></script>
+    <script is:inline define:vars={{ GA_ID }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', GA_ID, {
+        page_path: window.location.pathname,
+        anonymize_ip: true,  // 匿名 IP（GDPR 合规）
+      });
+      
+      // 自定义事件追踪
+      
+      // 追踪外链点击
+      document.addEventListener('click', (e) => {
+        const target = e.target.closest('a');
+        if (target && target.hostname !== window.location.hostname) {
+          gtag('event', 'click', {
+            event_category: 'outbound',
+            event_label: target.href,
+            transport_type: 'beacon'
+          });
+        }
+      });
+      
+      // 追踪 Newsletter 订阅
+      window.addEventListener('newsletter_subscribed', (e) => {
+        gtag('event', 'sign_up', {
+          event_category: 'engagement',
+          event_label: 'newsletter',
+          value: 1
+        });
+      });
+      
+      // 追踪文章阅读深度
+      let maxScroll = 0;
+      const milestones = [25, 50, 75, 90];
+      let reported = new Set();
+      
+      window.addEventListener('scroll', () => {
+        const scrollPercent = Math.round(
+          (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100
+        );
+        
+        if (scrollPercent > maxScroll) {
+          maxScroll = scrollPercent;
+          
+          milestones.forEach(milestone => {
+            if (scrollPercent >= milestone && !reported.has(milestone)) {
+              reported.add(milestone);
+              gtag('event', 'scroll', {
+                event_category: 'engagement',
+                event_label: `${milestone}%`,
+                value: milestone
+              });
+            }
+          });
+        }
+      });
+    </script>
+  </>
+)}
+
+<!-- 开发环境提示 -->
+{isDev && (
+  <script is:inline>
+    console.log('📊 Analytics: Disabled in development mode');
+  </script>
+)}
+

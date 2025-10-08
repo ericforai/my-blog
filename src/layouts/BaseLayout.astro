@@ -1,6 +1,7 @@
 ---
 import '~/styles/base.css';
 import { SITE } from '~/config.mjs';
+import Analytics from '~/components/Analytics.astro';
 
 interface Props {
   title?: string;
@@ -18,6 +19,9 @@ const { title = SITE.title, description = SITE.description } = Astro.props;
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    
+    <!-- Google Analytics 4 -->
+    <Analytics />
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

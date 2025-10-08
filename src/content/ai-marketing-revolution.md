@@ -4,7 +4,8 @@ description: "深度解析 AI 如何改变营销的每个环节，从文案创�
 pubDate: "2025-10-07"
 updateDate: "2025-10-07"
 author: "Eric"
-category: "AI营销"
+category: "AI 营销"
+categorySlug: "ai-marketing"
 tags: ["AI营销", "数字营销", "营销自动化", "内容创作"]
 cover: "/assets/blog/ai-marketing.jpg"
 slug: "ai-marketing-revolution"

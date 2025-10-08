@@ -4,7 +4,8 @@ description: "精选 10 个经过实战检验的 AI 工具，涵盖写作、编�
 pubDate: "2025-10-07"
 updateDate: "2025-10-07"
 author: "Eric"
-category: "AI工具"
+category: "AI 工具"
+categorySlug: "ai-tools"
 tags: ["AI工具", "生产力", "ChatGPT", "Midjourney", "GitHub Copilot"]
 cover: "/assets/blog/ai-tools-2025.jpg"
 slug: "ai-tools-2025"

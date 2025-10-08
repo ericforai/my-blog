@@ -1,0 +1,199 @@
+---
+import PageLayout from '~/layouts/PageLayout.astro';
+
+// 获取所有分类
+export async function getStaticPaths() {
+  return [
+    { params: { category: 'ai-trends' } },
+    { params: { category: 'ai-marketing' } },
+    { params: { category: 'ai-tools' } },
+    { params: { category: 'tech-tutorial' } },
+    { params: { category: 'insights' } },
+    { params: { category: 'resources' } },
+  ];
+}
+
+const { category } = Astro.params;
+
+// 分类信息映射
+const categoryInfo: Record<string, { name: string; description: string; icon: string }> = {
+  'ai-trends': {
+    name: 'AI 趋势',
+    description: '前沿技术解读与行业趋势预测',
+    icon: '🔮'
+  },
+  'ai-marketing': {
+    name: 'AI 营销',
+    description: '营销场景化应用与实战案例',
+    icon: '📈'
+  },
+  'ai-tools': {
+    name: 'AI 工具',
+    description: '工具测评、使用教程与对比分析',
+    icon: '🛠️'
+  },
+  'tech-tutorial': {
+    name: '技术实践',
+    description: '开发教程、技术分析与最佳实践',
+    icon: '💻'
+  },
+  'insights': {
+    name: '思考洞察',
+    description: '深度观察、独立思考与个人观点',
+    icon: '💡'
+  },
+  'resources': {
+    name: '资源合集',
+    description: '精选资源、定期更新、高复访价值',
+    icon: '📚'
+  }
+};
+
+// 文章数据（按分类）
+const allPosts: Record<string, Array<{
+  title: string;
+  description: string;
+  pubDate: string;
+  slug: string;
+  tags: string[];
+}>> = {
+  'ai-trends': [
+    {
+      title: "AI 未来十年的关键词：重新定义智能时代的边界",
+      description: "从 AGI 到多模态，从开源革命到伦理觉醒，解读未来十年将主导 AI 发展的 10 个核心关键词",
+      pubDate: "2025-10-07",
+      slug: "ai-future-decade-keywords",
+      tags: ["AI", "未来趋势", "AGI", "多模态AI"]
+    }
+  ],
+  'ai-marketing': [
+    {
+      title: "AI 重塑营销：从内容生产到精准投放的全链路革命",
+      description: "深度解析 AI 如何改变营销的每个环节，从文案创作、视觉设计到数据分析，附实战案例与工具推荐",
+      pubDate: "2025-10-07",
+      slug: "ai-marketing-revolution",
+      tags: ["AI营销", "数字营销", "营销自动化"]
+    }
+  ],
+  'ai-tools': [
+    {
+      title: "2025 年必备的 10 个 AI 工具：让生产力飞跃的秘密武器",
+      description: "精选 10 个经过实战检验的 AI 工具，涵盖写作、编程、设计、数据分析等场景，附使用技巧与对比评测",
+      pubDate: "2025-10-07",
+      slug: "ai-tools-2025",
+      tags: ["AI工具", "生产力", "ChatGPT", "Midjourney"]
+    }
+  ],
+  'tech-tutorial': [
+    {
+      title: "Prompt Engineering：AI 时代的新编程语言",
+      description: "深入探索 Prompt Engineering 的核心原理、实用技巧与最佳实践，掌握与 AI 对话的艺术",
+      pubDate: "2025-10-07",
+      slug: "prompt-engineering",
+      tags: ["AI", "Prompt Engineering", "ChatGPT", "技术教程"]
+    }
+  ],
+  'insights': [],
+  'resources': []
+};
+
+const currentCategory = categoryInfo[category as string];
+const posts = allPosts[category as string] || [];
+
+// 格式化日期
+const formatDate = (date: string) => {
+  return new Date(date).toLocaleDateString('zh-CN', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+};
+---
+
+<PageLayout 
+  title={`${currentCategory?.name} - AI小孩`} 
+  description={currentCategory?.description}
+>
+  <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+    <!-- 分类标题 -->
+    <div class="mb-12">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="text-5xl">{currentCategory?.icon}</span>
+        <h1 class="text-page-title">{currentCategory?.name}</h1>
+      </div>
+      <p class="text-xl text-gray-600 dark:text-gray-400">
+        {currentCategory?.description}
+      </p>
+      <div class="mt-4">
+        <a href="/blog" class="text-primary hover:underline">
+          ← 返回所有文章
+        </a>
+      </div>
+    </div>
+
+    <!-- 文章列表 -->
+    {posts.length > 0 ? (
+      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {posts.map((post) => (
+          <article class="group flex flex-col overflow-hidden rounded-lg border border-gray-200 transition-all hover:shadow-lg dark:border-gray-800">
+            <!-- 文章封面 -->
+            <div class="aspect-video bg-gradient-to-br from-primary/20 to-accent/20">
+              <div class="flex h-full items-center justify-center">
+                <span class="text-4xl">{currentCategory?.icon}</span>
+              </div>
+            </div>
+            
+            <!-- 文章信息 -->
+            <div class="flex flex-1 flex-col p-6">
+              <div class="mb-2 flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+                <time datetime={post.pubDate}>{formatDate(post.pubDate)}</time>
+              </div>
+              
+              <h2 class="mb-3 text-xl font-bold group-hover:text-primary">
+                <a href={`/blog/${post.slug}`} class="hover:underline">
+                  {post.title}
+                </a>
+              </h2>
+              
+              <p class="mb-4 flex-1 text-gray-600 dark:text-gray-400">
+                {post.description}
+              </p>
+              
+              <!-- 标签 -->
+              {post.tags && post.tags.length > 0 && (
+                <div class="flex flex-wrap gap-2">
+                  {post.tags.slice(0, 3).map((tag) => (
+                    <span class="rounded-full bg-gray-100 px-2 py-1 text-xs text-gray-700 dark:bg-gray-800 dark:text-gray-300">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              )}
+              
+              <!-- 阅读按钮 -->
+              <div class="mt-4 pt-4 border-t border-gray-100 dark:border-gray-800">
+                <a
+                  href={`/blog/${post.slug}`}
+                  class="inline-flex items-center text-sm font-medium text-primary hover:underline"
+                >
+                  阅读全文 →
+                </a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    ) : (
+      <div class="rounded-lg border border-gray-200 p-12 text-center dark:border-gray-800">
+        <span class="text-6xl mb-4 block">{currentCategory?.icon}</span>
+        <p class="text-xl text-gray-600 dark:text-gray-400 mb-2">
+          该分类暂无文章
+        </p>
+        <p class="text-gray-500 dark:text-gray-500">
+          精彩内容即将发布，敬请期待！
+        </p>
+      </div>
+    )}
+  </div>
+</PageLayout>
+

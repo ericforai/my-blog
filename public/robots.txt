@@ -1,0 +1,34 @@
+# robots.txt for AI小孩 Blog
+# https://yourdomain.com/robots.txt
+
+# 允许所有搜索引擎爬取
+User-agent: *
+Allow: /
+
+# 禁止爬取的路径
+Disallow: /api/
+Disallow: /_astro/
+Disallow: /admin/
+
+# Sitemap 位置
+Sitemap: https://yourdomain.com/sitemap.xml
+
+# 针对特定搜索引擎的配置
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+# 爬取频率（可选）
+# Crawl-delay: 10
+
+# 防止恶意爬虫
+User-agent: AhrefsBot
+User-agent: SemrushBot
+User-agent: DotBot
+Crawl-delay: 30
+
