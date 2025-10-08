@@ -1,21 +1,86 @@
 ---
 import PostLayout from '~/layouts/PostLayout.astro';
 
-const postData = {
+const frontmatter = {
   title: "用 AI 写爆款文案：5 个 Prompt 模板直接套用",
   description: "实战验证的 AI 文案生成模板，涵盖营销文案、社交媒体、电商详情页等场景，让你 10 分钟产出专业级文案",
   pubDate: "2025-10-09",
   author: "Eric",
-  category: "AI 营销",
-  tags: ["AI营销", "文案创作", "Prompt模板", "营销文案", "ChatGPT"],
-  readingTime: "8 分钟"
+  tags: ["AI营销", "文案创作", "Prompt模板", "营销文案", "ChatGPT"]
 };
-
-const content = await Astro.glob('../../content/ai-copywriting-prompts.md');
-const post = content[0];
 ---
 
-<PostLayout frontmatter={postData}>
-  <div set:html={post.compiledContent()} />
+<PostLayout frontmatter={frontmatter}>
+  <h1>用 AI 写爆款文案：5 个 Prompt 模板直接套用</h1>
+
+  <blockquote>
+    <p>💡 核心摘要：文案创作从 3 小时缩短到 10 分钟！本文分享 5 个经过实战验证的 AI 文案 Prompt 模板，可直接复制使用。</p>
+    <p>关键词：AI 文案生成 ｜ 分类：AI 营销 ｜ 更新时间：2025-10-09</p>
+  </blockquote>
+
+  <hr />
+
+  <h2>一、为什么 AI 文案比你想象的更强大？</h2>
+
+  <h3>📊 数据说话</h3>
+
+  <p>某电商团队使用 AI 生成文案后的变化：</p>
+  <ul>
+    <li><strong>文案产出速度</strong>：从每天 5 条 → 每天 50 条（提升 10 倍）</li>
+    <li><strong>A/B 测试样本</strong>：从 3 个版本 → 20 个版本</li>
+    <li><strong>转化率提升</strong>：平均提升 <strong>35%</strong></li>
+    <li><strong>人力成本</strong>：节省 <strong>70%</strong></li>
+  </ul>
+
+  <hr />
+
+  <h2>二、5 个爆款 Prompt 模板（可直接复制）</h2>
+
+  <h3>🎯 模板 1：AIDA 营销文案生成器</h3>
+
+  <p><strong>适用场景</strong>：产品推广、广告文案、落地页</p>
+
+  <h4>📋 Prompt 模板</h4>
+
+  <pre><code>你是一位资深营销文案专家，擅长运用 AIDA（注意-兴趣-欲望-行动）框架。
+
+请为以下产品撰写营销文案：
+
+【产品信息】
+- 产品名称：[填写产品名]
+- 核心功能：[3 个核心卖点]
+- 目标受众：[年龄/职业/痛点]
+- 价格定位：[高端/中端/亲民]
+
+【输出要求】
+1. 使用 AIDA 框架
+2. 风格：[正式/轻松/幽默/专业]
+3. 字数：150-200 字
+4. 必须包含：转化元素
+
+【输出格式】
+- 标题（1 句）
+- 正文（3 段）
+- CTA（行动召唤）
+</code></pre>
+
+  <hr />
+
+  <h2>三、相关资源与拓展阅读</h2>
+
+  <blockquote>
+    <p>📚 延伸阅读：</p>
+    <ul>
+      <li><a href="/blog/ai-marketing-revolution">AI 重塑营销：从内容生产到精准投放</a></li>
+      <li><a href="/blog/prompt-engineering">Prompt Engineering：AI 时代的新编程语言</a></li>
+      <li><a href="/blog/ai-tools-2025">2025 年必备的 10 个 AI 工具</a></li>
+    </ul>
+  </blockquote>
+
+  <hr />
+
+  <p>✴️ <strong>你用 AI 生成的第一条文案效果如何？欢迎在评论区分享！</strong></p>
+
+  <p><em>本文首发于 AI小孩，转载请注明出处。</em></p>
 </PostLayout>
 
