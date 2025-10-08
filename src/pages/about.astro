@@ -1,11 +1,15 @@
 ---
 import PageLayout from '~/layouts/PageLayout.astro';
 import { SITE } from '~/config.mjs';
+import { getTranslation } from '~/i18n/ui.ts';
+
+// Get current locale
+const currentLocale = 'en';
 
 // SEO 优化
-const seoTitle = "关于我们 - AI小孩品牌故事 | AI学习社区";
-const seoDescription = "了解AI小孩的品牌故事、使命愿景和核心理念。我们致力于成为最具温度的AI学习者社区，让每个普通人都能在AI时代重启自己的第二次童年。";
-const seoKeywords = "关于AI小孩,AI学习社区,品牌故事,AI学习者,人工智能教育,AI学习理念";
+const seoTitle = "About Us - AI Kids Brand Story | AI Learning Community";
+const seoDescription = "Learn about AI Kids brand story, mission, vision, and core philosophy. We are committed to becoming the warmest AI learner community, allowing every ordinary person to restart their second childhood in the AI era.";
+const seoKeywords = "About AI Kids,AI learning community,brand story,AI learners,artificial intelligence education,AI learning philosophy";
 ---
 
 <PageLayout 
@@ -19,37 +23,37 @@ const seoKeywords = "关于AI小孩,AI学习社区,品牌故事,AI学习者,人�
     <!-- 品牌定位 -->
     <section class="mb-16">
       <div class="text-center mb-12">
-        <h1 class="text-page-title mb-6">🧭 AI小孩</h1>
+        <h1 class="text-page-title mb-6">🧭 AI Kids</h1>
         <blockquote class="text-2xl font-medium text-gray-700 dark:text-gray-300 italic border-l-4 border-primary pl-6 py-4 bg-primary/5 rounded-r-lg">
-          「面对AI，我们都是学习者。」
+          {getTranslation(currentLocale, 'brand.tagline')}
         </blockquote>
       </div>
       
       <div class="prose prose-lg dark:prose-invert max-w-none">
         <p class="text-xl text-gray-600 dark:text-gray-400 leading-relaxed">
-          <strong>核心理念：</strong> 在这个智能时代，我们不再是旁观者，而是重新学会"提问、探索与创造"的孩子。
+          <strong>Core Philosophy:</strong> {getTranslation(currentLocale, 'brand.description')}
           <br />
-          AI不是威胁，而是成长的伙伴。
+          AI is not a threat, but a partner for growth.
         </p>
       </div>
     </section>
 
     <!-- 品牌故事 -->
     <section class="mb-16">
-      <h2 class="text-3xl font-bold mb-8 text-center">💡 品牌故事</h2>
+      <h2 class="text-3xl font-bold mb-8 text-center">💡 Our Story</h2>
       <div class="prose prose-lg dark:prose-invert max-w-none">
         <p class="text-lg leading-relaxed mb-6">
-          在技术快速演化的今天，AI 不再只是工具，它是新的语言、新的思维方式。
-          <strong>AI小孩</strong> 诞生于这样一个时代的好奇心：
+          In today's rapidly evolving technology landscape, AI is no longer just a tool—it's a new language, a new way of thinking.
+          <strong>AI Kids</strong> was born from curiosity in such an era:
         </p>
         
         <blockquote class="text-xl font-medium text-gray-700 dark:text-gray-300 italic border-l-4 border-accent pl-6 py-4 bg-accent/5 rounded-r-lg mb-8">
-          我们相信，面对AI，最强大的能力不是掌控，而是<strong>好奇与学习</strong>。
+          We believe that facing AI, the most powerful ability is not control, but <strong>curiosity and learning</strong>.
         </blockquote>
 
         <p class="text-lg leading-relaxed mb-6">
-          每一个AI小孩，都是在用提问、实验、分享——去重新理解世界。
-          我们用内容、工具、故事、实验，记录人类与AI共同成长的童年。
+          Every AI kid is using questions, experiments, and sharing to understand the world again.
+          We use content, tools, stories, and experiments to record the childhood of human-AI co-growth.
         </p>
       </div>
     </section>
@@ -57,19 +61,19 @@ const seoKeywords = "关于AI小孩,AI学习社区,品牌故事,AI学习者,人�
     <!-- 品牌使命与愿景 -->
     <section class="mb-16">
       <div class="grid md:grid-cols-2 gap-8">
-        <!-- 使命 -->
+        <!-- Mission -->
         <div class="bg-gradient-to-br from-primary/10 to-primary/5 p-8 rounded-xl border border-primary/20">
-          <h3 class="text-2xl font-bold mb-4 text-primary">🌍 品牌使命</h3>
+          <h3 class="text-2xl font-bold mb-4 text-primary">{getTranslation(currentLocale, 'home.mission.title')}</h3>
           <p class="text-lg leading-relaxed text-gray-700 dark:text-gray-300">
-            让更多人以「学习者心态」拥抱AI，让AI成为每个人的学习伙伴，而不是遥远的技术神话。
+            {getTranslation(currentLocale, 'home.mission.description')}
           </p>
         </div>
 
-        <!-- 愿景 -->
+        <!-- Vision -->
         <div class="bg-gradient-to-br from-accent/10 to-accent/5 p-8 rounded-xl border border-accent/20">
-          <h3 class="text-2xl font-bold mb-4 text-accent">🌱 品牌愿景</h3>
+          <h3 class="text-2xl font-bold mb-4 text-accent">{getTranslation(currentLocale, 'home.vision.title')}</h3>
           <p class="text-lg leading-relaxed text-gray-700 dark:text-gray-300">
-            成为最具温度的AI学习者社区，让每个普通人都能在AI时代重启自己的"第二次童年"。
+            {getTranslation(currentLocale, 'home.vision.description')}
           </p>
         </div>
       </div>
@@ -77,29 +81,29 @@ const seoKeywords = "关于AI小孩,AI学习社区,品牌故事,AI学习者,人�
 
     <!-- 内容理念 -->
     <section class="mb-16">
-      <h2 class="text-3xl font-bold mb-8 text-center">🎯 我们的内容理念</h2>
+      <h2 class="text-3xl font-bold mb-8 text-center">🎯 Our Content Philosophy</h2>
       <div class="grid md:grid-cols-3 gap-6">
         <div class="text-center p-6 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-shadow">
           <div class="text-4xl mb-4">🔮</div>
-          <h3 class="text-xl font-bold mb-3">前瞻洞察</h3>
+          <h3 class="text-xl font-bold mb-3">Forward Insights</h3>
           <p class="text-gray-600 dark:text-gray-400">
-            深度解析AI趋势，帮助你在变革中保持领先
+            Deep analysis of AI trends to help you stay ahead in transformation
           </p>
         </div>
         
         <div class="text-center p-6 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-shadow">
           <div class="text-4xl mb-4">🛠️</div>
-          <h3 class="text-xl font-bold mb-3">实用工具</h3>
+          <h3 class="text-xl font-bold mb-3">Practical Tools</h3>
           <p class="text-gray-600 dark:text-gray-400">
-            精选AI工具与技巧，让技术真正为你所用
+            Curated AI tools and techniques to make technology truly work for you
           </p>
         </div>
         
         <div class="text-center p-6 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-shadow">
           <div class="text-4xl mb-4">💡</div>
-          <h3 class="text-xl font-bold mb-3">深度思考</h3>
+          <h3 class="text-xl font-bold mb-3">Deep Thinking</h3>
           <p class="text-gray-600 dark:text-gray-400">
-            探索AI时代的哲学思考，构建新的认知框架
+            Exploring philosophical thinking in the AI era, building new cognitive frameworks
           </p>
         </div>
       </div>
@@ -107,16 +111,16 @@ const seoKeywords = "关于AI小孩,AI学习社区,品牌故事,AI学习者,人�
 
     <!-- 联系方式 -->
     <section class="text-center">
-      <h2 class="text-3xl font-bold mb-8">🤝 加入我们的学习之旅</h2>
+      <h2 class="text-3xl font-bold mb-8">🤝 Join Our Learning Journey</h2>
       <p class="text-lg text-gray-600 dark:text-gray-400 mb-8">
-        如果你也想成为AI时代的学习者，欢迎与我们交流
+        If you also want to become a learner in the AI era, welcome to connect with us
       </p>
       <div class="flex flex-wrap justify-center gap-4">
         <a href="/blog" class="btn btn-primary">
-          阅读文章
+          Read Articles
         </a>
         <a href="/newsletter" class="btn btn-ghost">
-          订阅更新
+          Subscribe Updates
         </a>
       </div>
     </section>

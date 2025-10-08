@@ -11,6 +11,15 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 export default defineConfig({
   site: 'https://www.aixiaohai.com',
   
+  // i18n configuration
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'zh'],
+    routing: {
+      prefixDefaultLocale: false,
+    },
+  },
+  
   integrations: [
     tailwind({
       applyBaseStyles: false,

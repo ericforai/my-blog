@@ -3,6 +3,7 @@ import '~/styles/base.css';
 import { SITE } from '~/config.mjs';
 import Analytics from '~/components/Analytics.astro';
 import SEO from '~/components/SEO.astro';
+import { getLocaleFromPath } from '~/i18n/ui.ts';
 
 interface Props {
   title?: string;
@@ -31,10 +32,14 @@ const {
   tags,
   noindex,
 } = Astro.props;
+
+// Get current locale from URL
+const currentLocale = getLocaleFromPath(Astro.url.pathname);
+const locale = currentLocale === 'zh' ? 'zh-CN' : 'en';
 ---
 
 <!doctype html>
-<html lang={SITE.lang}>
+<html lang={locale}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />

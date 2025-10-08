@@ -1,68 +1,92 @@
 ---
 import PageLayout from '~/layouts/PageLayout.astro';
+import { getTranslation } from '~/i18n/ui.ts';
+
+// Get current locale
+const currentLocale = 'en';
 
 // SEO 优化
-const seoTitle = "AI博客 - 最新AI趋势、工具与思考 | AI小孩";
-const seoDescription = "探索AI、营销与技术的前沿思考。精选AI工具推荐、深度趋势分析、实用技巧分享，帮助你在AI时代保持学习与成长。";
-const seoKeywords = "AI博客,AI文章,AI趋势分析,AI工具推荐,AI学习资源,人工智能博客,AI技术文章";
+const seoTitle = "AI Blog - Latest AI Trends, Tools & Insights | AI Kids";
+const seoDescription = "Explore cutting-edge insights on AI, marketing, and technology. Curated AI tool recommendations, in-depth trend analysis, and practical tips to help you stay learning and growing in the AI era.";
+const seoKeywords = "AI blog,AI articles,AI trend analysis,AI tool recommendations,AI learning resources,artificial intelligence blog,AI technology articles";
 
-// 博客文章列表
+// Blog posts list
 const posts = [
   {
-    title: "AI 重塑营销：从内容生产到精准投放的全链路革命",
-    description: "深度解析 AI 如何改变营销的每个环节，从文案创作、视觉设计到数据分析，附实战案例与工具推荐",
-    pubDate: "2025-10-07",
+    title: "AI Revolution in Marketing: Complete Transformation from Content Creation to Precision Targeting",
+    description: "Deep analysis of how AI is transforming every aspect of marketing, from copywriting and visual design to data analysis, with practical case studies and tool recommendations",
+    pubDate: "2025-01-08",
     slug: "ai-marketing-revolution",
-    category: "AI 营销",
+    category: "AI Marketing",
     categorySlug: "ai-marketing",
-    tags: ["AI营销", "数字营销", "营销自动化"],
+    tags: ["AI Marketing", "Digital Marketing", "Marketing Automation"],
     cover: "/assets/blog/ai-marketing.jpg"
   },
   {
-    title: "2025 年必备的 10 个 AI 工具：让生产力飞跃的秘密武器",
-    description: "精选 10 个经过实战检验的 AI 工具，涵盖写作、编程、设计、数据分析等场景，附使用技巧与对比评测",
-    pubDate: "2025-10-07",
+    title: "10 Essential AI Tools for 2025: Secret Weapons for Productivity Leap",
+    description: "Curated selection of 10 battle-tested AI tools covering writing, programming, design, data analysis scenarios, with usage tips and comparative reviews",
+    pubDate: "2025-01-07",
     slug: "ai-tools-2025",
-    category: "AI 工具",
+    category: "AI Tools",
     categorySlug: "ai-tools",
-    tags: ["AI工具", "生产力", "ChatGPT", "Midjourney"],
+    tags: ["AI Tools", "Productivity", "ChatGPT", "Midjourney"],
     cover: "/assets/blog/ai-tools-2025.jpg"
   },
   {
-    title: "AI 未来十年的关键词：重新定义智能时代的边界",
-    description: "从 AGI 到多模态，从开源革命到伦理觉醒，解读未来十年将主导 AI 发展的 10 个核心关键词",
-    pubDate: "2025-10-07",
+    title: "AI Keywords for the Next Decade: Redefining the Boundaries of the Intelligent Era",
+    description: "From AGI to multimodal, from open source revolution to ethical awakening, interpreting the 10 core keywords that will dominate AI development in the next decade",
+    pubDate: "2025-01-06",
     slug: "ai-future-decade-keywords",
-    category: "AI 趋势",
+    category: "AI Trends",
     categorySlug: "ai-trends",
-    tags: ["AI", "未来趋势", "AGI", "多模态AI"],
+    tags: ["AI", "Future Trends", "AGI", "Multimodal AI"],
     cover: "/assets/blog/ai-future-decade.jpg"
   },
   {
-    title: "Prompt Engineering：AI 时代的新编程语言",
-    description: "深入探索 Prompt Engineering 的核心原理、实用技巧与最佳实践，掌握与 AI 对话的艺术",
-    pubDate: "2025-10-07",
+    title: "Prompt Engineering: The New Programming Language of the AI Era",
+    description: "Deep exploration of the core principles, practical techniques and best practices of Prompt Engineering, mastering the art of conversing with AI",
+    pubDate: "2025-01-05",
     slug: "prompt-engineering",
-    category: "技术实践",
+    category: "Tech Tutorial",
     categorySlug: "tech-tutorial",
-    tags: ["AI", "Prompt Engineering", "ChatGPT", "技术教程"],
+    tags: ["AI", "Prompt Engineering", "ChatGPT", "Tech Tutorial"],
     cover: "/assets/blog/prompt-engineering-cover.jpg"
+  },
+  {
+    title: "2025 AI Model Rankings: GPT-5 vs Claude 4 vs Gemini 2.0 Comprehensive Comparison",
+    description: "Latest AI model hands-on comparison, covering performance, pricing, application scenarios comprehensive evaluation, helping you choose the most suitable AI model",
+    pubDate: "2025-01-04",
+    slug: "ai-model-ranking-2025",
+    category: "AI Trends",
+    categorySlug: "ai-trends",
+    tags: ["AI Models", "GPT-5", "Claude", "Gemini", "Model Comparison", "AI Rankings"],
+    cover: "/assets/blog/ai-model-ranking.jpg"
+  },
+  {
+    title: "Writing Viral Copy with AI: 5 Prompt Templates Ready to Use",
+    description: "Battle-tested AI copywriting templates covering marketing copy, social media, e-commerce product pages and other scenarios, helping you produce professional-level copy in 10 minutes",
+    pubDate: "2025-01-03",
+    slug: "ai-copywriting-prompts",
+    category: "AI Marketing",
+    categorySlug: "ai-marketing",
+    tags: ["AI Marketing", "Copywriting", "Prompt Templates", "Marketing Copy", "ChatGPT"],
+    cover: "/assets/blog/ai-copywriting.jpg"
   }
 ];
 
-// 分类列表
+// Categories list
 const categories = [
-  { name: 'AI 趋势', slug: 'ai-trends', icon: '🔮', count: 1 },
-  { name: 'AI 营销', slug: 'ai-marketing', icon: '📈', count: 1 },
-  { name: 'AI 工具', slug: 'ai-tools', icon: '🛠️', count: 1 },
-  { name: '技术实践', slug: 'tech-tutorial', icon: '💻', count: 1 },
-  { name: '思考洞察', slug: 'insights', icon: '💡', count: 0 },
-  { name: '资源合集', slug: 'resources', icon: '📚', count: 0 },
+  { name: 'AI Trends', slug: 'ai-trends', icon: '🔮', count: 2 },
+  { name: 'AI Marketing', slug: 'ai-marketing', icon: '📈', count: 2 },
+  { name: 'AI Tools', slug: 'ai-tools', icon: '🛠️', count: 1 },
+  { name: 'Tech Tutorial', slug: 'tech-tutorial', icon: '💻', count: 1 },
+  { name: 'Insights', slug: 'insights', icon: '💡', count: 0 },
+  { name: 'Resources', slug: 'resources', icon: '📚', count: 0 },
 ];
 
-// 格式化日期
+// Format date
 const formatDate = (date: string) => {
-  return new Date(date).toLocaleDateString('zh-CN', {
+  return new Date(date).toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
@@ -78,11 +102,11 @@ const formatDate = (date: string) => {
   type="website"
 >
   <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-    <h1 class="text-page-title mb-8">博客文章</h1>
+    <h1 class="text-page-title mb-8">{getTranslation(currentLocale, 'blog.title')}</h1>
     
-    <!-- 分类导航 -->
+    <!-- Category Navigation -->
     <div class="mb-12">
-      <h2 class="text-lg font-semibold mb-4 text-gray-700 dark:text-gray-300">按分类浏览</h2>
+      <h2 class="text-lg font-semibold mb-4 text-gray-700 dark:text-gray-300">{getTranslation(currentLocale, 'blog.categories')}</h2>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         {categories.map((cat) => (
           <a 
@@ -94,7 +118,7 @@ const formatDate = (date: string) => {
               {cat.name}
             </span>
             <span class="text-xs text-gray-500 mt-1">
-              {cat.count} 篇
+              {cat.count} posts
             </span>
           </a>
         ))}
@@ -104,7 +128,7 @@ const formatDate = (date: string) => {
     <!-- 文章列表 -->
     <div>
       <h2 class="text-lg font-semibold mb-6 text-gray-700 dark:text-gray-300">
-        最新文章 ({posts.length})
+        {getTranslation(currentLocale, 'blog.latest_posts')} ({posts.length})
       </h2>
       <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         {posts.map((post) => (
@@ -162,7 +186,7 @@ const formatDate = (date: string) => {
                   href={`/blog/${post.slug}`}
                   class="inline-flex items-center text-sm font-medium text-primary hover:underline"
                 >
-                  阅读全文 →
+                  {getTranslation(currentLocale, 'blog.read_more')} →
                 </a>
               </div>
             </div>
@@ -175,7 +199,7 @@ const formatDate = (date: string) => {
     {posts.length === 0 && (
       <div class="rounded-lg border border-gray-200 p-8 text-center dark:border-gray-800">
         <p class="text-gray-600 dark:text-gray-400">
-          文章即将发布，敬请期待！
+          Articles coming soon, stay tuned!
         </p>
       </div>
     )}

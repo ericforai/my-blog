@@ -1,5 +1,17 @@
 ---
 import { SITE } from '~/config.mjs';
+import { getLocaleFromPath, getTranslation } from '~/i18n/ui.ts';
+import LanguagePicker from './LanguagePicker.astro';
+
+// Get current locale from URL
+const currentLocale = getLocaleFromPath(Astro.url.pathname);
+
+// Get translated navigation items
+const navItems = [
+  { key: 'nav.home', href: currentLocale === 'en' ? '/' : '/zh/' },
+  { key: 'nav.blog', href: currentLocale === 'en' ? '/blog' : '/zh/blog' },
+  { key: 'nav.about', href: currentLocale === 'en' ? '/about' : '/zh/about' },
+];
 ---
 
 <header class="sticky top-0 z-40 border-b border-gray-200 bg-white/80 backdrop-blur-lg dark:border-gray-800 dark:bg-slate-900/80">
@@ -13,9 +25,15 @@ import { SITE } from '~/config.mjs';
       </div>
       
       <div class="hidden md:flex md:items-center md:space-x-8">
-        <a href="/" class="text-gray-700 hover:text-primary dark:text-gray-300 dark:hover:text-primary">首页</a>
-        <a href="/blog" class="text-gray-700 hover:text-primary dark:text-gray-300 dark:hover:text-primary">博客</a>
-        <a href="/about" class="text-gray-700 hover:text-primary dark:text-gray-300 dark:hover:text-primary">关于</a>
+        {navItems.map(item => (
+          <a 
+            href={item.href} 
+            class="text-gray-700 hover:text-primary dark:text-gray-300 dark:hover:text-primary"
+          >
+            {getTranslation(currentLocale, item.key)}
+          </a>
+        ))}
+        <LanguagePicker />
       </div>
     </div>
   </nav>

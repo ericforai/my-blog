@@ -1,0 +1,171 @@
+---
+import PageLayout from '~/layouts/PageLayout.astro';
+import Newsletter from '~/components/Newsletter.astro';
+import { getTranslation } from '~/i18n/ui.ts';
+
+// Get current locale
+const currentLocale = 'zh';
+
+// SEO 优化
+const seoTitle = "📬 订阅 AI 周刊 | AI小孩";
+const seoDescription = "每周精选最值得关注的 AI 动态、工具推荐与深度文章。加入5000+ AI从业者的学习社群，获取独家AI工具清单、Prompt模板库和深度文章。";
+const seoKeywords = "AI周刊,AI订阅,AI Newsletter,AI学习资源,AI工具推荐,AI从业者社群";
+---
+
+<PageLayout 
+  title={seoTitle} 
+  description={seoDescription}
+  keywords={seoKeywords}
+  url="/zh/newsletter"
+  type="website"
+>
+  <div class="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
+    <!-- Hero Section -->
+    <div class="text-center mb-12">
+      <h1 class="text-page-title mb-6">{getTranslation(currentLocale, 'newsletter.page.title')}</h1>
+      <p class="text-xl text-gray-600 dark:text-gray-400 leading-relaxed max-w-3xl mx-auto">
+        {getTranslation(currentLocale, 'newsletter.page.description')}
+      </p>
+    </div>
+
+    <!-- Why Subscribe Section -->
+    <section class="mb-16">
+      <h2 class="text-3xl font-bold mb-8 text-center">{getTranslation(currentLocale, 'newsletter.page.why_subscribe')}</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="text-center p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg">
+          <div class="text-4xl mb-4">🎯</div>
+          <h3 class="text-xl font-bold mb-3">精准筛选</h3>
+          <p class="text-gray-600 dark:text-gray-400">
+            每周从海量信息中筛选出最有价值的AI内容
+          </p>
+        </div>
+        
+        <div class="text-center p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg">
+          <div class="text-4xl mb-4">⚡</div>
+          <h3 class="text-xl font-bold mb-3">高效学习</h3>
+          <p class="text-gray-600 dark:text-gray-400">
+            节省时间，直接获取经过验证的实用工具和技巧
+          </p>
+        </div>
+        
+        <div class="text-center p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg">
+          <div class="text-4xl mb-4">🤝</div>
+          <h3 class="text-xl font-bold mb-3">社群互动</h3>
+          <p class="text-gray-600 dark:text-gray-400">
+            加入5000+ AI从业者的学习社群，共同成长
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter Form -->
+    <section class="mb-16">
+      <div class="bg-gradient-to-r from-primary/10 to-accent/10 p-8 rounded-xl">
+        <Newsletter />
+      </div>
+    </section>
+
+    <!-- What You'll Get Section -->
+    <section class="mb-16">
+      <h2 class="text-3xl font-bold mb-8 text-center">{getTranslation(currentLocale, 'newsletter.page.content')}</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="flex items-start space-x-4 p-6 bg-white dark:bg-gray-800 rounded-xl">
+          <div class="flex-shrink-0">
+            <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+              <span class="text-2xl">🛠️</span>
+            </div>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold mb-2">{getTranslation(currentLocale, 'newsletter.benefits.tools')}</h3>
+            <p class="text-gray-600 dark:text-gray-400">
+              每周推荐经过实战验证的AI工具，涵盖写作、编程、设计等各个领域
+            </p>
+          </div>
+        </div>
+        
+        <div class="flex items-start space-x-4 p-6 bg-white dark:bg-gray-800 rounded-xl">
+          <div class="flex-shrink-0">
+            <div class="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center">
+              <span class="text-2xl">📝</span>
+            </div>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold mb-2">{getTranslation(currentLocale, 'newsletter.benefits.prompts')}</h3>
+            <p class="text-gray-600 dark:text-gray-400">
+              精选Prompt模板，直接套用即可产出专业级内容
+            </p>
+          </div>
+        </div>
+        
+        <div class="flex items-start space-x-4 p-6 bg-white dark:bg-gray-800 rounded-xl">
+          <div class="flex-shrink-0">
+            <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+              <span class="text-2xl">📚</span>
+            </div>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold mb-2">{getTranslation(currentLocale, 'newsletter.benefits.articles')}</h3>
+            <p class="text-gray-600 dark:text-gray-400">
+              订阅者专享的深度文章和行业分析
+            </p>
+          </div>
+        </div>
+        
+        <div class="flex items-start space-x-4 p-6 bg-white dark:bg-gray-800 rounded-xl">
+          <div class="flex-shrink-0">
+            <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+              <span class="text-2xl">🔥</span>
+            </div>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold mb-2">前沿动态</h3>
+            <p class="text-gray-600 dark:text-gray-400">
+              第一时间了解AI领域的重要突破和趋势变化
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="mb-16">
+      <h2 class="text-3xl font-bold mb-8 text-center">{getTranslation(currentLocale, 'newsletter.page.testimonials')}</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-xl">
+          <p class="text-gray-700 dark:text-gray-300 mb-4 italic">
+            "每周最期待的就是AI小孩的Newsletter，总能发现一些真正实用的工具和技巧。"
+          </p>
+          <div class="flex items-center">
+            <div class="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center mr-3">
+              <span class="text-lg">👤</span>
+            </div>
+            <div>
+              <p class="font-semibold">张伟</p>
+              <p class="text-sm text-gray-500">AI产品经理</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-xl">
+          <p class="text-gray-700 dark:text-gray-300 mb-4 italic">
+            "内容质量很高，不是简单的新闻搬运，而是有深度的思考和实用的建议。"
+          </p>
+          <div class="flex items-center">
+            <div class="w-10 h-10 bg-accent/20 rounded-full flex items-center justify-center mr-3">
+              <span class="text-lg">👤</span>
+            </div>
+            <div>
+              <p class="font-semibold">李娜</p>
+              <p class="text-sm text-gray-500">独立开发者</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Privacy Note -->
+    <div class="text-center text-sm text-gray-500 dark:text-gray-400">
+      <p>{getTranslation(currentLocale, 'newsletter.privacy_note')}</p>
+    </div>
+  </div>
+</PageLayout>

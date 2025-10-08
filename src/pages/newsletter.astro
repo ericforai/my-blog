@@ -1,11 +1,15 @@
 ---
 import PageLayout from '~/layouts/PageLayout.astro';
 import { SITE } from '~/config.mjs';
+import { getTranslation } from '~/i18n/ui.ts';
+
+// Get current locale
+const currentLocale = 'en';
 
 // SEO 优化
-const seoTitle = "订阅AI周刊 - AI小孩 Newsletter | 获取最新AI资讯";
-const seoDescription = "订阅AI小孩周刊，每周获取最值得关注的AI动态、工具推荐与深度文章。加入5000+AI从业者的学习社群，获取AI工具清单、Prompt模板库和独家深度文章。";
-const seoKeywords = "AI周刊订阅,AI资讯,AI工具推荐,AI学习社群,Newsletter订阅,AI动态";
+const seoTitle = "Subscribe to AI Weekly - AI Kids Newsletter | Get Latest AI Insights";
+const seoDescription = "Subscribe to AI Kids weekly newsletter, get the most noteworthy AI trends, tool recommendations and in-depth articles every week. Join 5000+ AI practitioners learning community.";
+const seoKeywords = "AI weekly subscription,AI news,AI tool recommendations,AI learning community,Newsletter subscription,AI trends";
 ---
 
 <PageLayout 
@@ -18,11 +22,9 @@ const seoKeywords = "AI周刊订阅,AI资讯,AI工具推荐,AI学习社群,Newsl
   <div class="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
     <!-- 页面标题 -->
     <div class="text-center mb-12">
-      <h1 class="text-page-title mb-6">📬 订阅 AI 周刊</h1>
+      <h1 class="text-page-title mb-6">{getTranslation(currentLocale, 'newsletter.page.title')}</h1>
       <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-        每周精选最值得关注的 AI 动态、工具推荐与深度文章
-        <br />
-        加入 <strong class="text-primary">5000+</strong> AI 从业者的学习社群
+        {getTranslation(currentLocale, 'newsletter.page.description')}
       </p>
     </div>
 

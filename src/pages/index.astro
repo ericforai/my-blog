@@ -1,11 +1,15 @@
 ---
 import PageLayout from '~/layouts/PageLayout.astro';
 import { SITE } from '~/config.mjs';
+import { getTranslation } from '~/i18n/ui.ts';
+
+// Get current locale
+const currentLocale = 'en';
 
 // SEO 优化
-const seoTitle = "AI小孩 - 面对AI，我们都是学习者 | AI学习社区";
-const seoDescription = "AI小孩是专注于AI学习的温暖社区，提供前沿洞察、实用工具和深度思考。让AI成为每个人的学习伙伴，重启你的第二次童年。";
-const seoKeywords = "AI学习,人工智能学习,AI工具,AI社区,机器学习,深度学习,ChatGPT,AI营销,Prompt Engineering";
+const seoTitle = "AI Kids - Facing AI, We Are All Learners | AI Learning Community";
+const seoDescription = "AI Kids is a warm community focused on AI learning, providing cutting-edge insights, practical tools, and deep thinking. Making AI a learning partner for everyone, restarting your second childhood.";
+const seoKeywords = "AI learning,artificial intelligence learning,AI tools,AI community,machine learning,deep learning,ChatGPT,AI marketing,Prompt Engineering";
 ---
 
 <PageLayout 
@@ -20,22 +24,20 @@ const seoKeywords = "AI学习,人工智能学习,AI工具,AI社区,机器学习,
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="text-center">
         <h1 class="text-page-title mb-6">
-          🧭 欢迎来到 AI小孩
+          {getTranslation(currentLocale, 'home.hero.title')}
         </h1>
         <blockquote class="text-2xl font-medium text-gray-700 dark:text-gray-300 italic mb-8">
-          「面对AI，我们都是学习者。」
+          {getTranslation(currentLocale, 'home.hero.subtitle')}
         </blockquote>
         <p class="mx-auto max-w-3xl text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
-          在这个智能时代，我们不再是旁观者，而是重新学会"提问、探索与创造"的孩子。
-          <br />
-          AI不是威胁，而是成长的伙伴。
+          {getTranslation(currentLocale, 'home.hero.description')}
         </p>
         <div class="mt-10 flex justify-center gap-4">
           <a href="/blog" class="btn btn-primary">
-            开始学习
+            {getTranslation(currentLocale, 'home.hero.start_learning')}
           </a>
           <a href="/about" class="btn btn-ghost">
-            了解我们
+            {getTranslation(currentLocale, 'home.hero.learn_more')}
           </a>
         </div>
       </div>
@@ -46,27 +48,26 @@ const seoKeywords = "AI学习,人工智能学习,AI工具,AI社区,机器学习,
   <section class="py-16 bg-white dark:bg-gray-900">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold mb-4">💡 我们的信念</h2>
+        <h2 class="text-3xl font-bold mb-4">{getTranslation(currentLocale, 'home.philosophy.title')}</h2>
         <p class="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-          每一个AI小孩，都是在用提问、实验、分享——去重新理解世界。
-          我们用内容、工具、故事、实验，记录人类与AI共同成长的童年。
+          {getTranslation(currentLocale, 'home.philosophy.description')}
         </p>
       </div>
       
       <div class="grid md:grid-cols-2 gap-8">
-        <!-- 使命 -->
+        <!-- Mission -->
         <div class="bg-gradient-to-br from-primary/10 to-primary/5 p-8 rounded-xl border border-primary/20">
-          <h3 class="text-2xl font-bold mb-4 text-primary">🌍 我们的使命</h3>
+          <h3 class="text-2xl font-bold mb-4 text-primary">{getTranslation(currentLocale, 'home.mission.title')}</h3>
           <p class="text-lg leading-relaxed text-gray-700 dark:text-gray-300">
-            让更多人以「学习者心态」拥抱AI，让AI成为每个人的学习伙伴，而不是遥远的技术神话。
+            {getTranslation(currentLocale, 'home.mission.description')}
           </p>
         </div>
 
-        <!-- 愿景 -->
+        <!-- Vision -->
         <div class="bg-gradient-to-br from-accent/10 to-accent/5 p-8 rounded-xl border border-accent/20">
-          <h3 class="text-2xl font-bold mb-4 text-accent">🌱 我们的愿景</h3>
+          <h3 class="text-2xl font-bold mb-4 text-accent">{getTranslation(currentLocale, 'home.vision.title')}</h3>
           <p class="text-lg leading-relaxed text-gray-700 dark:text-gray-300">
-            成为最具温度的AI学习者社区，让每个普通人都能在AI时代重启自己的"第二次童年"。
+            {getTranslation(currentLocale, 'home.vision.description')}
           </p>
         </div>
       </div>
@@ -76,7 +77,7 @@ const seoKeywords = "AI学习,人工智能学习,AI工具,AI社区,机器学习,
   <!-- Category Section -->
   <section class="py-16 bg-white dark:bg-gray-900">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <h2 class="text-3xl font-bold mb-8 text-center">内容分类</h2>
+      <h2 class="text-3xl font-bold mb-8 text-center">{getTranslation(currentLocale, 'blog.categories')}</h2>
       <div class="grid gap-6 md:grid-cols-3 lg:grid-cols-6">
         <a href="/category/ai-trends" class="group flex flex-col items-center p-6 rounded-lg border border-gray-200 dark:border-gray-800 hover:border-primary hover:shadow-lg transition-all">
           <span class="text-4xl mb-3">🔮</span>
@@ -120,10 +121,10 @@ const seoKeywords = "AI学习,人工智能学习,AI工具,AI社区,机器学习,
   <!-- Latest Posts Section -->
   <section class="py-16">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between mb-8">
-        <h2 class="text-3xl font-bold">最新文章</h2>
+        <div class="flex items-center justify-between mb-8">
+        <h2 class="text-3xl font-bold">{getTranslation(currentLocale, 'blog.latest_posts')}</h2>
         <a href="/blog" class="text-primary hover:underline">
-          查看全部 →
+          View All →
         </a>
       </div>
       <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-4">

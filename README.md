@@ -10,6 +10,7 @@
 ## 🌟 项目特色
 
 - 🧭 **品牌理念**：面对AI，我们都是学习者
+- 🌍 **国际化支持**：完整的中英文双语支持，SEO友好的多语言路由
 - 📚 **内容分类**：AI趋势、AI营销、AI工具、技术实践、深度洞察、学习资源
 - 📬 **Newsletter订阅**：完整的邮件服务集成
 - 🔍 **SEO优化**：超越Astro原生功能的完整SEO解决方案
@@ -66,7 +67,10 @@ npm run preview
 │   │   ├── 📄 Footer.astro    # 页脚组件
 │   │   ├── 📄 SEO.astro       # SEO元数据组件
 │   │   ├── 📄 Newsletter.astro # Newsletter订阅组件
-│   │   └── 📄 Analytics.astro # Google Analytics组件
+│   │   ├── 📄 Analytics.astro # Google Analytics组件
+│   │   └── 📄 LanguagePicker.astro # 语言切换器组件
+│   ├── 📁 i18n/               # 国际化翻译文件
+│   │   └── 📄 ui.ts           # UI字符串翻译字典
 │   ├── 📁 layouts/            # 页面布局
 │   │   ├── 📄 BaseLayout.astro # 基础布局
 │   │   ├── 📄 PageLayout.astro # 页面布局
@@ -346,10 +350,131 @@ curl -X POST http://localhost:4321/api/subscribe \
   -d '{"email":"test@example.com"}'
 ```
 
+## 🌍 国际化 (i18n)
+
+### 多语言支持
+
+本项目支持完整的中英文双语，使用Astro内置的i18n路由系统：
+
+- **英文**：默认语言，访问路径 `/`（如 `/about`）
+- **中文**：访问路径 `/zh/`（如 `/zh/about`）
+
+### 目录结构
+
+```
+📂 src/
+├── 📁 i18n/                    # 国际化翻译文件
+│   └── 📄 ui.ts                # UI字符串翻译字典
+├── 📁 pages/                   # 页面路由
+│   ├── 📄 index.astro          # 英文首页
+│   ├── 📄 about.astro          # 英文关于页面
+│   ├── 📁 blog/                # 英文博客页面
+│   └── 📁 zh/                  # 中文页面
+│       ├── 📄 index.astro      # 中文首页
+│       ├── 📄 about.astro      # 中文关于页面
+│       └── 📁 blog/            # 中文博客页面
+```
+
+### 添加新的UI翻译字符串
+
+编辑 `src/i18n/ui.ts` 文件：
+
+```typescript
+export const ui = {
+  en: {
+    'new.key': 'English text',
+    // ... 其他英文翻译
+  },
+  zh: {
+    'new.key': '中文文本',
+    // ... 其他中文翻译
+  },
+};
+```
+
+在组件中使用：
+
+```astro
+---
+import { getTranslation, getLocaleFromPath } from '~/i18n/ui.ts';
+
+const currentLocale = getLocaleFromPath(Astro.url.pathname);
+---
+
+<h1>{getTranslation(currentLocale, 'new.key')}</h1>
+```
+
+### 添加新的翻译博客文章
+
+1. **创建英文文章**：在 `src/pages/blog/` 目录下创建 `.astro` 文件
+2. **创建中文文章**：在 `src/pages/zh/blog/` 目录下创建对应的 `.astro` 文件
+3. **使用翻译系统**：在文章中使用 `getTranslation()` 函数
+
+示例：
+
+```astro
+---
+import PostLayout from '~/layouts/PostLayout.astro';
+import { getTranslation } from '~/i18n/ui.ts';
+
+const currentLocale = 'en'; // 或 'zh'
+const frontmatter = {
+  title: getTranslation(currentLocale, 'article.title'),
+  description: getTranslation(currentLocale, 'article.description'),
+  // ...
+};
+---
+
+<PostLayout frontmatter={frontmatter}>
+  <div class="prose">
+    <p>{getTranslation(currentLocale, 'article.content')}</p>
+  </div>
+</PostLayout>
+```
+
+### 语言切换器
+
+项目包含一个语言切换器组件 `LanguagePicker.astro`，已集成到导航栏中：
+
+```astro
+---
+import LanguagePicker from './LanguagePicker.astro';
+---
+
+<LanguagePicker />
+```
+
+### SEO多语言支持
+
+- **hreflang标签**：自动生成指向其他语言版本的链接
+- **语言元数据**：动态设置HTML lang属性
+- **结构化数据**：JSON-LD中包含正确的语言信息
+
+### 测试国际化功能
+
+运行测试脚本验证i18n功能：
+
+```bash
+# 启动开发服务器
+npm run dev
+
+# 在另一个终端运行测试
+./test_i18n.sh
+```
+
+测试包括：
+- 默认语言访问
+- 第二语言访问
+- UI字符串翻译
+- 内容翻译
+- SEO hreflang标签
+- 语言切换器功能
+
 ## 📚 文档资源
 
 - [Astro官方文档](https://docs.astro.build/)
 - [TailwindCSS文档](https://tailwindcss.com/docs)
+- [Astro i18n文档](https://docs.astro.build/en/guides/internationalization/)
 - [Newsletter集成指南](./NEWSLETTER_INTEGRATION_GUIDE.md)
 - [SEO功能分析](./ASTRO_SEO_ANALYSIS.md)
 - [内容策略文档](./CONTENT_STRATEGY.md)

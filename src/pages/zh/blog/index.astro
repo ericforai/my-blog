@@ -1,0 +1,153 @@
+---
+import PageLayout from '~/layouts/PageLayout.astro';
+import { getTranslation } from '~/i18n/ui.ts';
+
+// Get current locale
+const currentLocale = 'zh';
+
+// SEO 优化
+const seoTitle = "AI博客 - 最新AI趋势、工具与思考 | AI小孩";
+const seoDescription = "探索AI、营销与技术的前沿思考。精选AI工具推荐、深度趋势分析、实用技巧分享，帮助你在AI时代保持学习与成长。";
+const seoKeywords = "AI博客,AI文章,AI趋势分析,AI工具推荐,AI学习资源,人工智能博客,AI技术文章";
+
+// 博客文章列表
+const posts = [
+  {
+    title: "[中文标题] AI 重塑营销：从内容生产到精准投放的全链路革命",
+    description: "[中文内容] 深度解析 AI 如何改变营销的每个环节，从文案创作、视觉设计到数据分析，附实战案例与工具推荐",
+    slug: "ai-marketing-revolution",
+    pubDate: "2025-01-08",
+    category: "AI 营销",
+    categorySlug: "ai-marketing",
+    tags: ["AI营销", "数字营销", "营销自动化"]
+  },
+  {
+    title: "[中文标题] 2025 年必备的 10 个 AI 工具：让生产力飞跃的秘密武器",
+    description: "[中文内容] 精选 10 个经过实战检验的 AI 工具，涵盖写作、编程、设计、数据分析等场景，附使用技巧与对比评测",
+    slug: "ai-tools-2025",
+    pubDate: "2025-01-07",
+    category: "AI 工具",
+    categorySlug: "ai-tools",
+    tags: ["AI工具", "生产力", "ChatGPT", "Midjourney"]
+  },
+  {
+    title: "[中文标题] AI 未来十年的关键词：重新定义智能时代的边界",
+    description: "[中文内容] 从 AGI 到多模态，从开源革命到伦理觉醒，解读未来十年将主导 AI 发展的 10 个核心关键词",
+    slug: "ai-future-decade-keywords",
+    pubDate: "2025-01-06",
+    category: "AI 趋势",
+    categorySlug: "ai-trends",
+    tags: ["AI", "未来趋势", "AGI", "多模态AI"]
+  },
+  {
+    title: "[中文标题] Prompt Engineering：AI 时代的新编程语言",
+    description: "[中文内容] 深入探索 Prompt Engineering 的核心原理、实用技巧与最佳实践，掌握与 AI 对话的艺术",
+    slug: "prompt-engineering",
+    pubDate: "2025-01-05",
+    category: "技术实践",
+    categorySlug: "tech-tutorial",
+    tags: ["AI", "Prompt Engineering", "ChatGPT", "技术教程"]
+  },
+  {
+    title: "[中文标题] 2025 AI 大模型排行榜：GPT-5 vs Claude 4 vs Gemini 2.0 全面对比",
+    description: "[中文内容] 最新 AI 大模型实测对比，涵盖性能、价格、应用场景全方位评测，帮你选出最适合的 AI 模型",
+    slug: "ai-model-ranking-2025",
+    pubDate: "2025-01-04",
+    category: "AI 趋势",
+    categorySlug: "ai-trends",
+    tags: ["AI模型", "GPT-5", "Claude", "Gemini", "大模型对比", "AI排行榜"]
+  },
+  {
+    title: "[中文标题] 用 AI 写爆款文案：5 个 Prompt 模板直接套用",
+    description: "[中文内容] 实战验证的 AI 文案生成模板，涵盖营销文案、社交媒体、电商详情页等场景，让你 10 分钟产出专业级文案",
+    slug: "ai-copywriting-prompts",
+    pubDate: "2025-01-03",
+    category: "AI 营销",
+    categorySlug: "ai-marketing",
+    tags: ["AI营销", "文案创作", "Prompt模板", "营销文案", "ChatGPT"]
+  }
+];
+
+// 格式化日期
+const formatDate = (dateString: string) => {
+  const date = new Date(dateString);
+  return date.toLocaleDateString('zh-CN', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+};
+---
+
+<PageLayout 
+  title={seoTitle} 
+  description={seoDescription}
+  keywords={seoKeywords}
+  url="/zh/blog"
+  type="website"
+>
+  <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+    <h1 class="text-page-title mb-8">{getTranslation(currentLocale, 'blog.title')}</h1>
+    
+    <!-- 分类导航 -->
+    <div class="mb-12">
+      <h2 class="text-2xl font-bold mb-6">{getTranslation(currentLocale, 'blog.categories')}</h2>
+      <div class="flex flex-wrap gap-4">
+        <a href="/zh/category/ai-trends" class="px-4 py-2 bg-primary/10 text-primary rounded-lg hover:bg-primary/20 transition-colors">
+          AI 趋势
+        </a>
+        <a href="/zh/category/ai-marketing" class="px-4 py-2 bg-accent/10 text-accent rounded-lg hover:bg-accent/20 transition-colors">
+          AI 营销
+        </a>
+        <a href="/zh/category/ai-tools" class="px-4 py-2 bg-green-100 text-green-600 rounded-lg hover:bg-green-200 transition-colors">
+          AI 工具
+        </a>
+        <a href="/zh/category/tech-tutorial" class="px-4 py-2 bg-blue-100 text-blue-600 rounded-lg hover:bg-blue-200 transition-colors">
+          技术实践
+        </a>
+        <a href="/zh/category/insights" class="px-4 py-2 bg-purple-100 text-purple-600 rounded-lg hover:bg-purple-200 transition-colors">
+          深度洞察
+        </a>
+        <a href="/zh/category/resources" class="px-4 py-2 bg-orange-100 text-orange-600 rounded-lg hover:bg-orange-200 transition-colors">
+          学习资源
+        </a>
+      </div>
+    </div>
+    
+    <!-- 文章列表 -->
+    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      {posts.map((post) => (
+        <article class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+          <div class="p-6">
+            <div class="flex items-center gap-2 mb-3">
+              <a href={`/zh/category/${post.categorySlug}`} class="px-2 py-1 bg-primary/10 text-primary text-sm rounded hover:bg-primary/20 transition-colors">
+                {post.category}
+              </a>
+              <span class="text-sm text-gray-500">{formatDate(post.pubDate)}</span>
+            </div>
+            
+            <h2 class="text-xl font-bold mb-3 text-gray-900 dark:text-white hover:text-primary transition-colors">
+              <a href={`/zh/blog/${post.slug}`}>{post.title}</a>
+            </h2>
+            
+            <p class="text-gray-600 dark:text-gray-400 mb-4 line-clamp-3">
+              {post.description}
+            </p>
+            
+            <div class="flex flex-wrap gap-2 mb-4">
+              {post.tags.map((tag) => (
+                <a href={`/zh/tag/${encodeURIComponent(tag)}`} class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs rounded hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+                  {tag}
+                </a>
+              ))}
+            </div>
+            
+            <a href={`/zh/blog/${post.slug}`} class="text-primary hover:text-primary/80 font-medium">
+              {getTranslation(currentLocale, 'blog.read_more')} →
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</PageLayout>

@@ -1,0 +1,207 @@
+---
+import PageLayout from '~/layouts/PageLayout.astro';
+import { SITE } from '~/config.mjs';
+import { getTranslation } from '~/i18n/ui.ts';
+
+// Get current locale
+const currentLocale = 'zh';
+
+// SEO 优化
+const seoTitle = "AI小孩 - 面对AI，我们都是学习者 | AI学习社区";
+const seoDescription = "AI小孩是专注于AI学习的温暖社区，提供前沿洞察、实用工具和深度思考。让AI成为每个人的学习伙伴，重启你的第二次童年。";
+const seoKeywords = "AI学习,人工智能学习,AI工具,AI社区,机器学习,深度学习,ChatGPT,AI营销,Prompt Engineering";
+---
+
+<PageLayout 
+  title={seoTitle} 
+  description={seoDescription}
+  keywords={seoKeywords}
+  url="/zh/"
+  type="website"
+>
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-br from-primary/10 to-accent/10 py-20">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <h1 class="text-page-title mb-6">
+          {getTranslation(currentLocale, 'home.hero.title')}
+        </h1>
+        <blockquote class="text-2xl font-medium text-gray-700 dark:text-gray-300 italic mb-8">
+          {getTranslation(currentLocale, 'home.hero.subtitle')}
+        </blockquote>
+        <p class="mx-auto max-w-3xl text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
+          {getTranslation(currentLocale, 'home.hero.description')}
+        </p>
+        <div class="mt-10 flex justify-center gap-4">
+          <a href="/zh/blog" class="btn btn-primary">
+            {getTranslation(currentLocale, 'home.hero.start_learning')}
+          </a>
+          <a href="/zh/about" class="btn btn-ghost">
+            {getTranslation(currentLocale, 'home.hero.learn_more')}
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Brand Philosophy Section -->
+  <section class="py-16 bg-white dark:bg-gray-900">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold mb-4">{getTranslation(currentLocale, 'home.philosophy.title')}</h2>
+        <p class="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+          {getTranslation(currentLocale, 'home.philosophy.description')}
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- 使命 -->
+        <div class="bg-gradient-to-br from-primary/10 to-primary/5 p-8 rounded-xl border border-primary/20">
+          <h3 class="text-2xl font-bold mb-4 text-primary">{getTranslation(currentLocale, 'home.mission.title')}</h3>
+          <p class="text-lg leading-relaxed text-gray-700 dark:text-gray-300">
+            {getTranslation(currentLocale, 'home.mission.description')}
+          </p>
+        </div>
+
+        <!-- 愿景 -->
+        <div class="bg-gradient-to-br from-accent/10 to-accent/5 p-8 rounded-xl border border-accent/20">
+          <h3 class="text-2xl font-bold mb-4 text-accent">{getTranslation(currentLocale, 'home.vision.title')}</h3>
+          <p class="text-lg leading-relaxed text-gray-700 dark:text-gray-300">
+            {getTranslation(currentLocale, 'home.vision.description')}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Category Section -->
+  <section class="py-16 bg-gray-50 dark:bg-gray-800">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold mb-4">{getTranslation(currentLocale, 'blog.categories')}</h2>
+        <p class="text-lg text-gray-600 dark:text-gray-400">
+          探索不同领域的AI应用和思考
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+        <a href="/zh/category/ai-trends" class="group">
+          <div class="bg-white dark:bg-gray-700 p-6 rounded-xl text-center hover:shadow-lg transition-shadow">
+            <div class="text-3xl mb-3">📈</div>
+            <h3 class="font-semibold text-gray-900 dark:text-white group-hover:text-primary">AI 趋势</h3>
+          </div>
+        </a>
+        
+        <a href="/zh/category/ai-marketing" class="group">
+          <div class="bg-white dark:bg-gray-700 p-6 rounded-xl text-center hover:shadow-lg transition-shadow">
+            <div class="text-3xl mb-3">🎯</div>
+            <h3 class="font-semibold text-gray-900 dark:text-white group-hover:text-primary">AI 营销</h3>
+          </div>
+        </a>
+        
+        <a href="/zh/category/ai-tools" class="group">
+          <div class="bg-white dark:bg-gray-700 p-6 rounded-xl text-center hover:shadow-lg transition-shadow">
+            <div class="text-3xl mb-3">🛠️</div>
+            <h3 class="font-semibold text-gray-900 dark:text-white group-hover:text-primary">AI 工具</h3>
+          </div>
+        </a>
+        
+        <a href="/zh/category/tech-tutorial" class="group">
+          <div class="bg-white dark:bg-gray-700 p-6 rounded-xl text-center hover:shadow-lg transition-shadow">
+            <div class="text-3xl mb-3">📚</div>
+            <h3 class="font-semibold text-gray-900 dark:text-white group-hover:text-primary">技术实践</h3>
+          </div>
+        </a>
+        
+        <a href="/zh/category/insights" class="group">
+          <div class="bg-white dark:bg-gray-700 p-6 rounded-xl text-center hover:shadow-lg transition-shadow">
+            <div class="text-3xl mb-3">💡</div>
+            <h3 class="font-semibold text-gray-900 dark:text-white group-hover:text-primary">深度洞察</h3>
+          </div>
+        </a>
+        
+        <a href="/zh/category/resources" class="group">
+          <div class="bg-white dark:bg-gray-700 p-6 rounded-xl text-center hover:shadow-lg transition-shadow">
+            <div class="text-3xl mb-3">📖</div>
+            <h3 class="font-semibold text-gray-900 dark:text-white group-hover:text-primary">学习资源</h3>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Latest Posts Section -->
+  <section class="py-16 bg-white dark:bg-gray-900">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold mb-4">{getTranslation(currentLocale, 'blog.latest_posts')}</h2>
+        <p class="text-lg text-gray-600 dark:text-gray-400">
+          最新发布的AI相关文章和思考
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- 示例文章卡片 -->
+        <article class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+          <div class="p-6">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="px-2 py-1 bg-primary/10 text-primary text-sm rounded">AI 趋势</span>
+              <span class="text-sm text-gray-500">2025-01-08</span>
+            </div>
+            <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">
+              [中文标题] AI 重塑营销：从内容生产到精准投放的全链路革命
+            </h3>
+            <p class="text-gray-600 dark:text-gray-400 mb-4">
+              [中文内容] 深度解析 AI 如何改变营销的每个环节，从文案创作、视觉设计到数据分析，附实战案例与工具推荐...
+            </p>
+            <a href="/zh/blog/ai-marketing-revolution" class="text-primary hover:text-primary/80 font-medium">
+              {getTranslation(currentLocale, 'blog.read_more')} →
+            </a>
+          </div>
+        </article>
+        
+        <article class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+          <div class="p-6">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="px-2 py-1 bg-accent/10 text-accent text-sm rounded">AI 工具</span>
+              <span class="text-sm text-gray-500">2025-01-07</span>
+            </div>
+            <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">
+              [中文标题] 2025 年必备的 10 个 AI 工具：让生产力飞跃的秘密武器
+            </h3>
+            <p class="text-gray-600 dark:text-gray-400 mb-4">
+              [中文内容] 精选 10 个经过实战检验的 AI 工具，涵盖写作、编程、设计、数据分析等场景，附使用技巧与对比评测...
+            </p>
+            <a href="/zh/blog/ai-tools-2025" class="text-primary hover:text-primary/80 font-medium">
+              {getTranslation(currentLocale, 'blog.read_more')} →
+            </a>
+          </div>
+        </article>
+        
+        <article class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+          <div class="p-6">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="px-2 py-1 bg-green-100 text-green-600 text-sm rounded">技术实践</span>
+              <span class="text-sm text-gray-500">2025-01-06</span>
+            </div>
+            <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">
+              [中文标题] Prompt Engineering：AI 时代的新编程语言
+            </h3>
+            <p class="text-gray-600 dark:text-gray-400 mb-4">
+              [中文内容] 深入探索 Prompt Engineering 的核心原理、实用技巧与最佳实践，掌握与 AI 对话的艺术...
+            </p>
+            <a href="/zh/blog/prompt-engineering" class="text-primary hover:text-primary/80 font-medium">
+              {getTranslation(currentLocale, 'blog.read_more')} →
+            </a>
+          </div>
+        </article>
+      </div>
+      
+      <div class="text-center mt-12">
+        <a href="/zh/blog" class="btn btn-primary">
+          查看所有文章
+        </a>
+      </div>
+    </div>
+  </section>
+</PageLayout>

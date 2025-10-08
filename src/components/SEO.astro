@@ -1,5 +1,6 @@
 ---
 import { SITE, METADATA } from '~/config.mjs';
+import { getLocaleFromPath, getAlternatePath } from '~/i18n/ui.ts';
 
 interface Props {
   title?: string;
@@ -29,6 +30,16 @@ const {
   noindex = false,
 } = Astro.props;
 
+// Get current locale from URL
+const currentLocale = getLocaleFromPath(Astro.url.pathname);
+const locale = currentLocale === 'zh' ? 'zh-CN' : 'en';
+
+// Get alternate language URLs
+const alternateUrls = {
+  'en': getAlternatePath(Astro.url.pathname, 'en'),
+  'zh': getAlternatePath(Astro.url.pathname, 'zh')
+};
+
 // 构建完整URL
 const fullUrl = url ? `${SITE.site}${url}` : SITE.site;
 const fullImageUrl = image.startsWith('http') ? image : `${SITE.site}${image}`;
@@ -45,7 +56,7 @@ const allKeywords = keywords ? `${keywords}, ${SITE.keywords.join(', ')}` : SITE
 <meta name="robots" content={noindex ? 'noindex,nofollow' : 'index,follow'} />
 
 <!-- 语言和地理定位 -->
-<meta name="language" content={SITE.lang} />
+<meta name="language" content={locale} />
 <meta name="geo.region" content="CN" />
 <meta name="geo.placename" content="China" />
 
@@ -64,7 +75,7 @@ const allKeywords = keywords ? `${keywords}, ${SITE.keywords.join(', ')}` : SITE
 <meta property="og:image:height" content="628" />
 <meta property="og:image:alt" content={title} />
 <meta property="og:site_name" content="AI小孩" />
-<meta property="og:locale" content={SITE.lang} />
+<meta property="og:locale" content={locale} />
 
 <!-- 文章特定元数据 -->
 {type === 'article' && (
@@ -109,7 +120,7 @@ const allKeywords = keywords ? `${keywords}, ${SITE.keywords.join(', ')}` : SITE
       "url": `${SITE.site}/logo.svg`
     }
   },
-  "inLanguage": SITE.lang,
+  "inLanguage": locale,
   ...(type === 'article' && publishedTime && {
     "datePublished": publishedTime,
     "dateModified": modifiedTime || publishedTime
@@ -132,3 +143,9 @@ const allKeywords = keywords ? `${keywords}, ${SITE.keywords.join(', ')}` : SITE
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+
+<!-- 多语言支持 -->
+<link rel="alternate" hreflang="en" href={`${SITE.site}${alternateUrls.en}`} />
+<link rel="alternate" hreflang="zh" href={`${SITE.site}${alternateUrls.zh}`} />
+<link rel="alternate" hreflang="x-default" href={`${SITE.site}${alternateUrls.en}`} />
+<link rel="canonical" href={fullUrl} />

@@ -1,0 +1,34 @@
+---
+import { getLocaleFromPath, getAlternatePath, languages } from '~/i18n/ui.ts';
+
+// Get current locale from URL
+const currentLocale = getLocaleFromPath(Astro.url.pathname);
+
+// Get alternate language path
+const alternateLocale = currentLocale === 'en' ? 'zh' : 'en';
+const alternatePath = getAlternatePath(Astro.url.pathname, alternateLocale);
+---
+
+<div class="flex items-center space-x-2">
+  <a 
+    href={currentLocale === 'en' ? alternatePath : '/'}
+    class={`text-sm font-medium transition-colors ${
+      currentLocale === 'en' 
+        ? 'text-primary font-semibold' 
+        : 'text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary'
+    }`}
+  >
+    English
+  </a>
+  <span class="text-gray-400 dark:text-gray-600">|</span>
+  <a 
+    href={currentLocale === 'zh' ? alternatePath : '/zh/'}
+    class={`text-sm font-medium transition-colors ${
+      currentLocale === 'zh' 
+        ? 'text-primary font-semibold' 
+        : 'text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary'
+    }`}
+  >
+    中文
+  </a>
+</div>
