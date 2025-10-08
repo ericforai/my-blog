@@ -1,6 +1,7 @@
 ---
 import PageLayout from '~/layouts/PageLayout.astro';
 import { getTranslation } from '~/i18n/ui.ts';
+import { getTagSlug } from '~/utils/tagMapping';
 
 // Get current locale
 const currentLocale = 'en';
@@ -171,7 +172,7 @@ const formatDate = (date: string) => {
                 <div class="flex flex-wrap gap-2">
                   {post.tags.slice(0, 3).map((tag) => (
                     <a
-                      href={`/tag/${tag}`}
+                      href={`/tag/${getTagSlug(tag)}`}
                       class="rounded-full bg-gray-100 px-2 py-1 text-xs text-gray-700 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700 transition-colors"
                     >
                       {tag}

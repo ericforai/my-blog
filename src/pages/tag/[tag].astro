@@ -1,27 +1,16 @@
 ---
 import PageLayout from '~/layouts/PageLayout.astro';
+import { getTagSlug, getTagFromSlug, tagMapping } from '~/utils/tagMapping';
 
 // 获取所有标签
 export async function getStaticPaths() {
-  return [
-    { params: { tag: 'AI' } },
-    { params: { tag: 'AI营销' } },
-    { params: { tag: 'AI工具' } },
-    { params: { tag: '未来趋势' } },
-    { params: { tag: 'AGI' } },
-    { params: { tag: '多模态AI' } },
-    { params: { tag: '数字营销' } },
-    { params: { tag: '营销自动化' } },
-    { params: { tag: '生产力' } },
-    { params: { tag: 'ChatGPT' } },
-    { params: { tag: 'Midjourney' } },
-    { params: { tag: 'Prompt Engineering' } },
-    { params: { tag: '技术教程' } },
-    { params: { tag: '开源' } },
-  ];
+  return Object.entries(tagMapping).map(([tag, slug]) => ({
+    params: { tag: slug }
+  }));
 }
 
-const { tag } = Astro.params;
+const { tag: tagSlug } = Astro.params;
+const tag = getTagFromSlug(tagSlug as string);
 
 // 所有文章
 const allPosts = [
@@ -133,7 +122,7 @@ const formatDate = (date: string) => {
                 <div class="flex flex-wrap gap-2">
                   {post.tags.map((t) => (
                     <a 
-                      href={`/tag/${t}`}
+                      href={`/tag/${getTagSlug(t)}`}
                       class={`rounded-full px-2 py-1 text-xs transition-colors ${
                         t === tag 
                           ? 'bg-primary text-white' 
