@@ -76,29 +76,13 @@ export function generateSVGBanner(post: BlogPost, config: BannerImageConfig) {
       <circle cx="100" cy="100" r="50" fill="white" opacity="0.1" />
       <circle cx="${config.width - 100}" cy="${config.height - 100}" r="80" fill="white" opacity="0.05" />
       
-      <!-- Main icon -->
-      <text x="50%" y="35%" font-family="system-ui" font-size="120" text-anchor="middle" fill="white" opacity="0.9">
+      <!-- Main icon - larger and centered -->
+      <text x="50%" y="50%" font-family="system-ui" font-size="140" text-anchor="middle" fill="white" opacity="0.9">
         ${bannerData.icon}
       </text>
       
-      <!-- Category badge -->
-      <rect x="60" y="60" width="200" height="40" rx="20" fill="white" opacity="0.2" />
-      <text x="160" y="85" font-family="system-ui" font-size="16" font-weight="600" text-anchor="middle" fill="white">
-        ${bannerData.category}
-      </text>
-      
-      <!-- Title -->
-      <text x="50%" y="55%" font-family="system-ui" font-size="48" font-weight="700" text-anchor="middle" fill="white">
-        ${bannerData.title}
-      </text>
-      
-      <!-- Tags -->
-      <text x="50%" y="75%" font-family="system-ui" font-size="20" text-anchor="middle" fill="white" opacity="0.8">
-        ${bannerData.tags.join(' • ')}
-      </text>
-      
-      <!-- Brand -->
-      <text x="50%" y="90%" font-family="system-ui" font-size="24" font-weight="600" text-anchor="middle" fill="white" opacity="0.7">
+      <!-- Brand - smaller and at bottom -->
+      <text x="50%" y="85%" font-family="system-ui" font-size="20" font-weight="600" text-anchor="middle" fill="white" opacity="0.8">
         AI小孩
       </text>
     </svg>
