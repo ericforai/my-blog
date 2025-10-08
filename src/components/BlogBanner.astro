@@ -41,39 +41,36 @@ if (useAIImage) {
   } catch (error) {
     console.warn('AI image generation failed, using mock images for demo:', error);
     
-    // 使用模拟的 AI 图片作为演示 - 使用简单的渐变背景
+    // 使用模拟的 AI 图片作为演示 - 根据文章关键词生成独特图片
     const mockImages = {
-      // 根据文章slug精确匹配 - 使用渐变背景
-      'ai-marketing-revolution': 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', // 营销革命 - 紫蓝渐变
-      'ai-tools-2025': 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)', // AI工具 - 粉红渐变
-      'ai-future-decade-keywords': 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)', // 未来关键词 - 蓝青渐变
-      'prompt-engineering': 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)', // Prompt工程 - 绿青渐变
-      'ai-model-ranking-2025': 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)', // AI模型排名 - 粉黄渐变
-      'ai-copywriting-prompts': 'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)', // AI文案 - 青粉渐变
+      // 根据文章slug精确匹配 - 每个文章都有独特的图片
+      'ai-marketing-revolution': 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=630&fit=crop&crop=center&q=80', // 营销革命 - 数据分析图表
+      'ai-tools-2025': 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1200&h=630&fit=crop&crop=center&q=80', // AI工具 - 机器人手臂
+      'ai-future-decade-keywords': 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=1200&h=630&fit=crop&crop=center&q=80', // 未来关键词 - 科技概念
+      'prompt-engineering': 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1200&h=630&fit=crop&crop=center&q=80', // Prompt工程 - 编程学习
+      'ai-model-ranking-2025': 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&h=630&fit=crop&crop=center&q=80', // AI模型排名 - 神经网络
+      'ai-copywriting-prompts': 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&h=630&fit=crop&crop=center&q=80', // AI文案 - 写作场景
       
       // 分类备用图片
-      'AI Marketing': 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-      'AI Tools': 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
-      'AI Trends': 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
-      'Tech Tutorial': 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
+      'AI Marketing': 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=630&fit=crop&crop=center&q=80',
+      'AI Tools': 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1200&h=630&fit=crop&crop=center&q=80',
+      'AI Trends': 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=1200&h=630&fit=crop&crop=center&q=80',
+      'Tech Tutorial': 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1200&h=630&fit=crop&crop=center&q=80',
       
       // 中文分类
-      'AI 营销': 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-      'AI 工具': 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
-      'AI 趋势': 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
-      '技术实践': 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)'
+      'AI 营销': 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=630&fit=crop&crop=center&q=80',
+      'AI 工具': 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1200&h=630&fit=crop&crop=center&q=80',
+      'AI 趋势': 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=1200&h=630&fit=crop&crop=center&q=80',
+      '技术实践': 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1200&h=630&fit=crop&crop=center&q=80'
     };
     
     // 优先使用文章slug匹配，然后使用分类匹配
     const mockImageUrl = mockImages[post.slug] || mockImages[post.category] || mockImages['AI Marketing'];
     
     bannerContent = `
-      <div style="width: 100%; height: 100%; background: ${mockImageUrl}; border-radius: 8px; position: relative; display: flex; align-items: center; justify-content: center;">
+      <div style="width: 100%; height: 100%; background-image: url('${mockImageUrl}'); background-size: contain; background-position: center; background-repeat: no-repeat; border-radius: 8px; position: relative; background-color: #f8fafc;">
         <div style="position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.8); color: white; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 500;">
           🤖 AI Demo
-        </div>
-        <div style="color: white; text-align: center; font-size: 24px; font-weight: bold; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">
-          ${post.category}
         </div>
       </div>
     `;
