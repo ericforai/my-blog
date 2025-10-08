@@ -2,6 +2,7 @@
 import PageLayout from '~/layouts/PageLayout.astro';
 import { getTranslation } from '~/i18n/ui.ts';
 import { getTagSlug } from '~/utils/tagMapping';
+import BlogBanner from '~/components/BlogBanner.astro';
 
 // Get current locale
 const currentLocale = 'zh';
@@ -14,8 +15,8 @@ const seoKeywords = "AI博客,AI文章,AI趋势分析,AI工具推荐,AI学习资
 // 博客文章列表
 const posts = [
   {
-    title: "[中文标题] AI 重塑营销：从内容生产到精准投放的全链路革命",
-    description: "[中文内容] 深度解析 AI 如何改变营销的每个环节，从文案创作、视觉设计到数据分析，附实战案例与工具推荐",
+    title: "AI 重塑营销：从内容生产到精准投放的全链路革命",
+    description: "深度解析 AI 如何改变营销的每个环节，从文案创作、视觉设计到数据分析，附实战案例与工具推荐",
     slug: "ai-marketing-revolution",
     pubDate: "2025-01-08",
     category: "AI 营销",
@@ -23,8 +24,8 @@ const posts = [
     tags: ["AI营销", "数字营销", "营销自动化"]
   },
   {
-    title: "[中文标题] 2025 年必备的 10 个 AI 工具：让生产力飞跃的秘密武器",
-    description: "[中文内容] 精选 10 个经过实战检验的 AI 工具，涵盖写作、编程、设计、数据分析等场景，附使用技巧与对比评测",
+    title: "2025 年必备的 10 个 AI 工具：让生产力飞跃的秘密武器",
+    description: "精选 10 个经过实战检验的 AI 工具，涵盖写作、编程、设计、数据分析等场景，附使用技巧与对比评测",
     slug: "ai-tools-2025",
     pubDate: "2025-01-07",
     category: "AI 工具",
@@ -32,8 +33,8 @@ const posts = [
     tags: ["AI工具", "生产力", "ChatGPT", "Midjourney"]
   },
   {
-    title: "[中文标题] AI 未来十年的关键词：重新定义智能时代的边界",
-    description: "[中文内容] 从 AGI 到多模态，从开源革命到伦理觉醒，解读未来十年将主导 AI 发展的 10 个核心关键词",
+    title: "AI 未来十年的关键词：重新定义智能时代的边界",
+    description: "从 AGI 到多模态，从开源革命到伦理觉醒，解读未来十年将主导 AI 发展的 10 个核心关键词",
     slug: "ai-future-decade-keywords",
     pubDate: "2025-01-06",
     category: "AI 趋势",
@@ -41,8 +42,8 @@ const posts = [
     tags: ["AI", "未来趋势", "AGI", "多模态AI"]
   },
   {
-    title: "[中文标题] Prompt Engineering：AI 时代的新编程语言",
-    description: "[中文内容] 深入探索 Prompt Engineering 的核心原理、实用技巧与最佳实践，掌握与 AI 对话的艺术",
+    title: "Prompt Engineering：AI 时代的新编程语言",
+    description: "深入探索 Prompt Engineering 的核心原理、实用技巧与最佳实践，掌握与 AI 对话的艺术",
     slug: "prompt-engineering",
     pubDate: "2025-01-05",
     category: "技术实践",
@@ -50,8 +51,8 @@ const posts = [
     tags: ["AI", "Prompt Engineering", "ChatGPT", "技术教程"]
   },
   {
-    title: "[中文标题] 2025 AI 大模型排行榜：GPT-5 vs Claude 4 vs Gemini 2.0 全面对比",
-    description: "[中文内容] 最新 AI 大模型实测对比，涵盖性能、价格、应用场景全方位评测，帮你选出最适合的 AI 模型",
+    title: "2025 AI 大模型排行榜：GPT-5 vs Claude 4 vs Gemini 2.0 全面对比",
+    description: "最新 AI 大模型实测对比，涵盖性能、价格、应用场景全方位评测，帮你选出最适合的 AI 模型",
     slug: "ai-model-ranking-2025",
     pubDate: "2025-01-04",
     category: "AI 趋势",
@@ -59,8 +60,8 @@ const posts = [
     tags: ["AI模型", "GPT-5", "Claude", "Gemini", "大模型对比", "AI排行榜"]
   },
   {
-    title: "[中文标题] 用 AI 写爆款文案：5 个 Prompt 模板直接套用",
-    description: "[中文内容] 实战验证的 AI 文案生成模板，涵盖营销文案、社交媒体、电商详情页等场景，让你 10 分钟产出专业级文案",
+    title: "用 AI 写爆款文案：5 个 Prompt 模板直接套用",
+    description: "实战验证的 AI 文案生成模板，涵盖营销文案、社交媒体、电商详情页等场景，让你 10 分钟产出专业级文案",
     slug: "ai-copywriting-prompts",
     pubDate: "2025-01-03",
     category: "AI 营销",
@@ -119,6 +120,20 @@ const formatDate = (dateString: string) => {
     <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
       {posts.map((post) => (
         <article class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+          <!-- Banner Image -->
+          <div class="h-48">
+            <BlogBanner 
+              post={post} 
+              config={{
+                width: 400,
+                height: 200,
+                style: 'modern',
+                colorScheme: 'gradient'
+              }}
+              className="h-full"
+            />
+          </div>
+          
           <div class="p-6">
             <div class="flex items-center gap-2 mb-3">
               <a href={`/zh/category/${post.categorySlug}`} class="px-2 py-1 bg-primary/10 text-primary text-sm rounded hover:bg-primary/20 transition-colors">
