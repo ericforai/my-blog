@@ -5,29 +5,110 @@ import { SITE } from '~/config.mjs';
 
 <PageLayout title="关于 - AI小孩" description="了解更多关于本站的信息">
   <div class="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
-    <h1 class="text-page-title mb-8">关于</h1>
-    
-    <div class="prose prose-lg dark:prose-invert">
-      <p class="lead">
-        {SITE.description}
-      </p>
+    <!-- 品牌定位 -->
+    <section class="mb-16">
+      <div class="text-center mb-12">
+        <h1 class="text-page-title mb-6">🧭 AI小孩</h1>
+        <blockquote class="text-2xl font-medium text-gray-700 dark:text-gray-300 italic border-l-4 border-primary pl-6 py-4 bg-primary/5 rounded-r-lg">
+          「面对AI，我们都是学习者。」
+        </blockquote>
+      </div>
+      
+      <div class="prose prose-lg dark:prose-invert max-w-none">
+        <p class="text-xl text-gray-600 dark:text-gray-400 leading-relaxed">
+          <strong>核心理念：</strong> 在这个智能时代，我们不再是旁观者，而是重新学会"提问、探索与创造"的孩子。
+          <br />
+          AI不是威胁，而是成长的伙伴。
+        </p>
+      </div>
+    </section>
 
-      <h2>关于作者</h2>
-      <p>
-        我是 AI小孩，一名专注于 AI、营销与技术的内容创作者。
-        在这个博客中，我分享关于人工智能、数字营销策略以及软件开发的思考与实践。
-      </p>
+    <!-- 品牌故事 -->
+    <section class="mb-16">
+      <h2 class="text-3xl font-bold mb-8 text-center">💡 品牌故事</h2>
+      <div class="prose prose-lg dark:prose-invert max-w-none">
+        <p class="text-lg leading-relaxed mb-6">
+          在技术快速演化的今天，AI 不再只是工具，它是新的语言、新的思维方式。
+          <strong>AI小孩</strong> 诞生于这样一个时代的好奇心：
+        </p>
+        
+        <blockquote class="text-xl font-medium text-gray-700 dark:text-gray-300 italic border-l-4 border-accent pl-6 py-4 bg-accent/5 rounded-r-lg mb-8">
+          我们相信，面对AI，最强大的能力不是掌控，而是<strong>好奇与学习</strong>。
+        </blockquote>
 
-      <h2>联系方式</h2>
-      <p>
-        如果你想与我交流，欢迎通过以下方式联系：
+        <p class="text-lg leading-relaxed mb-6">
+          每一个AI小孩，都是在用提问、实验、分享——去重新理解世界。
+          我们用内容、工具、故事、实验，记录人类与AI共同成长的童年。
+        </p>
+      </div>
+    </section>
+
+    <!-- 品牌使命与愿景 -->
+    <section class="mb-16">
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- 使命 -->
+        <div class="bg-gradient-to-br from-primary/10 to-primary/5 p-8 rounded-xl border border-primary/20">
+          <h3 class="text-2xl font-bold mb-4 text-primary">🌍 品牌使命</h3>
+          <p class="text-lg leading-relaxed text-gray-700 dark:text-gray-300">
+            让更多人以「学习者心态」拥抱AI，让AI成为每个人的学习伙伴，而不是遥远的技术神话。
+          </p>
+        </div>
+
+        <!-- 愿景 -->
+        <div class="bg-gradient-to-br from-accent/10 to-accent/5 p-8 rounded-xl border border-accent/20">
+          <h3 class="text-2xl font-bold mb-4 text-accent">🌱 品牌愿景</h3>
+          <p class="text-lg leading-relaxed text-gray-700 dark:text-gray-300">
+            成为最具温度的AI学习者社区，让每个普通人都能在AI时代重启自己的"第二次童年"。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 内容理念 -->
+    <section class="mb-16">
+      <h2 class="text-3xl font-bold mb-8 text-center">🎯 我们的内容理念</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="text-center p-6 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-shadow">
+          <div class="text-4xl mb-4">🔮</div>
+          <h3 class="text-xl font-bold mb-3">前瞻洞察</h3>
+          <p class="text-gray-600 dark:text-gray-400">
+            深度解析AI趋势，帮助你在变革中保持领先
+          </p>
+        </div>
+        
+        <div class="text-center p-6 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-shadow">
+          <div class="text-4xl mb-4">🛠️</div>
+          <h3 class="text-xl font-bold mb-3">实用工具</h3>
+          <p class="text-gray-600 dark:text-gray-400">
+            精选AI工具与技巧，让技术真正为你所用
+          </p>
+        </div>
+        
+        <div class="text-center p-6 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-shadow">
+          <div class="text-4xl mb-4">💡</div>
+          <h3 class="text-xl font-bold mb-3">深度思考</h3>
+          <p class="text-gray-600 dark:text-gray-400">
+            探索AI时代的哲学思考，构建新的认知框架
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 联系方式 -->
+    <section class="text-center">
+      <h2 class="text-3xl font-bold mb-8">🤝 加入我们的学习之旅</h2>
+      <p class="text-lg text-gray-600 dark:text-gray-400 mb-8">
+        如果你也想成为AI时代的学习者，欢迎与我们交流
       </p>
-      <ul>
-        <li>邮箱: contact@example.com</li>
-        <li>Twitter: @example</li>
-        <li>GitHub: @example</li>
-      </ul>
-    </div>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="/blog" class="btn btn-primary">
+          阅读文章
+        </a>
+        <a href="/newsletter" class="btn btn-ghost">
+          订阅更新
+        </a>
+      </div>
+    </section>
   </div>
 </PageLayout>
 
