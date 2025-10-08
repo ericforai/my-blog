@@ -1,6 +1,11 @@
 ---
 import PageLayout from '~/layouts/PageLayout.astro';
 
+// SEO 优化
+const seoTitle = "AI博客 - 最新AI趋势、工具与思考 | AI小孩";
+const seoDescription = "探索AI、营销与技术的前沿思考。精选AI工具推荐、深度趋势分析、实用技巧分享，帮助你在AI时代保持学习与成长。";
+const seoKeywords = "AI博客,AI文章,AI趋势分析,AI工具推荐,AI学习资源,人工智能博客,AI技术文章";
+
 // 博客文章列表
 const posts = [
   {
@@ -65,7 +70,13 @@ const formatDate = (date: string) => {
 };
 ---
 
-<PageLayout title="博客 - AI小孩" description="探索AI、营销与技术的文章集合">
+<PageLayout 
+  title={seoTitle} 
+  description={seoDescription}
+  keywords={seoKeywords}
+  url="/blog"
+  type="website"
+>
   <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
     <h1 class="text-page-title mb-8">博客文章</h1>
     

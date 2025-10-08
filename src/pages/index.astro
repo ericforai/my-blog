@@ -1,9 +1,20 @@
 ---
 import PageLayout from '~/layouts/PageLayout.astro';
 import { SITE } from '~/config.mjs';
+
+// SEO 优化
+const seoTitle = "AI小孩 - 面对AI，我们都是学习者 | AI学习社区";
+const seoDescription = "AI小孩是专注于AI学习的温暖社区，提供前沿洞察、实用工具和深度思考。让AI成为每个人的学习伙伴，重启你的第二次童年。";
+const seoKeywords = "AI学习,人工智能学习,AI工具,AI社区,机器学习,深度学习,ChatGPT,AI营销,Prompt Engineering";
 ---
 
-<PageLayout title={SITE.title} description={SITE.description}>
+<PageLayout 
+  title={seoTitle} 
+  description={seoDescription}
+  keywords={seoKeywords}
+  url="/"
+  type="website"
+>
   <!-- Hero Section -->
   <section class="bg-gradient-to-br from-primary/10 to-accent/10 py-20">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

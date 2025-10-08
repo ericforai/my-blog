@@ -1,9 +1,20 @@
 ---
 import PageLayout from '~/layouts/PageLayout.astro';
 import { SITE } from '~/config.mjs';
+
+// SEO 优化
+const seoTitle = "关于我们 - AI小孩品牌故事 | AI学习社区";
+const seoDescription = "了解AI小孩的品牌故事、使命愿景和核心理念。我们致力于成为最具温度的AI学习者社区，让每个普通人都能在AI时代重启自己的第二次童年。";
+const seoKeywords = "关于AI小孩,AI学习社区,品牌故事,AI学习者,人工智能教育,AI学习理念";
 ---
 
-<PageLayout title="关于 - AI小孩" description="了解更多关于本站的信息">
+<PageLayout 
+  title={seoTitle} 
+  description={seoDescription}
+  keywords={seoKeywords}
+  url="/about"
+  type="website"
+>
   <div class="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
     <!-- 品牌定位 -->
     <section class="mb-16">
