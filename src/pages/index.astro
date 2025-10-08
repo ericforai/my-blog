@@ -81,38 +81,38 @@ const seoKeywords = "AI learning,artificial intelligence learning,AI tools,AI co
       <div class="grid gap-6 md:grid-cols-3 lg:grid-cols-6">
         <a href="/category/ai-trends" class="group flex flex-col items-center p-6 rounded-lg border border-gray-200 dark:border-gray-800 hover:border-primary hover:shadow-lg transition-all">
           <span class="text-4xl mb-3">🔮</span>
-          <h3 class="text-base font-semibold text-center group-hover:text-primary">AI 趋势</h3>
-          <p class="text-xs text-gray-500 mt-1">1 篇</p>
+          <h3 class="text-base font-semibold text-center group-hover:text-primary">AI Trends</h3>
+          <p class="text-xs text-gray-500 mt-1">1 article</p>
         </a>
 
         <a href="/category/ai-marketing" class="group flex flex-col items-center p-6 rounded-lg border border-gray-200 dark:border-gray-800 hover:border-primary hover:shadow-lg transition-all">
           <span class="text-4xl mb-3">📈</span>
-          <h3 class="text-base font-semibold text-center group-hover:text-primary">AI 营销</h3>
-          <p class="text-xs text-gray-500 mt-1">1 篇</p>
+          <h3 class="text-base font-semibold text-center group-hover:text-primary">AI Marketing</h3>
+          <p class="text-xs text-gray-500 mt-1">1 article</p>
         </a>
 
         <a href="/category/ai-tools" class="group flex flex-col items-center p-6 rounded-lg border border-gray-200 dark:border-gray-800 hover:border-primary hover:shadow-lg transition-all">
           <span class="text-4xl mb-3">🛠️</span>
-          <h3 class="text-base font-semibold text-center group-hover:text-primary">AI 工具</h3>
-          <p class="text-xs text-gray-500 mt-1">1 篇</p>
+          <h3 class="text-base font-semibold text-center group-hover:text-primary">AI Tools</h3>
+          <p class="text-xs text-gray-500 mt-1">1 article</p>
         </a>
 
         <a href="/category/tech-tutorial" class="group flex flex-col items-center p-6 rounded-lg border border-gray-200 dark:border-gray-800 hover:border-primary hover:shadow-lg transition-all">
           <span class="text-4xl mb-3">💻</span>
-          <h3 class="text-base font-semibold text-center group-hover:text-primary">技术实践</h3>
-          <p class="text-xs text-gray-500 mt-1">1 篇</p>
+          <h3 class="text-base font-semibold text-center group-hover:text-primary">Tech Tutorial</h3>
+          <p class="text-xs text-gray-500 mt-1">1 article</p>
         </a>
 
         <a href="/category/insights" class="group flex flex-col items-center p-6 rounded-lg border border-gray-200 dark:border-gray-800 hover:border-primary hover:shadow-lg transition-all">
           <span class="text-4xl mb-3">💡</span>
-          <h3 class="text-base font-semibold text-center group-hover:text-primary">思考洞察</h3>
-          <p class="text-xs text-gray-500 mt-1">即将上线</p>
+          <h3 class="text-base font-semibold text-center group-hover:text-primary">Insights</h3>
+          <p class="text-xs text-gray-500 mt-1">Coming Soon</p>
         </a>
 
         <a href="/category/resources" class="group flex flex-col items-center p-6 rounded-lg border border-gray-200 dark:border-gray-800 hover:border-primary hover:shadow-lg transition-all">
           <span class="text-4xl mb-3">📚</span>
-          <h3 class="text-base font-semibold text-center group-hover:text-primary">资源合集</h3>
-          <p class="text-xs text-gray-500 mt-1">即将上线</p>
+          <h3 class="text-base font-semibold text-center group-hover:text-primary">Resources</h3>
+          <p class="text-xs text-gray-500 mt-1">Coming Soon</p>
         </a>
       </div>
     </div>
@@ -124,7 +124,7 @@ const seoKeywords = "AI learning,artificial intelligence learning,AI tools,AI co
         <div class="flex items-center justify-between mb-8">
         <h2 class="text-3xl font-bold">{getTranslation(currentLocale, 'blog.latest_posts')}</h2>
         <a href="/blog" class="text-primary hover:underline">
-          View All →
+          {getTranslation(currentLocale, 'blog.view_all')} →
         </a>
       </div>
       <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
@@ -135,12 +135,12 @@ const seoKeywords = "AI learning,artificial intelligence learning,AI tools,AI co
             </div>
           </div>
           <div class="flex flex-1 flex-col p-4">
-            <span class="text-xs text-primary mb-2">AI 营销</span>
+            <span class="text-xs text-primary mb-2">AI Marketing</span>
             <h3 class="mb-2 text-base font-bold group-hover:text-primary line-clamp-2">
-              <a href="/blog/ai-marketing-revolution">AI 重塑营销：从内容生产到精准投放的全链路革命</a>
+              <a href="/blog/ai-marketing-revolution">{getTranslation(currentLocale, 'blog.posts.ai_marketing.title')}</a>
             </h3>
             <p class="text-sm text-gray-600 dark:text-gray-400 line-clamp-2">
-              深度解析 AI 如何改变营销的每个环节
+              {getTranslation(currentLocale, 'blog.posts.ai_marketing.description')}
             </p>
           </div>
         </article>
@@ -152,12 +152,12 @@ const seoKeywords = "AI learning,artificial intelligence learning,AI tools,AI co
             </div>
           </div>
           <div class="flex flex-1 flex-col p-4">
-            <span class="text-xs text-primary mb-2">AI 工具</span>
+            <span class="text-xs text-primary mb-2">AI Tools</span>
             <h3 class="mb-2 text-base font-bold group-hover:text-primary line-clamp-2">
-              <a href="/blog/ai-tools-2025">2025 年必备的 10 个 AI 工具</a>
+              <a href="/blog/ai-tools-2025">{getTranslation(currentLocale, 'blog.posts.ai_tools.title')}</a>
             </h3>
             <p class="text-sm text-gray-600 dark:text-gray-400 line-clamp-2">
-              精选 10 个经过实战检验的 AI 工具
+              {getTranslation(currentLocale, 'blog.posts.ai_tools.description')}
             </p>
           </div>
         </article>
@@ -169,12 +169,12 @@ const seoKeywords = "AI learning,artificial intelligence learning,AI tools,AI co
             </div>
           </div>
           <div class="flex flex-1 flex-col p-4">
-            <span class="text-xs text-primary mb-2">AI 趋势</span>
+            <span class="text-xs text-primary mb-2">AI Trends</span>
             <h3 class="mb-2 text-base font-bold group-hover:text-primary line-clamp-2">
-              <a href="/blog/ai-future-decade-keywords">AI 未来十年的关键词</a>
+              <a href="/blog/ai-future-decade-keywords">{getTranslation(currentLocale, 'blog.posts.ai_trends.title')}</a>
             </h3>
             <p class="text-sm text-gray-600 dark:text-gray-400 line-clamp-2">
-              解读未来十年将主导 AI 发展的 10 个核心关键词
+              {getTranslation(currentLocale, 'blog.posts.ai_trends.description')}
             </p>
           </div>
         </article>
@@ -186,12 +186,12 @@ const seoKeywords = "AI learning,artificial intelligence learning,AI tools,AI co
             </div>
           </div>
           <div class="flex flex-1 flex-col p-4">
-            <span class="text-xs text-primary mb-2">技术实践</span>
+            <span class="text-xs text-primary mb-2">Tech Tutorial</span>
             <h3 class="mb-2 text-base font-bold group-hover:text-primary line-clamp-2">
-              <a href="/blog/prompt-engineering">Prompt Engineering：AI 时代的新编程语言</a>
+              <a href="/blog/prompt-engineering">{getTranslation(currentLocale, 'blog.posts.prompt_engineering.title')}</a>
             </h3>
             <p class="text-sm text-gray-600 dark:text-gray-400 line-clamp-2">
-              掌握与 AI 对话的艺术
+              {getTranslation(currentLocale, 'blog.posts.prompt_engineering.description')}
             </p>
           </div>
         </article>

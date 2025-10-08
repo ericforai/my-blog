@@ -56,6 +56,21 @@ export const ui = {
     'blog.categories': 'Categories',
     'blog.latest_posts': 'Latest Posts',
     'blog.read_more': 'Read More',
+    'blog.view_all': 'View All',
+    
+    // Blog posts
+    'blog.posts.ai_marketing.title': 'AI Reshapes Marketing: Full-Chain Revolution from Content Production to Precise Delivery',
+    'blog.posts.ai_marketing.description': 'In-depth analysis of how AI changes every aspect of marketing',
+    'blog.posts.ai_tools.title': '10 Essential AI Tools for 2025',
+    'blog.posts.ai_tools.description': 'Selected 10 AI tools verified by practical experience',
+    'blog.posts.ai_trends.title': 'Keywords for AI in the Next Decade',
+    'blog.posts.ai_trends.description': 'Interpreting 10 core keywords that will dominate AI development in the next decade',
+    'blog.posts.prompt_engineering.title': 'Prompt Engineering: The New Programming Language of the AI Era',
+    'blog.posts.prompt_engineering.description': 'Mastering the art of conversing with AI',
+    
+    // Footer
+    'footer.copyright': 'AI Kids. All rights reserved.',
+    'footer.description': 'AI Kids is a warm community focused on AI learning, providing cutting-edge insights, practical tools, and deep thinking. Let AI become everyone\'s learning partner, restarting your second childhood.',
     
     // About
     'about.title': 'About Us - AI Kids Brand Story',
@@ -596,6 +611,8 @@ export const ui = {
     'about.description': '了解AI小孩的品牌故事、使命愿景和核心理念。我们致力于成为最具温度的AI学习者社区，让每个普通人都能在AI时代重启自己的第二次童年。',
     
     // Footer
+    'footer.copyright': 'AI小孩. 保留所有权利.',
+    'footer.description': 'AI小孩是专注于AI学习的温暖社区，提供前沿洞察、实用工具和深度思考。让AI成为每个人的学习伙伴，重启你的第二次童年。',
     'footer.rights': '© 2025 AI小孩. 保留所有权利。',
     'footer.built_with': '构建工具',
     'footer.powered_by': '技术支持',
