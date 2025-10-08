@@ -72,12 +72,12 @@ export function generateSVGBanner(post: BlogPost, config: BannerImageConfig) {
       <!-- Background -->
       <rect width="100%" height="100%" fill="url(#bg)" />
       
-      <!-- Decorative elements -->
-      <circle cx="100" cy="100" r="50" fill="white" opacity="0.1" />
-      <circle cx="${config.width - 100}" cy="${config.height - 100}" r="80" fill="white" opacity="0.05" />
+      <!-- Decorative elements - positioned to avoid icon -->
+      <circle cx="80" cy="80" r="40" fill="white" opacity="0.08" />
+      <circle cx="${config.width - 80}" cy="${config.height - 80}" r="60" fill="white" opacity="0.05" />
       
-      <!-- Main icon - larger and centered -->
-      <text x="50%" y="50%" font-family="system-ui" font-size="140" text-anchor="middle" fill="white" opacity="0.9">
+      <!-- Main icon - perfectly centered -->
+      <text x="50%" y="50%" font-family="system-ui" font-size="120" text-anchor="middle" dominant-baseline="middle" fill="white" opacity="0.95">
         ${bannerData.icon}
       </text>
     </svg>
