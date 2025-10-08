@@ -1,5 +1,6 @@
 ---
 import { generateSVGBanner, type BlogPost, type BannerImageConfig } from '~/utils/bannerGenerator';
+import { generateAIImage } from '~/utils/aiImageGenerator';
 
 interface Props {
   post: BlogPost;
@@ -21,18 +22,30 @@ const { post, config = {
 const useAIImage = config.useAIImage && import.meta.env.OPENAI_API_KEY;
 
 let bannerContent: string;
+let isAIGenerated = false;
 
 if (useAIImage) {
   try {
-    // TODO: 实现 AI 图片生成逻辑
-    // 目前先使用 SVG banner
-    bannerContent = generateSVGBanner(post, config);
+    // 生成 AI 图片
+    const aiImageUrl = await generateAIImage(post, {
+      size: '1024x1024',
+      quality: 'standard',
+      style: 'vivid'
+    });
+    
+    // 使用 AI 生成的图片
+    bannerContent = `
+      <div style="width: 100%; height: 100%; background-image: url('${aiImageUrl}'); background-size: cover; background-position: center; background-repeat: no-repeat; border-radius: 8px;"></div>
+    `;
+    isAIGenerated = true;
   } catch (error) {
     console.warn('AI image generation failed, falling back to SVG:', error);
     bannerContent = generateSVGBanner(post, config);
+    isAIGenerated = false;
   }
 } else {
   bannerContent = generateSVGBanner(post, config);
+  isAIGenerated = false;
 }
 ---
 
