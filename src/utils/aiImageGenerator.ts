@@ -1,4 +1,11 @@
-import { BlogPost } from '../types/blog';
+// BlogPost 类型定义
+interface BlogPost {
+  title: string;
+  description: string;
+  category: string;
+  tags: string[];
+  slug: string;
+}
 
 interface AIImageConfig {
   apiKey: string;
