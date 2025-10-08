@@ -1,0 +1,234 @@
+---
+import PageLayout from '~/layouts/PageLayout.astro';
+import { SITE } from '~/config.mjs';
+
+// SEO 优化
+const seoTitle = "订阅AI周刊 - AI小孩 Newsletter | 获取最新AI资讯";
+const seoDescription = "订阅AI小孩周刊，每周获取最值得关注的AI动态、工具推荐与深度文章。加入5000+AI从业者的学习社群，获取AI工具清单、Prompt模板库和独家深度文章。";
+const seoKeywords = "AI周刊订阅,AI资讯,AI工具推荐,AI学习社群,Newsletter订阅,AI动态";
+---
+
+<PageLayout 
+  title={seoTitle} 
+  description={seoDescription}
+  keywords={seoKeywords}
+  url="/newsletter"
+  type="website"
+>
+  <div class="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
+    <!-- 页面标题 -->
+    <div class="text-center mb-12">
+      <h1 class="text-page-title mb-6">📬 订阅 AI 周刊</h1>
+      <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+        每周精选最值得关注的 AI 动态、工具推荐与深度文章
+        <br />
+        加入 <strong class="text-primary">5000+</strong> AI 从业者的学习社群
+      </p>
+    </div>
+
+    <!-- Newsletter 订阅组件 -->
+    <div class="mb-16">
+      <section class="bg-gradient-to-br from-primary/10 to-accent/10 py-12 rounded-2xl">
+        <div class="mx-auto max-w-2xl px-6 text-center">
+          <div class="mb-4">
+            <span class="text-4xl">📬</span>
+          </div>
+          <h3 class="text-2xl font-bold mb-3">订阅 AI 周刊</h3>
+          <p class="text-gray-600 dark:text-gray-400 mb-6">
+            每周精选最值得关注的 AI 动态、工具推荐与深度文章<br />
+            加入 <strong>5000+</strong> AI 从业者的学习社群
+          </p>
+          
+          <!-- 订阅表单 -->
+          <form 
+            class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
+            id="newsletter-form"
+          >
+            <input
+              type="email"
+              name="email"
+              placeholder="输入你的邮箱"
+              required
+              class="flex-1 rounded-lg border border-gray-300 px-4 py-3 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 dark:border-gray-700 dark:bg-gray-800 dark:text-white"
+            />
+            <button
+              type="submit"
+              class="rounded-lg bg-primary px-6 py-3 font-semibold text-white transition-colors hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary/50"
+            >
+              立即订阅
+            </button>
+          </form>
+          
+          <p class="mt-4 text-xs text-gray-500 dark:text-gray-500">
+            🔒 我们尊重您的隐私，随时可退订
+          </p>
+
+          <!-- 订阅福利 -->
+          <div class="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
+            <div class="flex items-center justify-center gap-2">
+              <span class="text-primary">✓</span>
+              <span>AI 工具清单</span>
+            </div>
+            <div class="flex items-center justify-center gap-2">
+              <span class="text-primary">✓</span>
+              <span>Prompt 模板库</span>
+            </div>
+            <div class="flex items-center justify-center gap-2">
+              <span class="text-primary">✓</span>
+              <span>独家深度文章</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- 订阅价值说明 -->
+    <div class="grid md:grid-cols-2 gap-8 mb-16">
+      <!-- 为什么订阅 -->
+      <div class="bg-white dark:bg-gray-800 p-8 rounded-xl border border-gray-200 dark:border-gray-700">
+        <h3 class="text-2xl font-bold mb-4 text-primary">🤔 为什么订阅？</h3>
+        <ul class="space-y-3 text-gray-600 dark:text-gray-400">
+          <li class="flex items-start gap-3">
+            <span class="text-primary mt-1">•</span>
+            <span>AI 领域变化太快，我们帮你筛选最有价值的信息</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-primary mt-1">•</span>
+            <span>每周深度分析一个 AI 趋势，不只是新闻搬运</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-primary mt-1">•</span>
+            <span>实战工具推荐，每个都经过我们团队测试</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-primary mt-1">•</span>
+            <span>独家 Prompt 模板，提升你的 AI 使用效率</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- 订阅内容 -->
+      <div class="bg-white dark:bg-gray-800 p-8 rounded-xl border border-gray-200 dark:border-gray-700">
+        <h3 class="text-2xl font-bold mb-4 text-accent">📋 订阅内容</h3>
+        <ul class="space-y-3 text-gray-600 dark:text-gray-400">
+          <li class="flex items-start gap-3">
+            <span class="text-accent mt-1">•</span>
+            <span><strong>AI 工具周报</strong>：新工具评测与使用技巧</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-accent mt-1">•</span>
+            <span><strong>趋势深度分析</strong>：解读 AI 行业重要变化</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-accent mt-1">•</span>
+            <span><strong>Prompt 模板库</strong>：实用模板直接套用</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-accent mt-1">•</span>
+            <span><strong>学习资源推荐</strong>：精选课程与学习路径</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 订阅者反馈 -->
+    <div class="bg-gradient-to-r from-primary/5 to-accent/5 p-8 rounded-xl">
+      <h3 class="text-2xl font-bold mb-6 text-center">💬 订阅者说</h3>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg">
+          <p class="text-gray-600 dark:text-gray-400 mb-4">
+            "每周的 AI 工具推荐都很实用，特别是 Prompt 模板，直接提升了我的工作效率。"
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center">
+              <span class="text-primary font-bold">张</span>
+            </div>
+            <div>
+              <p class="font-semibold">张同学</p>
+              <p class="text-sm text-gray-500">产品经理</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg">
+          <p class="text-gray-600 dark:text-gray-400 mb-4">
+            "AI 小孩的深度分析帮我理解了很多技术趋势，不再是简单的信息堆砌。"
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-accent/20 rounded-full flex items-center justify-center">
+              <span class="text-accent font-bold">李</span>
+            </div>
+            <div>
+              <p class="font-semibold">李同学</p>
+              <p class="text-sm text-gray-500">AI 工程师</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 其他联系方式 -->
+    <div class="mt-16 text-center">
+      <h3 class="text-xl font-bold mb-4">📱 其他联系方式</h3>
+      <div class="flex justify-center gap-6">
+        <a href="/blog" class="text-primary hover:text-primary/80 transition-colors">
+          📝 阅读博客
+        </a>
+        <a href="/about" class="text-primary hover:text-primary/80 transition-colors">
+          👥 关于我们
+        </a>
+        <a href="mailto:hello@aixiaohai.com" class="text-primary hover:text-primary/80 transition-colors">
+          📧 联系我们
+        </a>
+      </div>
+    </div>
+  </div>
+</PageLayout>
+
+<script>
+  // Newsletter 表单提交处理
+  const form = document.getElementById('newsletter-form');
+  
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const formData = new FormData(form as HTMLFormElement);
+      const email = formData.get('email');
+      
+      // 这里可以集成实际的邮件服务（Mailchimp, ConvertKit, Resend 等）
+      // 示例：发送到后端 API
+      try {
+        // const response = await fetch('/api/subscribe', {
+        //   method: 'POST',
+        //   headers: { 'Content-Type': 'application/json' },
+        //   body: JSON.stringify({ email })
+        // });
+        
+        // 模拟成功订阅
+        alert('订阅成功！感谢您的关注 🎉\n我们会将最新的 AI 资讯发送到您的邮箱。');
+        (form as HTMLFormElement).reset();
+      } catch (error) {
+        alert('订阅失败，请稍后重试');
+      }
+    });
+  }
+</script>
+
+<style>
+  /* 添加动画效果 */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  section {
+    animation: fadeInUp 0.6s ease-out;
+  }
+</style>
