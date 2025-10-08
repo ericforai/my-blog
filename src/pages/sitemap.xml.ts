@@ -48,7 +48,7 @@ const tags = [
 ];
 
 export const GET: APIRoute = () => {
-  const baseUrl = 'https://yourdomain.com'; // 替换为你的域名
+  const baseUrl = 'https://www.aixiaohai.com';
   
   // 生成 XML
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
