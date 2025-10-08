@@ -1,0 +1,106 @@
+---
+import { generateSVGBanner } from '~/utils/bannerGenerator';
+import { createAIImageGenerator, ImageCache } from '~/utils/aiImageGenerator';
+
+interface Post {
+  title: string;
+  description: string;
+  category: string;
+  tags: string[];
+  slug: string;
+}
+
+interface Props {
+  post: Post;
+  config?: {
+    width?: number;
+    height?: number;
+    style?: 'modern' | 'minimal';
+    colorScheme?: 'gradient' | 'blue' | 'green' | 'orange';
+    useAIImage?: boolean;
+  };
+  className?: string;
+}
+
+const { post, config = {}, className } = Astro.props;
+
+const defaultConfig = {
+  width: 600,
+  height: 338, // 16:9 aspect ratio
+  style: 'modern',
+  colorScheme: 'gradient',
+  useAIImage: false
+};
+
+const mergedConfig = { ...defaultConfig, ...config };
+
+// 初始化图片缓存
+const imageCache = new ImageCache();
+
+let bannerContent: string;
+
+if (mergedConfig.useAIImage && process.env.OPENAI_API_KEY) {
+  try {
+    // 检查是否有缓存的 AI 生成图片
+    const cachedImageUrl = imageCache.getCachedImage(post.slug);
+    
+    if (cachedImageUrl) {
+      // 使用缓存的图片
+      bannerContent = `
+        <div class="aspect-video rounded-lg overflow-hidden">
+          <img 
+            src="${cachedImageUrl}" 
+            alt="${post.title}" 
+            class="w-full h-full object-cover"
+            loading="lazy"
+          />
+        </div>
+      `;
+    } else {
+      // 生成新的 AI 图片
+      const aiGenerator = createAIImageGenerator(process.env.OPENAI_API_KEY);
+      const generatedImage = await aiGenerator.generateBannerImage(post);
+      
+      // 缓存图片 URL
+      imageCache.setCachedImage(post.slug, generatedImage.url);
+      
+      bannerContent = `
+        <div class="aspect-video rounded-lg overflow-hidden">
+          <img 
+            src="${generatedImage.url}" 
+            alt="${post.title}" 
+            class="w-full h-full object-cover"
+            loading="lazy"
+          />
+        </div>
+      `;
+    }
+  } catch (error) {
+    console.warn('AI image generation failed, falling back to SVG:', error);
+    // 回退到 SVG banner
+    bannerContent = generateSVGBanner(post, mergedConfig);
+  }
+} else {
+  // 使用 SVG banner
+  bannerContent = generateSVGBanner(post, mergedConfig);
+}
+---
+
+<div class={`banner-container ${className}`}>
+  <div set:html={bannerContent}></div>
+</div>
+
+<style>
+  .banner-container {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .banner-container img {
+    transition: transform 0.3s ease;
+  }
+  
+  .banner-container:hover img {
+    transform: scale(1.05);
+  }
+</style>

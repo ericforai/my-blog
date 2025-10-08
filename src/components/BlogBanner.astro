@@ -3,7 +3,9 @@ import { generateSVGBanner, type BlogPost, type BannerImageConfig } from '~/util
 
 interface Props {
   post: BlogPost;
-  config?: BannerImageConfig;
+  config?: BannerImageConfig & {
+    useAIImage?: boolean;
+  };
   className?: string;
 }
 
@@ -11,15 +13,32 @@ const { post, config = {
   width: 1200,
   height: 630,
   style: 'modern',
-  colorScheme: 'gradient'
+  colorScheme: 'gradient',
+  useAIImage: false
 }, className = '' } = Astro.props;
 
-const svgContent = generateSVGBanner(post, config);
+// 检查是否启用 AI 图片生成
+const useAIImage = config.useAIImage && import.meta.env.OPENAI_API_KEY;
+
+let bannerContent: string;
+
+if (useAIImage) {
+  try {
+    // TODO: 实现 AI 图片生成逻辑
+    // 目前先使用 SVG banner
+    bannerContent = generateSVGBanner(post, config);
+  } catch (error) {
+    console.warn('AI image generation failed, falling back to SVG:', error);
+    bannerContent = generateSVGBanner(post, config);
+  }
+} else {
+  bannerContent = generateSVGBanner(post, config);
+}
 ---
 
 <div class={`banner-container ${className}`}>
   <div class="aspect-video rounded-lg overflow-hidden">
-    <div class="banner-svg" set:html={svgContent}></div>
+    <div class="banner-svg" set:html={bannerContent}></div>
   </div>
 </div>
 

@@ -1,0 +1,124 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import BlogBanner from '~/components/BlogBanner.astro';
+
+// 测试文章数据
+const testPosts = [
+  {
+    title: "AI 重塑营销：从内容生产到精准投放的全链路革命",
+    description: "深度解析 AI 如何改变营销的每个环节，从文案创作、视觉设计到数据分析，附实战案例与工具推荐",
+    slug: "ai-marketing-revolution",
+    pubDate: "2025-01-08",
+    category: "AI Marketing",
+    categorySlug: "ai-marketing",
+    tags: ["AI Marketing", "Digital Marketing", "Marketing Automation"]
+  },
+  {
+    title: "2025 年必备的 10 个 AI 工具：让生产力飞跃的秘密武器",
+    description: "精选 10 个经过实战检验的 AI 工具，涵盖写作、编程、设计、数据分析等场景，附使用技巧与对比评测",
+    slug: "ai-tools-2025",
+    pubDate: "2025-01-07",
+    category: "AI Tools",
+    categorySlug: "ai-tools",
+    tags: ["AI Tools", "Productivity", "Automation"]
+  },
+  {
+    title: "未来十年的 AI 关键词：重新定义智能时代的边界",
+    description: "从 AGI 到多模态，从开源革命到伦理觉醒，解读未来十年将主导 AI 发展的 10 个核心关键词",
+    slug: "ai-future-decade-keywords",
+    pubDate: "2025-01-06",
+    category: "AI Trends",
+    categorySlug: "ai-trends",
+    tags: ["AI Trends", "Future", "Innovation"]
+  },
+  {
+    title: "Prompt Engineering：AI 时代的新编程语言",
+    description: "深入探索 Prompt Engineering 的核心原理、实战技巧与最佳实践，掌握与 AI 对话的艺术",
+    slug: "prompt-engineering",
+    pubDate: "2025-01-05",
+    category: "Tech Tutorial",
+    categorySlug: "tech-tutorial",
+    tags: ["Prompt Engineering", "AI", "Tutorial"]
+  }
+];
+---
+
+<BaseLayout title="AI 图片生成测试" description="测试 OpenAI DALL-E API 生成的博客 banner 图片">
+  <main class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+        🤖 AI 图片生成测试
+      </h1>
+      <p class="text-xl text-gray-600 dark:text-gray-400 mb-8">
+        测试 OpenAI DALL-E API 生成的博客 banner 图片
+      </p>
+      
+      <div class="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-6 mb-8">
+        <h2 class="text-lg font-semibold text-blue-900 dark:text-blue-100 mb-2">
+          🔑 API Key 状态
+        </h2>
+        <p class="text-blue-700 dark:text-blue-300">
+          {import.meta.env.OPENAI_API_KEY ? '✅ API Key 已配置' : '❌ API Key 未配置'}
+        </p>
+        <p class="text-sm text-blue-600 dark:text-blue-400 mt-2">
+          当前使用: {import.meta.env.OPENAI_API_KEY ? 'AI 图片生成' : 'SVG Banner'}
+        </p>
+      </div>
+    </div>
+
+    <div class="grid gap-8 grid-cols-1 md:grid-cols-2">
+      {testPosts.map((post, index) => (
+        <article class="group flex flex-col overflow-hidden rounded-lg border border-gray-200 transition-all hover:shadow-lg dark:border-gray-800">
+          <div class="aspect-video">
+            <BlogBanner 
+              post={post} 
+              config={{
+                width: 600,
+                height: 338,
+                style: 'modern',
+                colorScheme: 'gradient',
+                useAIImage: true  // 🔥 启用 AI 图片生成
+              }}
+              className="h-full"
+            />
+          </div>
+          <div class="flex flex-1 flex-col p-6">
+            <span class="text-xs text-primary mb-2">{post.category}</span>
+            <h3 class="mb-3 text-xl font-bold group-hover:text-primary line-clamp-2">
+              {post.title}
+            </h3>
+            <p class="text-gray-600 dark:text-gray-400 line-clamp-3 mb-4">
+              {post.description}
+            </p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              {post.tags.map(tag => (
+                <span class="px-2 py-1 text-xs bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded">
+                  {tag}
+                </span>
+              ))}
+            </div>
+            <div class="mt-auto">
+              <span class="text-sm text-gray-500 dark:text-gray-400">
+                测试 #{index + 1} • {post.pubDate}
+              </span>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div class="mt-12 text-center">
+      <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+          💡 使用说明
+        </h3>
+        <div class="text-left max-w-2xl mx-auto space-y-2 text-sm text-gray-600 dark:text-gray-400">
+          <p>• <strong>有 API Key</strong>：将生成专业的 AI 图片 banner</p>
+          <p>• <strong>无 API Key</strong>：将使用 SVG banner 作为降级方案</p>
+          <p>• <strong>API 失败</strong>：自动回退到 SVG banner</p>
+          <p>• <strong>成本</strong>：每张 AI 图片约 $0.01-0.02</p>
+        </div>
+      </div>
+    </div>
+  </main>
+</BaseLayout>
