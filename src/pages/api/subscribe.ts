@@ -1,9 +1,22 @@
 import type { APIRoute } from 'astro';
 
 // Newsletter 订阅 API
+export const prerender = false;
+
 export const POST: APIRoute = async ({ request }) => {
   try {
-    const { email } = await request.json();
+    const body = await request.text();
+    if (!body) {
+      return new Response(JSON.stringify({
+        success: false,
+        message: '请求体为空'
+      }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' }
+      });
+    }
+    
+    const { email } = JSON.parse(body);
     
     // 验证邮箱格式
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
