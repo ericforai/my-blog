@@ -1,5 +1,6 @@
 ---
 import PageLayout from './PageLayout.astro';
+import { getLocaleFromPath } from '~/i18n/ui.ts';
 
 interface Props {
   frontmatter: {
@@ -15,13 +16,24 @@ interface Props {
 const { frontmatter } = Astro.props;
 const { title, description, pubDate, tags = [], author = 'Eric' } = frontmatter;
 
+// 获取当前语言
+const currentLocale = getLocaleFromPath(Astro.url.pathname);
+
 // 格式化日期
 const formatDate = (date: string) => {
-  return new Date(date).toLocaleDateString('zh-CN', {
+  const locale = currentLocale === 'zh' ? 'zh-CN' : 'en-US';
+  return new Date(date).toLocaleDateString(locale, {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
   });
+};
+
+// 翻译文本
+const translations = {
+  backToBlog: currentLocale === 'zh' ? '← 返回博客列表' : '← Back to Blog',
+  shareArticle: currentLocale === 'zh' ? '分享文章' : 'Share Article',
+  shareNotAvailable: currentLocale === 'zh' ? '分享功能不可用' : 'Share feature not available'
 };
 ---
 
@@ -57,18 +69,18 @@ const formatDate = (date: string) => {
     <footer class="mt-16 border-t border-gray-200 pt-8 dark:border-gray-800">
       <div class="flex items-center justify-between">
         <a
-          href="/blog"
+          href={currentLocale === 'zh' ? '/zh/blog' : '/blog'}
           class="text-primary hover:underline"
         >
-          ← 返回博客列表
+          {translations.backToBlog}
         </a>
         
         <div class="flex gap-4">
           <button
-            onclick="navigator.share?.({title: document.title, url: window.location.href}) || alert('分享功能不可用')"
+            onclick={`navigator.share?.({title: document.title, url: window.location.href}) || alert('${translations.shareNotAvailable}')`}
             class="text-gray-600 hover:text-primary dark:text-gray-400"
           >
-            分享文章
+            {translations.shareArticle}
           </button>
         </div>
       </div>
