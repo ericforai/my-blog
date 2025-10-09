@@ -66,7 +66,7 @@ export const GET: APIRoute = () => {
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>AI小孩 - 面对AI，我们都是学习者</title>
-    <description>AI小孩是专注于AI学习的温暖社区，提供前沿洞察、实用工具和深度思考。让AI成为每个人的学习伙伴，重启你的第二次童年。</description>
+    <description>AI小孩是专注于AI学习的信息汇聚平台，提供前沿洞察、实用工具和深度思考。让AI成为每个人的学习伙伴，重启你的第二次童年。</description>
     <link>${site}</link>
     <language>zh-CN</language>
     <lastBuildDate>${buildDate}</lastBuildDate>

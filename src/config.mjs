@@ -1,6 +1,6 @@
 export const SITE = {
   title: "AI小孩 - 面对AI，我们都是学习者",
-  description: "AI小孩是专注于AI学习的温暖社区，提供前沿洞察、实用工具和深度思考。让AI成为每个人的学习伙伴，重启你的第二次童年。",
+  description: "AI小孩是专注于AI学习的信息汇聚平台，提供前沿洞察、实用工具和深度思考。让AI成为每个人的学习伙伴，重启你的第二次童年。",
   author: "AI小孩",
   lang: "zh-CN",
   site: "https://www.aixiaohai.com",
@@ -11,7 +11,7 @@ export const SITE = {
   keywords: [
     "AI学习", "人工智能", "机器学习", "深度学习", 
     "AI工具", "ChatGPT", "AI营销", "Prompt Engineering",
-    "AI趋势", "技术前沿", "数字化学习", "AI社区"
+    "AI趋势", "技术前沿", "数字化学习", "AI信息平台"
   ],
   
   // 社交媒体信息

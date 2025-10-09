@@ -30,12 +30,12 @@ export const ui = {
     'home.mission.title': '🌍 Our Mission',
     'home.mission.description': 'Let more people embrace AI with a "learner mindset", making AI a learning partner for everyone, not a distant technological myth.',
     'home.vision.title': '🌱 Our Vision',
-    'home.vision.description': 'Become the warmest AI learner community, allowing every ordinary person to restart their "second childhood" in the AI era.',
+    'home.vision.description': 'Become the most comprehensive AI information hub, allowing every ordinary person to restart their "second childhood" in the AI era.',
     
     // Newsletter
     'newsletter.title': 'Subscribe to AI Weekly',
     'newsletter.subtitle': 'Weekly curated AI insights, tool recommendations, and in-depth articles',
-    'newsletter.join_community': 'Join <strong>5000+</strong> AI practitioners learning community',
+    'newsletter.join_community': 'Join <strong>5000+</strong> AI practitioners information network',
     'newsletter.email_placeholder': 'Enter your email',
     'newsletter.subscribe_button': 'Subscribe Now',
     'newsletter.privacy_note': '🔒 We respect your privacy, unsubscribe anytime',
@@ -70,11 +70,11 @@ export const ui = {
     
     // Footer
     'footer.copyright': 'AI Kids. All rights reserved.',
-    'footer.description': 'AI Kids is a warm community focused on AI learning, providing cutting-edge insights, practical tools, and deep thinking. Let AI become everyone\'s learning partner, restarting your second childhood.',
+    'footer.description': 'AI Kids is a comprehensive AI information hub focused on learning, providing cutting-edge insights, practical tools, and deep thinking. Let AI become everyone\'s learning partner, restarting your second childhood.',
     
     // About
     'about.title': 'About Us - AI Kids Brand Story',
-    'about.description': 'Learn about AI Kids brand story, mission, vision, and core philosophy. We are committed to becoming the warmest AI learner community, allowing every ordinary person to restart their "second childhood" in the AI era.',
+    'about.description': 'Learn about AI Kids brand story, mission, vision, and core philosophy. We are committed to becoming the most comprehensive AI information hub, allowing every ordinary person to restart their "second childhood" in the AI era.',
     
     // Footer
     'footer.rights': '© 2025 AI Kids. All rights reserved.',
@@ -579,12 +579,12 @@ export const ui = {
     'home.mission.title': '🌍 我们的使命',
     'home.mission.description': '让更多人以「学习者心态」拥抱AI，让AI成为每个人的学习伙伴，而不是遥远的技术神话。',
     'home.vision.title': '🌱 我们的愿景',
-    'home.vision.description': '成为最具温度的AI学习者社区，让每个普通人都能在AI时代重启自己的"第二次童年"。',
+    'home.vision.description': '成为最全面的AI信息汇聚平台，让每个普通人都能在AI时代重启自己的"第二次童年"。',
     
     // Newsletter
     'newsletter.title': '订阅 AI 周刊',
     'newsletter.subtitle': '每周精选最值得关注的 AI 动态、工具推荐与深度文章',
-    'newsletter.join_community': '加入 <strong>5000+</strong> AI 从业者的学习社群',
+    'newsletter.join_community': '加入 <strong>5000+</strong> AI 从业者的信息网络',
     'newsletter.email_placeholder': '输入你的邮箱',
     'newsletter.subscribe_button': '立即订阅',
     'newsletter.privacy_note': '🔒 我们尊重您的隐私，随时可退订',
@@ -608,11 +608,11 @@ export const ui = {
     
     // About
     'about.title': '关于我们 - AI小孩品牌故事',
-    'about.description': '了解AI小孩的品牌故事、使命愿景和核心理念。我们致力于成为最具温度的AI学习者社区，让每个普通人都能在AI时代重启自己的第二次童年。',
+    'about.description': '了解AI小孩的品牌故事、使命愿景和核心理念。我们致力于成为最全面的AI信息汇聚平台，让每个普通人都能在AI时代重启自己的第二次童年。',
     
     // Footer
     'footer.copyright': 'AI小孩. 保留所有权利.',
-    'footer.description': 'AI小孩是专注于AI学习的温暖社区，提供前沿洞察、实用工具和深度思考。让AI成为每个人的学习伙伴，重启你的第二次童年。',
+    'footer.description': 'AI小孩是专注于AI学习的信息汇聚平台，提供前沿洞察、实用工具和深度思考。让AI成为每个人的学习伙伴，重启你的第二次童年。',
     'footer.rights': '© 2025 AI小孩. 保留所有权利。',
     'footer.built_with': '构建工具',
     'footer.powered_by': '技术支持',
