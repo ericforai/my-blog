@@ -61,7 +61,7 @@ const posts = [
     category: "AI Trends",
     categorySlug: "ai-trends",
     tags: ["AI Models", "GPT-5", "Claude", "Gemini", "Model Comparison", "AI Rankings"],
-    cover: "/assets/blog/ai-model-ranking.jpg"
+    cover: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=450&fit=crop&crop=center&q=80"
   },
   {
     title: "Writing Viral Copy with AI: 5 Prompt Templates Ready to Use",
@@ -71,7 +71,7 @@ const posts = [
     category: "AI Marketing",
     categorySlug: "ai-marketing",
     tags: ["AI Marketing", "Copywriting", "Prompt Templates", "Marketing Copy", "ChatGPT"],
-    cover: "/assets/blog/ai-copywriting.jpg"
+    cover: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800&h=450&fit=crop&crop=center&q=80"
   }
 ];
 
@@ -133,14 +133,14 @@ const formatDate = (date: string) => {
       </h2>
       <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         {posts.map((post) => (
-          <article class="group flex flex-col overflow-hidden rounded-lg border border-gray-200 transition-all hover:shadow-lg dark:border-gray-800">
+          <a href={`/blog/${post.slug}`} class="group flex flex-col overflow-hidden rounded-lg border border-gray-200 transition-all hover:shadow-lg dark:border-gray-800">
             <!-- Banner Image -->
             <!-- Banner Image -->
             <div class="aspect-video">
               <img 
                 src={post.cover} 
                 alt={post.title}
-                class="w-full h-full object-cover"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 loading="lazy"
               />
             </div>
@@ -149,12 +149,9 @@ const formatDate = (date: string) => {
             <div class="flex flex-1 flex-col p-6">
               <!-- 分类标签 -->
               <div class="mb-2">
-                <a 
-                  href={`/category/${post.categorySlug}`}
-                  class="inline-block rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary hover:bg-primary/20 transition-colors"
-                >
+                <span class="inline-block rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
                   {post.category}
-                </a>
+                </span>
               </div>
 
               <div class="mb-2 flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
@@ -162,9 +159,7 @@ const formatDate = (date: string) => {
               </div>
               
               <h2 class="mb-3 text-xl font-bold group-hover:text-primary">
-                <a href={`/blog/${post.slug}`} class="hover:underline">
-                  {post.title}
-                </a>
+                {post.title}
               </h2>
               
               <p class="mb-4 flex-1 text-gray-600 dark:text-gray-400">
@@ -175,27 +170,21 @@ const formatDate = (date: string) => {
               {post.tags && post.tags.length > 0 && (
                 <div class="flex flex-wrap gap-2">
                   {post.tags.slice(0, 3).map((tag) => (
-                    <a
-                      href={`/tag/${getTagSlug(tag)}`}
-                      class="rounded-full bg-gray-100 px-2 py-1 text-xs text-gray-700 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700 transition-colors"
-                    >
+                    <span class="rounded-full bg-gray-100 px-2 py-1 text-xs text-gray-700 dark:bg-gray-800 dark:text-gray-300">
                       {tag}
-                    </a>
+                    </span>
                   ))}
                 </div>
               )}
               
               <!-- 阅读按钮 -->
               <div class="mt-4 pt-4 border-t border-gray-100 dark:border-gray-800">
-                <a
-                  href={`/blog/${post.slug}`}
-                  class="inline-flex items-center text-sm font-medium text-primary hover:underline"
-                >
+                <span class="inline-flex items-center text-sm font-medium text-primary">
                   {getTranslation(currentLocale, 'blog.read_more')} →
-                </a>
+                </span>
               </div>
             </div>
-          </article>
+          </a>
         ))}
       </div>
     </div>

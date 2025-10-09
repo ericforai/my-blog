@@ -2,229 +2,310 @@
 import PostLayout from '~/layouts/PostLayout.astro';
 
 const frontmatter = {
-  title: "Prompt Engineering：AI 时代的新编程语言",
-  description: "深入探索 Prompt Engineering 的核心原理、实用技巧与最佳实践，掌握与 AI 对话的艺术",
-  pubDate: "2025-10-07",
-  tags: ["AI", "Prompt Engineering", "ChatGPT", "技术教程"],
-  author: "AI小孩"
+  title: "Prompt Engineering: The New Programming Language of the AI Era",
+  description: "Deep exploration of the core principles, practical techniques and best practices of Prompt Engineering, mastering the art of conversing with AI",
+  pubDate: "2025-01-05",
+  tags: ["AI", "Prompt Engineering", "ChatGPT", "Tech Tutorial"],
+  author: "AI Kids"
 };
 ---
 
 <PostLayout frontmatter={frontmatter}>
-  <h1>Prompt Engineering：AI 时代的新编程语言</h1>
+  <h1>Prompt Engineering: The New Programming Language of the AI Era</h1>
 
-  <p>在人工智能快速发展的今天，<strong>Prompt Engineering</strong>（提示词工程）已经成为一项不可或缺的技能。无论你是开发者、内容创作者，还是产品经理，掌握如何与 AI 有效沟通，都将极大提升你的工作效率和创造力。</p>
+  <p>In today's rapidly advancing AI landscape, <strong>Prompt Engineering</strong> has become an indispensable skill. Whether you're a developer, content creator, or product manager, mastering how to communicate effectively with AI will dramatically boost your productivity and creativity.</p>
 
-  <h2>什么是 Prompt Engineering？</h2>
+  <h2>What is Prompt Engineering?</h2>
 
-  <p>Prompt Engineering 是设计、优化和迭代输入提示词的过程，目的是引导大语言模型（LLM）生成更准确、更有价值的输出。</p>
+  <p>Prompt Engineering is the process of designing, optimizing, and iterating input prompts to guide large language models (LLMs) to generate more accurate and valuable outputs.</p>
 
-  <p>简单来说，它就是<strong>如何用正确的方式向 AI 提问</strong>。</p>
+  <p>Simply put, it's <strong>how to ask AI the right questions</strong>.</p>
 
-  <h3>为什么重要？</h3>
+  <h3>Why is it Important?</h3>
 
   <ul>
-    <li>✅ <strong>提升输出质量</strong>：同样的问题，不同的提问方式可能得到天壤之别的答案</li>
-    <li>✅ <strong>节省时间成本</strong>：精准的提示词可以一次性得到想要的结果</li>
-    <li>✅ <strong>解锁 AI 潜力</strong>：充分发挥模型的推理、创作和分析能力</li>
+    <li>✅ <strong>Improve Output Quality</strong>: The same question asked differently can yield vastly different answers</li>
+    <li>✅ <strong>Save Time and Costs</strong>: Precise prompts can get desired results in one go</li>
+    <li>✅ <strong>Unlock AI Potential</strong>: Fully leverage models' reasoning, creative, and analytical capabilities</li>
   </ul>
 
   <hr />
 
-  <h2>核心原则：CRAFT 框架</h2>
+  <h2>Core Principles: The CRAFT Framework</h2>
 
-  <p>我总结了一套实用的 Prompt Engineering 框架 —— <strong>CRAFT</strong>：</p>
+  <p>I've developed a practical Prompt Engineering framework — <strong>CRAFT</strong>:</p>
 
-  <h3>1. <strong>C</strong>lear（清晰明确）</h3>
-  <p>避免模糊表达，提供具体的上下文和目标。</p>
+  <h3>1. <strong>C</strong>lear (Clear and Specific)</h3>
+  <p>Avoid vague expressions, provide specific context and objectives.</p>
 
-  <p><strong>❌ 不好的提示词：</strong></p>
-  <pre><code>帮我写点东西</code></pre>
+  <p><strong>❌ Poor Prompt:</strong></p>
+  <pre><code>Help me write something</code></pre>
 
-  <p><strong>✅ 优化后的提示词：</strong></p>
-  <pre><code>请为我的 SaaS 产品撰写一段 100 字左右的产品介绍，
-目标受众是中小企业主，强调易用性和成本效益。</code></pre>
+  <p><strong>✅ Optimized Prompt:</strong></p>
+  <pre><code>Please write a 100-word product introduction for my SaaS product,
+targeting small business owners, emphasizing ease of use and cost-effectiveness.</code></pre>
 
-  <hr />
+  <h3>2. <strong>R</strong>ole (Define AI's Role)</h3>
+  <p>Assign a specific professional role to the AI for better context.</p>
 
-  <h3>2. <strong>R</strong>ole（角色定位）</h3>
-  <p>让 AI 扮演特定角色，可以显著提升输出的专业性。</p>
+  <p><strong>Example:</strong></p>
+  <pre><code>You are a senior marketing strategist with 10 years of experience.
+Please analyze our competitor's pricing strategy and suggest improvements.</code></pre>
 
-  <p><strong>示例：</strong></p>
-  <pre><code>你是一位拥有 10 年经验的前端架构师。
-请分析 React 和 Vue 在大型项目中的性能差异，
-并给出技术选型建议。</code></pre>
+  <h3>3. <strong>A</strong>ction (Clear Action Items)</h3>
+  <p>Specify exactly what you want the AI to do.</p>
 
-  <hr />
+  <p><strong>Example:</strong></p>
+  <pre><code>Please:
+1. Analyze the market trends for AI tools
+2. Identify 3 key opportunities
+3. Provide actionable recommendations
+4. Format the output as a structured report</code></pre>
 
-  <h3>3. <strong>A</strong>ctions（行动指令）</h3>
-  <p>明确告诉 AI 需要执行什么操作，使用动词开头。</p>
+  <h3>4. <strong>F</strong>ormat (Output Format Requirements)</h3>
+  <p>Define the desired output format for better usability.</p>
 
-  <p><strong>常用指令动词：</strong></p>
-  <ul>
-    <li>📝 分析、总结、对比、解释</li>
-    <li>🎨 创作、重写、优化、扩展</li>
-    <li>🔍 提取、分类、排序、推荐</li>
-  </ul>
+  <p><strong>Example:</strong></p>
+  <pre><code>Please format your response as:
+- Executive Summary (2-3 sentences)
+- Key Points (bullet list)
+- Action Items (numbered list)
+- Next Steps (timeline)</code></pre>
 
-  <p><strong>示例：</strong></p>
-  <pre><code>分析以下用户反馈，提取出 3 个最常见的痛点，
-并为每个痛点提出解决方案。</code></pre>
+  <h3>5. <strong>T</strong>est (Iterative Testing)</h3>
+  <p>Continuously test and refine prompts based on results.</p>
 
-  <hr />
-
-  <h3>4. <strong>F</strong>ormat（格式规范）</h3>
-  <p>指定输出格式，让结果更符合使用场景。</p>
-
-  <p><strong>示例：</strong></p>
-  <pre><code>请以 Markdown 格式输出，包含：
-- 标题（H2）
-- 3 个要点（列表）
-- 1 个代码示例（代码块）</code></pre>
-
-  <hr />
-
-  <h3>5. <strong>T</strong>one（语气风格）</h3>
-  <p>根据受众调整输出的语气和风格。</p>
-
-  <p><strong>风格选项：</strong></p>
-  <ul>
-    <li>正式专业 → 商务文档、学术论文</li>
-    <li>轻松幽默 → 社交媒体、营销文案</li>
-    <li>简洁直接 → 技术文档、操作指南</li>
-  </ul>
-
-  <hr />
-
-  <h2>高级技巧：Few-Shot Learning</h2>
-
-  <p>通过提供示例，引导 AI 理解你的期望输出格式。</p>
-
-  <p><strong>示例：分类任务</strong></p>
-  <pre><code>请将以下用户评论分类为：正面、负面、中性
-
-示例 1：
-输入："这个产品太棒了，完全解决了我的问题！"
-输出：正面
-
-示例 2：
-输入："价格有点贵，但功能还不错"
-输出：中性
-
-现在请分类：
-输入："界面设计很糟糕，完全不知道怎么用"
-输出：</code></pre>
-
-  <hr />
-
-  <h2>常见陷阱与解决方案</h2>
-
-  <h3>❌ 陷阱 1：一次性提出过多要求</h3>
-  <p><strong>问题</strong>：AI 容易遗漏部分需求或输出质量下降</p>
-  <p><strong>解决方案</strong>：拆分成多个步骤，逐步引导</p>
-
-  <hr />
-
-  <h3>❌ 陷阱 2：缺乏上下文</h3>
-  <p><strong>问题</strong>：AI 无法理解背景，给出泛泛的回答</p>
-  <p><strong>解决方案</strong>：提供必要的背景信息和约束条件</p>
-
-  <p><strong>示例：</strong></p>
-  <pre><code>背景：我在开发一个面向开发者的 Chrome 插件
-目标：需要设计一个简洁的图标
-要求：16x16 像素，使用蓝色系，体现"代码"主题</code></pre>
-
-  <hr />
-
-  <h3>❌ 陷阱 3：忽视迭代优化</h3>
-  <p><strong>问题</strong>：第一次尝试往往不够完美</p>
-  <p><strong>解决方案</strong>：基于输出结果，不断调整提示词</p>
-
-  <p><strong>迭代示例：</strong></p>
+  <p><strong>Testing Process:</strong></p>
   <ol>
-    <li>第一版：生成文章大纲</li>
-    <li>第二版：扩展第 2 个章节</li>
-    <li>第三版：调整语气为更专业的风格</li>
+    <li>Create initial prompt</li>
+    <li>Test with sample inputs</li>
+    <li>Analyze output quality</li>
+    <li>Refine and optimize</li>
+    <li>Document best practices</li>
   </ol>
 
   <hr />
 
-  <h2>实战案例：AI 辅助编程</h2>
+  <h2>Advanced Techniques</h2>
 
-  <p><strong>场景</strong>：使用 AI 生成 Python 函数</p>
+  <h3>🎯 Chain of Thought Prompting</h3>
+  <p>Guide AI through step-by-step reasoning for complex problems.</p>
 
-  <p><strong>基础提示词：</strong></p>
-  <pre><code>写一个 Python 函数计算斐波那契数列</code></pre>
+  <pre><code>Let's solve this step by step:
 
-  <p><strong>优化后的提示词：</strong></p>
-  <pre><code>请用 Python 编写一个函数 `fibonacci(n)`，满足以下要求：
+Problem: [Your problem]
+Step 1: First, let's identify the key variables
+Step 2: Then, analyze the relationships between them
+Step 3: Next, consider possible solutions
+Step 4: Finally, evaluate each solution's pros and cons
 
-1. 功能：计算斐波那契数列的第 n 项（n >= 0）
-2. 性能：使用动态规划，时间复杂度 O(n)
-3. 边界：处理 n &lt; 0 的异常情况
-4. 规范：包含类型注解和 docstring
-5. 测试：提供 3 个测试用例
+Please work through each step and show your reasoning.</code></pre>
 
-输出格式：
-- 函数代码
-- 时间复杂度分析
-- 测试用例代码</code></pre>
+  <h3>🎯 Few-Shot Learning</h3>
+  <p>Provide examples to teach AI the desired pattern.</p>
+
+  <pre><code>Here are examples of good product descriptions:
+
+Example 1:
+Product: Wireless Headphones
+Description: "Experience crystal-clear audio with our premium wireless headphones. 30-hour battery life, noise cancellation, and comfortable over-ear design perfect for work and play."
+
+Example 2:
+Product: Smart Water Bottle
+Description: "Stay hydrated with our intelligent water bottle. Tracks daily intake, reminds you to drink water, and keeps beverages at perfect temperature for up to 12 hours."
+
+Now, write a similar description for: [Your Product]</code></pre>
+
+  <h3>🎯 Constraint-Based Prompting</h3>
+  <p>Set specific constraints to guide AI behavior.</p>
+
+  <pre><code>Write a marketing email with these constraints:
+- Maximum 150 words
+- Include exactly 3 benefits
+- Use a friendly, professional tone
+- End with a clear call-to-action
+- Avoid technical jargon
+- Target small business owners</code></pre>
 
   <hr />
 
-  <h2>工具推荐</h2>
+  <h2>Common Use Cases & Templates</h2>
 
-  <h3>1. <strong>Prompt 库与灵感</strong></h3>
+  <h3>📝 Content Creation</h3>
+
+  <div class="grid gap-4 md:grid-cols-2">
+    <div class="p-4 border border-gray-200 rounded-lg dark:border-gray-800">
+      <h4>Blog Post Outline</h4>
+      <pre><code>Create a blog post outline about [TOPIC]:
+
+Requirements:
+- Target audience: [AUDIENCE]
+- Word count: [LENGTH]
+- Tone: [TONE]
+- Include: Introduction, 3-5 main points, conclusion
+- Add SEO keywords naturally</code></pre>
+    </div>
+    
+    <div class="p-4 border border-gray-200 rounded-lg dark:border-gray-800">
+      <h4>Social Media Content</h4>
+      <pre><code>Create [NUMBER] social media posts for [PLATFORM]:
+
+Topic: [TOPIC]
+Goal: [ENGAGEMENT/SALES/AWARENESS]
+Style: [FORMAL/CASUAL/HUMOROUS]
+Include: Hashtags, call-to-action
+Length: [PLATFORM LIMIT]</code></pre>
+    </div>
+  </div>
+
+  <h3>💻 Code Generation</h3>
+
+  <div class="grid gap-4 md:grid-cols-2">
+    <div class="p-4 border border-gray-200 rounded-lg dark:border-gray-800">
+      <h4>Function Creation</h4>
+      <pre><code>Write a [LANGUAGE] function that:
+
+Function: [FUNCTION_NAME]
+Purpose: [WHAT IT DOES]
+Input: [INPUT_PARAMETERS]
+Output: [EXPECTED_OUTPUT]
+Requirements:
+- Include error handling
+- Add comments
+- Follow [CODING_STYLE]
+- Optimize for performance</code></pre>
+    </div>
+    
+    <div class="p-4 border border-gray-200 rounded-lg dark:border-gray-800">
+      <h4>Code Review</h4>
+      <pre><code>Review this code and provide feedback:
+
+Code: [PASTE_CODE]
+
+Please analyze:
+1. Functionality correctness
+2. Performance issues
+3. Security concerns
+4. Code quality
+5. Suggested improvements</code></pre>
+    </div>
+  </div>
+
+  <h3>📊 Data Analysis</h3>
+
+  <div class="grid gap-4 md:grid-cols-2">
+    <div class="p-4 border border-gray-200 rounded-lg dark:border-gray-800">
+      <h4>Data Insights</h4>
+      <pre><code>Analyze this dataset and provide insights:
+
+Data: [DESCRIBE_DATA]
+Questions to answer:
+1. What are the key trends?
+2. What patterns do you see?
+3. What are the outliers?
+4. What recommendations do you have?
+5. What additional data would be helpful?</code></pre>
+    </div>
+    
+    <div class="p-4 border border-gray-200 rounded-lg dark:border-gray-800">
+      <h4>Report Generation</h4>
+      <pre><code>Create a data analysis report:
+
+Data: [DATA_DESCRIPTION]
+Audience: [REPORT_AUDIENCE]
+Format: Executive summary, key findings, recommendations
+Length: [WORD_COUNT]
+Include: Charts descriptions, actionable insights</code></pre>
+    </div>
+  </div>
+
+  <hr />
+
+  <h2>Best Practices & Tips</h2>
+
+  <h3>🚀 Optimization Strategies</h3>
+
   <ul>
-    <li><a href="https://github.com/f/awesome-chatgpt-prompts">Awesome ChatGPT Prompts</a> - 社区精选提示词集合</li>
-    <li><a href="https://promptbase.com/">PromptBase</a> - Prompt 交易市场</li>
+    <li><strong>Start Simple</strong>: Begin with basic prompts and gradually add complexity</li>
+    <li><strong>Be Specific</strong>: Vague prompts lead to vague results</li>
+    <li><strong>Use Examples</strong>: Show AI what good output looks like</li>
+    <li><strong>Iterate Continuously</strong>: Refine prompts based on results</li>
+    <li><strong>Test Different Approaches</strong>: Try various prompt structures</li>
+    <li><strong>Document Success</strong>: Keep a library of effective prompts</li>
   </ul>
 
-  <h3>2. <strong>调试与优化</strong></h3>
-  <ul>
-    <li><a href="https://platform.openai.com/playground">OpenAI Playground</a> - 官方测试平台</li>
-    <li><a href="https://langchain.com/">LangChain</a> - Prompt 编排框架</li>
-  </ul>
-
-  <h3>3. <strong>学习资源</strong></h3>
-  <ul>
-    <li><a href="https://learnprompting.org/">Learn Prompting</a> - 免费系统教程</li>
-    <li><a href="https://www.promptingguide.ai/">Prompt Engineering Guide</a> - 最佳实践指南</li>
-  </ul>
-
-  <hr />
-
-  <h2>未来展望</h2>
-
-  <p>Prompt Engineering 不仅仅是一项技能，它代表了人机交互的新范式：</p>
+  <h3>⚠️ Common Mistakes to Avoid</h3>
 
   <ul>
-    <li>🔮 <strong>多模态提示</strong>：结合文本、图像、语音的复合输入</li>
-    <li>🤖 <strong>自动化优化</strong>：AI 自动优化提示词（Meta-Prompting）</li>
-    <li>🌐 <strong>领域专业化</strong>：针对医疗、法律、金融等垂直领域的专用提示词</li>
+    <li><strong>Overcomplicating</strong>: Too many requirements can confuse AI</li>
+    <li><strong>Ignoring Context</strong>: Provide relevant background information</li>
+    <li><strong>No Testing</strong>: Always test prompts with different inputs</li>
+    <li><strong>Static Approach</strong>: Update prompts as AI models improve</li>
+    <li><strong>One-Size-Fits-All</strong>: Customize prompts for specific use cases</li>
   </ul>
 
   <hr />
 
-  <h2>总结</h2>
+  <h2>Tools & Resources</h2>
 
-  <p>掌握 Prompt Engineering，就像学会了一门新的编程语言 —— 你不是在写代码，而是在<strong>用语言编程 AI 的思维</strong>。</p>
+  <h3>🛠️ Recommended Tools</h3>
 
-  <p><strong>记住这三点：</strong></p>
-  <ol>
-    <li>✨ 清晰具体 &gt; 模糊泛泛</li>
-    <li>🔄 持续迭代 &gt; 一次完美</li>
-    <li>🎯 目标导向 &gt; 盲目尝试</li>
-  </ol>
+  <div class="grid gap-4 md:grid-cols-3">
+    <div class="p-4 border border-gray-200 rounded-lg dark:border-gray-800">
+      <h4>ChatGPT</h4>
+      <p>Best for: General prompt engineering practice and testing</p>
+    </div>
+    
+    <div class="p-4 border border-gray-200 rounded-lg dark:border-gray-800">
+      <h4>Claude</h4>
+      <p>Best for: Complex reasoning and long-form content</p>
+    </div>
+    
+    <div class="p-4 border border-gray-200 rounded-lg dark:border-gray-800">
+      <h4>PromptBase</h4>
+      <p>Best for: Discovering and sharing effective prompts</p>
+    </div>
+  </div>
 
-  <p>开始实践吧！在每次与 AI 的对话中，有意识地应用 CRAFT 框架，你会发现输出质量的飞跃。</p>
+  <h3>📚 Learning Resources</h3>
+
+  <ul>
+    <li><strong>OpenAI Prompt Engineering Guide</strong>: Official documentation and best practices</li>
+    <li><strong>Anthropic's Prompt Engineering</strong>: Advanced techniques and safety considerations</li>
+    <li><strong>Prompt Engineering Institute</strong>: Community-driven learning platform</li>
+    <li><strong>GitHub Prompt Collections</strong>: Open-source prompt libraries</li>
+  </ul>
 
   <hr />
 
-  <p><strong>你最常用的 Prompt 技巧是什么？欢迎在评论区分享！</strong> 💬</p>
+  <h2>Future of Prompt Engineering</h2>
+
+  <h3>🔮 What's Coming Next</h3>
+
+  <ul>
+    <li><strong>Visual Prompting</strong>: Using images and diagrams to guide AI</li>
+    <li><strong>Multimodal Prompts</strong>: Combining text, images, and audio</li>
+    <li><strong>Automated Optimization</strong>: AI helping to improve prompts</li>
+    <li><strong>Domain-Specific Languages</strong>: Specialized prompt languages for different fields</li>
+    <li><strong>Real-time Adaptation</strong>: Prompts that adapt based on context and feedback</li>
+  </ul>
 
   <hr />
 
-  <p><em>本文首发于 AI小孩，转载请注明出处。</em></p>
+  <h2>Related Resources & Further Reading</h2>
+
+  <blockquote>
+    <p>📚 <strong>Extended Reading</strong>:</p>
+    <ul>
+      <li><a href="/blog/ai-tools-2025">10 Essential AI Tools for 2025</a></li>
+      <li><a href="/blog/ai-marketing-revolution">AI Revolution in Marketing</a></li>
+      <li><a href="/blog/ai-future-decade-keywords">AI Keywords for the Next Decade</a></li>
+    </ul>
+  </blockquote>
+
+  <hr />
+
+  <p>✴️ <strong>What's your most effective prompt engineering technique? Share your tips in the comments!</strong></p>
+
+  <p><em>This article was first published on AI Kids. Please indicate the source when reprinting.</em></p>
 </PostLayout>
-
