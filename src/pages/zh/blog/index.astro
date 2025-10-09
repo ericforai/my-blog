@@ -124,28 +124,27 @@ const formatDate = (dateString: string) => {
     <!-- 文章列表 -->
     <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
       {posts.map((post) => (
-        <article class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-          <!-- Banner Image -->
+        <a href={`/zh/blog/${post.slug}`} class="group bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
           <!-- Banner Image -->
           <div class="h-48">
             <img 
               src={post.cover} 
               alt={post.title}
-              class="w-full h-full object-cover"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
               loading="lazy"
             />
           </div>
           
           <div class="p-6">
             <div class="flex items-center gap-2 mb-3">
-              <a href={`/zh/category/${post.categorySlug}`} class="px-2 py-1 bg-primary/10 text-primary text-sm rounded hover:bg-primary/20 transition-colors">
+              <span class="px-2 py-1 bg-primary/10 text-primary text-sm rounded">
                 {post.category}
-              </a>
+              </span>
               <span class="text-sm text-gray-500">{formatDate(post.pubDate)}</span>
             </div>
             
-            <h2 class="text-xl font-bold mb-3 text-gray-900 dark:text-white hover:text-primary transition-colors">
-              <a href={`/zh/blog/${post.slug}`}>{post.title}</a>
+            <h2 class="text-xl font-bold mb-3 text-gray-900 dark:text-white group-hover:text-primary transition-colors">
+              {post.title}
             </h2>
             
             <p class="text-gray-600 dark:text-gray-400 mb-4 line-clamp-3">
@@ -154,17 +153,17 @@ const formatDate = (dateString: string) => {
             
             <div class="flex flex-wrap gap-2 mb-4">
               {post.tags.map((tag) => (
-                <a href={`/tag/${getTagSlug(tag)}`} class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs rounded hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+                <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs rounded">
                   {tag}
-                </a>
+                </span>
               ))}
             </div>
             
-            <a href={`/zh/blog/${post.slug}`} class="text-primary hover:text-primary/80 font-medium">
+            <span class="text-primary font-medium">
               {getTranslation(currentLocale, 'blog.read_more')} →
-            </a>
+            </span>
           </div>
-        </article>
+        </a>
       ))}
     </div>
   </div>
