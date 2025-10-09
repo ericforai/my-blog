@@ -2,7 +2,6 @@
 import PageLayout from '~/layouts/PageLayout.astro';
 import { SITE } from '~/config.mjs';
 import { getTranslation } from '~/i18n/ui.ts';
-import BlogBanner from '~/components/BlogBanner.astro';
 
 // Get current locale
 const currentLocale = 'en';
@@ -172,18 +171,8 @@ const seoKeywords = "AI learning,artificial intelligence learning,AI tools,AI co
         {posts.map((post) => (
           <article class="group flex flex-col overflow-hidden rounded-lg border border-gray-200 transition-all hover:shadow-lg dark:border-gray-800">
             <!-- Banner Image -->
-            <div class="aspect-video">
-              <BlogBanner 
-                post={post} 
-                config={{
-                  width: 400,
-                  height: 200,
-                  style: 'modern',
-                  colorScheme: 'gradient',
-                  useAIImage: true  // 🔥 启用 AI 图片生成
-                }}
-                className="h-full"
-              />
+            <div class="aspect-video bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
+              <span class="text-4xl">🤖</span>
             </div>
             
             <div class="flex flex-1 flex-col p-4 sm:p-6">

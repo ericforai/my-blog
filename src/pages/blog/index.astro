@@ -2,7 +2,6 @@
 import PageLayout from '~/layouts/PageLayout.astro';
 import { getTranslation } from '~/i18n/ui.ts';
 import { getTagSlug } from '~/utils/tagMapping';
-import BlogBanner from '~/components/BlogBanner.astro';
 
 // Get current locale
 const currentLocale = 'en';
@@ -136,18 +135,8 @@ const formatDate = (date: string) => {
         {posts.map((post) => (
           <article class="group flex flex-col overflow-hidden rounded-lg border border-gray-200 transition-all hover:shadow-lg dark:border-gray-800">
             <!-- Banner Image -->
-            <div class="aspect-video">
-              <BlogBanner 
-                post={post} 
-                config={{
-                  width: 400,
-                  height: 225,
-                  style: 'modern',
-                  colorScheme: 'gradient',
-                  useAIImage: true  // 🔥 启用 AI 图片生成
-                }}
-                className="h-full"
-              />
+            <div class="aspect-video bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
+              <span class="text-4xl">🤖</span>
             </div>
             
             <!-- 文章信息 -->

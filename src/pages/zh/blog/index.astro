@@ -2,7 +2,6 @@
 import PageLayout from '~/layouts/PageLayout.astro';
 import { getTranslation } from '~/i18n/ui.ts';
 import { getTagSlug } from '~/utils/tagMapping';
-import BlogBanner from '~/components/BlogBanner.astro';
 
 // Get current locale
 const currentLocale = 'zh';
@@ -121,18 +120,8 @@ const formatDate = (dateString: string) => {
       {posts.map((post) => (
         <article class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
           <!-- Banner Image -->
-          <div class="h-48">
-            <BlogBanner 
-              post={post} 
-              config={{
-                width: 400,
-                height: 200,
-                style: 'modern',
-                colorScheme: 'gradient',
-                useAIImage: true  // 🔥 启用 AI 图片生成
-              }}
-              className="h-full"
-            />
+          <div class="h-48 bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
+            <span class="text-4xl">🤖</span>
           </div>
           
           <div class="p-6">
