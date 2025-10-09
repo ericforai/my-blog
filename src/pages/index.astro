@@ -15,7 +15,8 @@ const posts = [
     pubDate: "2025-01-08",
     category: "AI Marketing",
     categorySlug: "ai-marketing",
-    tags: ["AI Marketing", "Digital Marketing", "Marketing Automation"]
+    tags: ["AI Marketing", "Digital Marketing", "Marketing Automation"],
+    cover: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=450&fit=crop&crop=center&q=80"
   },
   {
     title: "10 Essential AI Tools for 2025: Secret Weapons to Boost Productivity",
@@ -24,7 +25,8 @@ const posts = [
     pubDate: "2025-01-07",
     category: "AI Tools",
     categorySlug: "ai-tools",
-    tags: ["AI Tools", "Productivity", "ChatGPT", "Midjourney"]
+    tags: ["AI Tools", "Productivity", "ChatGPT", "Midjourney"],
+    cover: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=450&fit=crop&crop=center&q=80"
   },
   {
     title: "Keywords for AI in the Next Decade: Redefining the Boundaries of the Intelligent Era",
@@ -33,7 +35,8 @@ const posts = [
     pubDate: "2025-01-06",
     category: "AI Trends",
     categorySlug: "ai-trends",
-    tags: ["AI", "Future Trends", "AGI", "Multimodal AI"]
+    tags: ["AI", "Future Trends", "AGI", "Multimodal AI"],
+    cover: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=450&fit=crop&crop=center&q=80"
   },
   {
     title: "Prompt Engineering: The New Programming Language of the AI Era",
@@ -42,7 +45,8 @@ const posts = [
     pubDate: "2025-01-05",
     category: "Tech Tutorial",
     categorySlug: "tech-tutorial",
-    tags: ["Prompt Engineering", "AI", "Tech Tutorial"]
+    tags: ["Prompt Engineering", "AI", "Tech Tutorial"],
+    cover: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=450&fit=crop&crop=center&q=80"
   }
 ];
 
@@ -171,8 +175,13 @@ const seoKeywords = "AI learning,artificial intelligence learning,AI tools,AI co
         {posts.map((post) => (
           <article class="group flex flex-col overflow-hidden rounded-lg border border-gray-200 transition-all hover:shadow-lg dark:border-gray-800">
             <!-- Banner Image -->
-            <div class="aspect-video bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
-              <span class="text-4xl">🤖</span>
+            <div class="aspect-video">
+              <img 
+                src={post.cover} 
+                alt={post.title}
+                class="w-full h-full object-cover"
+                loading="lazy"
+              />
             </div>
             
             <div class="flex flex-1 flex-col p-4 sm:p-6">

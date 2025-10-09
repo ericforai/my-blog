@@ -21,7 +21,7 @@ const posts = [
     category: "AI Marketing",
     categorySlug: "ai-marketing",
     tags: ["AI Marketing", "Digital Marketing", "Marketing Automation"],
-    cover: "/assets/blog/ai-marketing.jpg"
+    cover: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=450&fit=crop&crop=center&q=80"
   },
   {
     title: "10 Essential AI Tools for 2025: Secret Weapons for Productivity Leap",
@@ -31,7 +31,7 @@ const posts = [
     category: "AI Tools",
     categorySlug: "ai-tools",
     tags: ["AI Tools", "Productivity", "ChatGPT", "Midjourney"],
-    cover: "/assets/blog/ai-tools-2025.jpg"
+    cover: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=450&fit=crop&crop=center&q=80"
   },
   {
     title: "AI Keywords for the Next Decade: Redefining the Boundaries of the Intelligent Era",
@@ -41,7 +41,7 @@ const posts = [
     category: "AI Trends",
     categorySlug: "ai-trends",
     tags: ["AI", "Future Trends", "AGI", "Multimodal AI"],
-    cover: "/assets/blog/ai-future-decade.jpg"
+    cover: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=450&fit=crop&crop=center&q=80"
   },
   {
     title: "Prompt Engineering: The New Programming Language of the AI Era",
@@ -51,7 +51,7 @@ const posts = [
     category: "Tech Tutorial",
     categorySlug: "tech-tutorial",
     tags: ["AI", "Prompt Engineering", "ChatGPT", "Tech Tutorial"],
-    cover: "/assets/blog/prompt-engineering-cover.jpg"
+    cover: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=450&fit=crop&crop=center&q=80"
   },
   {
     title: "2025 AI Model Rankings: GPT-5 vs Claude 4 vs Gemini 2.0 Comprehensive Comparison",
@@ -135,8 +135,14 @@ const formatDate = (date: string) => {
         {posts.map((post) => (
           <article class="group flex flex-col overflow-hidden rounded-lg border border-gray-200 transition-all hover:shadow-lg dark:border-gray-800">
             <!-- Banner Image -->
-            <div class="aspect-video bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
-              <span class="text-4xl">🤖</span>
+            <!-- Banner Image -->
+            <div class="aspect-video">
+              <img 
+                src={post.cover} 
+                alt={post.title}
+                class="w-full h-full object-cover"
+                loading="lazy"
+              />
             </div>
             
             <!-- 文章信息 -->

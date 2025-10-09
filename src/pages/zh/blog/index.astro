@@ -20,7 +20,8 @@ const posts = [
     pubDate: "2025-01-08",
     category: "AI 营销",
     categorySlug: "ai-marketing",
-    tags: ["AI营销", "数字营销", "营销自动化"]
+    tags: ["AI营销", "数字营销", "营销自动化"],
+    cover: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=450&fit=crop&crop=center&q=80"
   },
   {
     title: "2025 年必备的 10 个 AI 工具：让生产力飞跃的秘密武器",
@@ -29,7 +30,8 @@ const posts = [
     pubDate: "2025-01-07",
     category: "AI 工具",
     categorySlug: "ai-tools",
-    tags: ["AI工具", "生产力", "ChatGPT", "Midjourney"]
+    tags: ["AI工具", "生产力", "ChatGPT", "Midjourney"],
+    cover: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=450&fit=crop&crop=center&q=80"
   },
   {
     title: "AI 未来十年的关键词：重新定义智能时代的边界",
@@ -38,7 +40,8 @@ const posts = [
     pubDate: "2025-01-06",
     category: "AI 趋势",
     categorySlug: "ai-trends",
-    tags: ["AI", "未来趋势", "AGI", "多模态AI"]
+    tags: ["AI", "未来趋势", "AGI", "多模态AI"],
+    cover: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=450&fit=crop&crop=center&q=80"
   },
   {
     title: "Prompt Engineering：AI 时代的新编程语言",
@@ -47,7 +50,8 @@ const posts = [
     pubDate: "2025-01-05",
     category: "技术实践",
     categorySlug: "tech-tutorial",
-    tags: ["AI", "Prompt Engineering", "ChatGPT", "技术教程"]
+    tags: ["AI", "Prompt Engineering", "ChatGPT", "技术教程"],
+    cover: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=450&fit=crop&crop=center&q=80"
   },
   {
     title: "2025 AI 大模型排行榜：GPT-5 vs Claude 4 vs Gemini 2.0 全面对比",
@@ -120,8 +124,14 @@ const formatDate = (dateString: string) => {
       {posts.map((post) => (
         <article class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
           <!-- Banner Image -->
-          <div class="h-48 bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
-            <span class="text-4xl">🤖</span>
+          <!-- Banner Image -->
+          <div class="h-48">
+            <img 
+              src={post.cover} 
+              alt={post.title}
+              class="w-full h-full object-cover"
+              loading="lazy"
+            />
           </div>
           
           <div class="p-6">
