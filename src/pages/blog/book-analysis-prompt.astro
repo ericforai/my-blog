@@ -1,0 +1,263 @@
+---
+import PostLayout from '~/layouts/PostLayout.astro';
+import { getTranslation } from '~/i18n/ui.ts';
+
+// Get current locale
+const currentLocale = 'en';
+
+// SEO 优化
+const seoTitle = "Decoding Every Book's Hidden Door: Prompt Engineering for Book Analysis | AI Kids";
+const seoDescription = "Master this universal Prompt to see through the soul of any book and discover the ultimate question the author truly wants to answer";
+const seoKeywords = "book analysis,Prompt Engineering,AI reading,deep thinking,book interpretation";
+
+// 文章元数据
+const post = {
+  title: "Decoding Every Book's Hidden Door: Prompt Engineering for Book Analysis",
+  description: "Master this universal Prompt to see through the soul of any book and discover the ultimate question the author truly wants to answer",
+  pubDate: "2025-01-27",
+  author: "Eric",
+  category: "Prompt Engineering",
+  categorySlug: "tech-tutorial",
+  tags: ["Prompt Engineering", "Reading Skills", "AI Analysis", "Book Analysis", "Deep Thinking"],
+  cover: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&h=450&fit=crop&crop=center&q=80",
+  slug: "book-analysis-prompt",
+  readingTime: "5 minutes"
+};
+---
+
+<PostLayout 
+  frontmatter={{
+    title: seoTitle,
+    description: seoDescription,
+    pubDate: post.pubDate,
+    tags: post.tags,
+    author: post.author,
+    cover: post.cover
+  }}
+>
+  <article class="prose prose-lg max-w-none dark:prose-invert">
+    <header class="mb-8">
+      <div class="flex items-center gap-2 mb-4">
+        <span class="px-3 py-1 text-sm bg-primary/10 text-primary rounded-full">
+          {post.category}
+        </span>
+        <span class="text-sm text-gray-500 dark:text-gray-400">
+          {post.readingTime}
+        </span>
+      </div>
+      
+      <h1 class="text-4xl font-bold mb-4">{post.title}</h1>
+      
+      <div class="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400 mb-6">
+        <span>By {post.author}</span>
+        <span>•</span>
+        <time datetime={post.pubDate}>
+          {new Date(post.pubDate).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+          })}
+        </time>
+      </div>
+      
+      <div class="flex flex-wrap gap-2 mb-6">
+        {post.tags.map((tag) => (
+          <span class="px-2 py-1 text-xs bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 rounded">
+            {tag}
+          </span>
+        ))}
+      </div>
+    </header>
+
+    <div class="content">
+      <blockquote class="border-l-4 border-primary/30 pl-4 italic text-lg text-gray-700 dark:text-gray-300 mb-8">
+        💡 <strong>Core Summary</strong>: Master this universal Prompt to see through the soul of any book and discover the ultimate question the author truly wants to answer
+      </blockquote>
+
+      <h2>Introduction: Why Do We Need to See Through the Soul of Books?</h2>
+      
+      <p>In this era of information explosion, we encounter numerous books daily, but often <strong>only stay at surface-level understanding</strong>. Truly valuable reading is being able to <strong>see through the soul of books</strong> and discover the ultimate question the author truly wants to answer.</p>
+      
+      <p>Today I'll share a battle-tested <strong>Prompt Engineering technique</strong> that allows you to quickly gain insights into the deep value of any book.</p>
+
+      <h2>I. Theoretical Foundation</h2>
+
+      <h3>What is the "Hidden Door" of Books?</h3>
+      
+      <p>Every book has a "hidden door" - once opened, you can discover the hidden world within the book. Behind this door lies the author's deep thinking about some ultimate confusion.</p>
+      
+      <p><strong>Core Insights</strong>:</p>
+      <ul>
+        <li>📚 <strong>Every book is the author's answer to some ultimate confusion</strong></li>
+        <li>🔍 <strong>Methodology is the skeleton, insights are the flesh, but questions are the soul</strong></li>
+        <li>💡 <strong>The value of a book lies not in what it says, but in what it answers</strong></li>
+      </ul>
+
+      <h2>II. Universal Prompt Template</h2>
+
+      <h3>Complete Prompt Structure</h3>
+
+      <pre class="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg overflow-x-auto"><code>{`You are a reader who can see through the soul of books.
+
+=== Core Pursuit ===
+Every book is the author's answer to some ultimate confusion. Your mission is to find the question that kept the author awake at night and compelled them to write the entire book to answer.
+
+=== Exploration Method ===
+- Who is the author's real conversation partner
+- What key turn did this book make to the question
+- Methodology is the skeleton, insights are the flesh, but questions are the soul
+- The best books are multi-dimensional expansions of one question
+- The value of a book lies not in what it says, but in what it answers
+
+=== Value Guidance ===
+- Seeing essence through phenomena > listing knowledge points
+- Discovering connections > isolated understanding
+- Extracting essence > comprehensive coverage
+- Unspoken meaning > surface information
+
+=== Hidden Door Code ===
+All books have a "hidden door" - once opened, discover the hidden world within the book.
+
+=== Constraints ===
+Don't be constrained by constraints, let your mind be free.`}</code></pre>
+
+      <h3>Usage Method</h3>
+      
+      <p><strong>Input Format</strong>:</p>
+      <pre class="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg"><code>{`{{Book Title}}`}</code></pre>
+      
+      <p><strong>Example</strong>:</p>
+      <pre class="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg"><code>{`《Principles》`}</code></pre>
+
+      <h2>III. Practical Cases</h2>
+
+      <h3>Case 1: Analyzing "Principles"</h3>
+      
+      <p><strong>Input</strong>: <code>{`《Principles》`}</code></p>
+      
+      <p><strong>AI Analysis Result</strong>:</p>
+      <ul>
+        <li><strong>Core Question</strong>: How to establish repeatable success patterns in a complex world?</li>
+        <li><strong>Conversation Partner</strong>: Leaders and managers pursuing excellence</li>
+        <li><strong>Key Turn</strong>: From personal experience to systematic principles</li>
+        <li><strong>Hidden Door Discovery</strong>: Success is not accidental, but a replicable system</li>
+      </ul>
+
+      <h3>Case 2: Analyzing "Thinking, Fast and Slow"</h3>
+      
+      <p><strong>Input</strong>: <code>{`《Thinking, Fast and Slow》`}</code></p>
+      
+      <p><strong>AI Analysis Result</strong>:</p>
+      <ul>
+        <li><strong>Core Question</strong>: Why do humans always make irrational decisions?</li>
+        <li><strong>Conversation Partner</strong>: Rational thinkers who want to improve decision quality</li>
+        <li><strong>Key Turn</strong>: From rational assumptions to cognitive bias reality</li>
+        <li><strong>Hidden Door Discovery</strong>: Understanding cognitive mechanisms is key to improving decision quality</li>
+      </ul>
+
+      <h2>IV. Prompt Engineering Techniques Analysis</h2>
+
+      <h3>Technique 1: Role-Based Prompting</h3>
+      
+      <p><strong>Principle</strong>: Let AI play the role of "reader who can see through the soul of books"</p>
+      <p><strong>Effect</strong>: Improves the professionalism and depth of analysis</p>
+
+      <h3>Technique 2: Structured Framework</h3>
+      
+      <p><strong>Core Pursuit</strong> → <strong>Exploration Method</strong> → <strong>Value Guidance</strong> → <strong>Hidden Door Code</strong></p>
+      
+      <p><strong>Advantages</strong>:</p>
+      <ul>
+        <li>Clear logic</li>
+        <li>Distinct levels</li>
+        <li>Easy to understand</li>
+      </ul>
+
+      <h3>Technique 3: Constraint-Based Prompting</h3>
+      
+      <p><strong>Constraint</strong>: Don't be constrained by constraints, let your mind be free</p>
+      <p><strong>Purpose</strong>: Encourage creative thinking and avoid rigid analysis</p>
+
+      <h2>V. Advanced Application Techniques</h2>
+
+      <h3>Technique 1: Batch Analysis</h3>
+      
+      <p><strong>Scenario</strong>: Analyzing the correlation between multiple books</p>
+      
+      <p><strong>Method</strong>:</p>
+      <pre class="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg"><code>{`Please analyze the correlation between the following three books using the above method:
+1. 《Principles》
+2. 《Thinking, Fast and Slow》
+3. 《The Black Swan》
+
+Focus on:
+- The ultimate question that all three books answer together
+- Their complementary relationships
+- How to form a complete cognitive system`}</code></pre>
+
+      <h2>VI. Common Traps and Solutions</h2>
+
+      <h3>❌ Trap 1: Over-reliance on AI Analysis</h3>
+      <p><strong>Problem</strong>: Completely relying on AI, losing independent thinking ability</p>
+      <p><strong>Solution</strong>: Use AI analysis as a starting point, combined with personal thinking</p>
+
+      <h3>❌ Trap 2: Analysis Too Superficial</h3>
+      <p><strong>Problem</strong>: Staying at knowledge point listing, not discovering deep questions</p>
+      <p><strong>Solution</strong>: Keep asking "why" until finding the root question</p>
+
+      <h3>❌ Trap 3: Ignoring Practical Application</h3>
+      <p><strong>Problem</strong>: Only analyzing without applying, knowledge cannot be converted into ability</p>
+      <p><strong>Solution</strong>: Every insight must be converted into specific action plans</p>
+
+      <h2>VII. Tool Recommendations</h2>
+
+      <h3>1. AI Analysis Tools</h3>
+      <ul>
+        <li>ChatGPT Plus (Recommended)</li>
+        <li>Claude (Strong deep analysis capability)</li>
+        <li>Gemini (Multi-angle thinking)</li>
+      </ul>
+
+      <h3>2. Auxiliary Tools</h3>
+      <ul>
+        <li>Notion (Organizing analysis results)</li>
+        <li>Obsidian (Building knowledge connections)</li>
+        <li>MindMeister (Mind mapping)</li>
+      </ul>
+
+      <h2>VIII. Best Practices Summary</h2>
+
+      <p>Master book analysis Prompt, remember these points:</p>
+      <ol>
+        <li>✨ <strong>Question-oriented</strong> > knowledge listing</li>
+        <li>🔍 <strong>Deep mining</strong> > surface understanding</li>
+        <li>🔗 <strong>Building connections</strong> > isolated analysis</li>
+        <li>🎯 <strong>Practical application</strong> > paper talk</li>
+        <li>🚀 <strong>Continuous iteration</strong> > perfect once</li>
+      </ol>
+
+      <h2>IX. Future Outlook</h2>
+
+      <p>Development trends of book analysis Prompt:</p>
+      <ul>
+        <li>🔮 <strong>Multi-modal analysis</strong>: Combining audio and video content</li>
+        <li>🤖 <strong>Personalized customization</strong>: Adjusting analysis angles based on personal interests</li>
+        <li>🌐 <strong>Knowledge graph</strong>: Building correlation networks between books</li>
+      </ul>
+
+      <h2>Summary</h2>
+
+      <p>The core value of this Prompt Engineering technique lies in: <strong>transforming you from a passive reader to an active thinker</strong>.</p>
+
+      <p><strong>Start practicing!</strong> Choose a book you've read recently, re-analyze it with this Prompt, and you'll discover a whole new world.</p>
+
+      <hr class="my-8">
+
+      <p><strong>What books have you analyzed with this Prompt? What interesting insights did you discover? Welcome to share in the comments!</strong> 💬</p>
+
+      <hr class="my-8">
+
+      <p><em>This article was first published on Eric's AI Blog. Please indicate the source when reprinting.</em></p>
+    </div>
+  </article>
+</PostLayout>
