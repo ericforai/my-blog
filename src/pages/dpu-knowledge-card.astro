@@ -1,0 +1,549 @@
+---
+// DPU Knowledge Card - Astro Page
+// 将 HTML 内容转换为 Astro 页面
+---
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DPU · 数据中心「CPU + DPU + GPU」铁三角 —— Bento 风格知识卡片</title>
+  <meta name="description" content="DPU 是什么、能做什么、与 CPU/GPU 的关系与前景解读。Bento 风格知识卡片布局，遵循 Apple 式信息层级与交互感受。" />
+  <style>
+    /* =========
+       Design Tokens
+       ========= */
+    :root{
+      --bg: #edf1f8;
+      --card: rgba(255,255,255,0.72);
+      --card-solid: #ffffff;
+      --border: rgba(15,23,42,0.08);
+      --border-strong: rgba(15,23,42,0.16);
+      --text: #0f172a;
+      --text-sec: #334155;
+      --muted: #64748b;
+      --overlay: rgba(255,255,255,0.6);
+
+      /* Accent palette: blue / purple / cyan */
+      --accent: #2563eb;      /* blue */
+      --accent-2: #7c3aed;    /* purple */
+      --accent-3: #0891b2;    /* cyan */
+
+      --radius-lg: 24px;
+      --radius-md: 20px;
+      --shadow-sm: 0 1px 2px rgba(2,6,23,0.05),
+                   0 6px 18px rgba(2,6,23,0.08);
+      --shadow-md: 0 2px 4px rgba(2,6,23,0.05),
+                   0 12px 28px rgba(2,6,23,0.10);
+      --grid-gap: clamp(14px, 2vw, 20px);
+
+      --fs-hero: clamp(28px, 3.2vw, 44px);
+      --fs-h2: clamp(20px, 2.2vw, 28px);
+      --fs-h3: clamp(16px, 1.6vw, 20px);
+      --fs-p: clamp(14px, 1.25vw, 16px);
+
+      --pad-xl: clamp(20px, 3.5vw, 40px);
+      --pad-lg: clamp(18px, 3vw, 32px);
+      --pad-md: clamp(14px, 2.2vw, 22px);
+      --pad-sm: clamp(8px, 1.2vw, 12px);
+
+      --pill-h: 28px;
+      --ring: 0 0 0 1px var(--border);
+      --ring-strong: 0 0 0 1px var(--border-strong);
+    }
+
+    /* =========
+       Base Reset
+       ========= */
+    *{ box-sizing: border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "PingFang SC", sans-serif;
+      color: var(--text);
+      background: linear-gradient(180deg, var(--bg) 0%, #eef3fb 60%, var(--bg) 100%);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    main{
+      width:min(1200px, 92vw);
+      margin: clamp(16px, 3.5vw, 40px) auto;
+      display:grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: var(--grid-gap);
+    }
+
+    /* =========
+       Card primitives
+       ========= */
+    .card{
+      background: var(--card);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+      overflow: clip;
+      display:flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+    .card:hover{
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--border-strong);
+    }
+    .card > .inner{
+      padding: var(--pad-lg);
+      display:flex;
+      flex-direction: column;
+      gap: clamp(10px, 1.4vw, 16px);
+    }
+
+    /* =========
+       Hero
+       ========= */
+    .hero{
+      grid-column: 1 / -1;
+      position: relative;
+      background:
+        radial-gradient(1200px 600px at 85% -10%, rgba(124,58,237,0.10), transparent 60%),
+        radial-gradient(800px 420px at 10% 0%, rgba(37,99,235,0.12), transparent 55%),
+        var(--card);
+    }
+    .hero .inner{ padding: clamp(24px, 5vw, 56px); }
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      height: var(--pill-h);
+      padding: 0 12px;
+      border-radius: 999px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-weight: 600;
+      font-size: 12px;
+      color: var(--accent);
+      background: linear-gradient(180deg, rgba(37,99,235,0.10), rgba(37,99,235,0.06));
+      box-shadow: var(--ring);
+      width: max-content;
+    }
+    h1{
+      margin: 6px 0 0 0;
+      font-size: var(--fs-hero);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+    .subtitle{
+      color: var(--text-sec);
+      font-size: clamp(14px, 1.3vw, 18px);
+      line-height: 1.6;
+      margin-top: 6px;
+      max-width: 70ch;
+    }
+    .meta{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .pill{
+      height: var(--pill-h);
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 0 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.66);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 600;
+      backdrop-filter: blur(6px);
+    }
+    .dot{
+      width:8px; height:8px; border-radius:50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 1px rgba(37,99,235,0.3) inset;
+    }
+    .dot.p2{ background: var(--accent-2); box-shadow: 0 0 0 1px rgba(124,58,237,0.3) inset; }
+    .dot.p3{ background: var(--accent-3); box-shadow: 0 0 0 1px rgba(8,145,178,0.3) inset; }
+
+    /* =========
+       Card header bits
+       ========= */
+    .eyebrow{
+      text-transform: lowercase;
+      font-size: 12px;
+      letter-spacing: .06em;
+      color: var(--muted);
+      font-weight: 600;
+    }
+    h2{
+      font-size: var(--fs-h2);
+      margin: 2px 0 0 0;
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+    }
+    p{ font-size: var(--fs-p); color: var(--text-sec); line-height: 1.66; margin: 0; }
+
+    .icon{
+      width: 44px; height: 44px; border-radius: 12px;
+      display:grid; place-items:center;
+      font-size: 22px; font-weight: 700; color: white;
+      box-shadow: var(--ring);
+    }
+    .i-blue{ background: linear-gradient(180deg, #60a5fa, #2563eb); }
+    .i-purple{ background: linear-gradient(180deg, #a78bfa, #7c3aed); }
+    .i-cyan{ background: linear-gradient(180deg, #22d3ee, #0891b2); }
+    .i-orange{ background: linear-gradient(180deg, #fdba74, #ea580c); }
+
+    /* =========
+       Lists / callouts / stats
+       ========= */
+    ul{
+      list-style: none;
+      padding: 0; margin: 0;
+      display:flex; flex-direction: column; gap: 8px;
+    }
+    li{
+      position: relative;
+      padding-left: 18px;
+      color: var(--text-sec);
+      line-height: 1.6;
+    }
+    li::before{
+      content:"";
+      position:absolute; left:0; top: 0.75em;
+      width:8px; height:8px; border-radius:50%;
+      background: radial-gradient(circle at 30% 30%, var(--accent), #60a5fa);
+      box-shadow: 0 0 0 1px rgba(37,99,235,0.25);
+      transform: translateY(-50%);
+    }
+    .callout{
+      border-radius: 16px;
+      padding: var(--pad-md);
+      background: linear-gradient(180deg, rgba(34,197,94,0.14), rgba(34,197,94,0.10));
+      border: 1px solid rgba(22,163,74,0.22);
+      color: #166534;
+      font-size: var(--fs-p);
+      display:flex; gap: 10px; align-items:flex-start;
+    }
+    .callout .lead{
+      font-weight: 700; white-space: nowrap;
+    }
+
+    .stat-row{
+      display:grid;
+      grid-template-columns: repeat(12, minmax(0,1fr));
+      gap: 10px;
+    }
+    .stat{
+      grid-column: span 4;
+      border-radius: 14px;
+      background: var(--card-solid);
+      border: 1px solid var(--border);
+      padding: 12px 14px;
+      display:flex; flex-direction: column; gap: 6px;
+      min-width: 0;
+    }
+    .stat .k{ font-size: clamp(18px, 2.2vw, 26px); font-weight: 800; letter-spacing: -0.01em; }
+    .stat .k small{ font-size: 12px; font-weight: 700; color: var(--muted); margin-left: 4px; }
+    .stat .d{ font-size: 12px; color: var(--muted); }
+
+    .tags{
+      display:flex; flex-wrap: wrap; gap: 6px;
+    }
+    .tag{
+      font-size: 12px; font-weight: 600; color: var(--muted);
+      border: 1px dashed var(--border-strong);
+      background: rgba(255,255,255,0.6);
+      padding: 4px 8px; border-radius: 999px;
+    }
+
+    figure{
+      margin: 0; padding: 0;
+      border-radius: 16px; overflow: hidden;
+      background:
+        linear-gradient(135deg, rgba(37,99,235,0.10), rgba(124,58,237,0.10)),
+        repeating-conic-gradient(from 0deg, rgba(15,23,42,0.05) 0 12deg, transparent 12deg 24deg);
+      border: 1px dashed var(--border-strong);
+      min-height: 160px;
+      display:flex; align-items:center; justify-content:center;
+      color: var(--muted);
+    }
+    figcaption{
+      font-size: 12px; color: var(--muted);
+      text-align: center; margin-top: 6px;
+    }
+
+    .grid{ display:grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--grid-gap); }
+
+    /* =========
+       Column helpers
+       ========= */
+    .span-12{ grid-column: span 12; }
+    .span-7{ grid-column: span 7; }
+    .span-6{ grid-column: span 6; }
+    .span-5{ grid-column: span 5; }
+
+    /* =========
+       Responsive
+       ========= */
+    @media (max-width: 1024px){
+      main{ grid-template-columns: repeat(12, minmax(0,1fr)); }
+      .span-7, .span-6, .span-5, .span-12{ grid-column: 1 / -1; }
+      .stat{ grid-column: span 6; }
+    }
+    @media (max-width: 640px){
+      .stat{ grid-column: span 12; }
+      .icon{ width:40px; height:40px; font-size: 20px; border-radius: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <main role="main">
+    <!-- =======================
+         Hero
+         ======================= -->
+    <section class="card hero" aria-labelledby="hero-title">
+      <div class="inner">
+        <div class="badge" aria-label="主题徽章">datacenter · bento insight</div>
+        <h1 id="hero-title">DPU：数据中心的「第三块引擎」</h1>
+        <p class="subtitle">
+          黄仁勋：<strong>CPU + DPU + GPU</strong> 将成为未来计算的三大支柱。CPU 负责通用计算，GPU 提供加速，
+          <strong>DPU 专注数据处理</strong>（网络、存储、安全、虚拟化），把"脏活累活"从 CPU 中卸载出去。
+        </p>
+        <div class="meta" aria-label="元信息">
+          <span class="pill"><span class="dot"></span> 可编程多核 SoC</span>
+          <span class="pill"><span class="dot p2"></span> 面向云与数据中心</span>
+          <span class="pill"><span class="dot p3"></span> 低延迟·高吞吐</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================
+         Row 1 · 7 + 5
+         ======================= -->
+    <article class="card span-7" aria-labelledby="sec-what">
+      <div class="inner">
+        <header style="display:flex; align-items:center; gap:12px;">
+          <div class="icon i-blue" aria-hidden="true">🔎</div>
+          <div>
+            <div class="eyebrow">what is dpu</div>
+            <h2 id="sec-what">1. 什么是 DPU（Data Processing Unit）？</h2>
+          </div>
+        </header>
+        <p>
+          DPU，即<span style="font-weight:700;">数据处理器</span>。本质是一块
+          <strong>可编程的多核 SoC</strong>：内含专用加速器与高速网络接口，
+          面向数据搬运、协议解析、加密压缩等<strong>数据路径</strong>工作。
+        </p>
+        <div class="callout" role="note" aria-label="关键说明">
+          <span class="lead">要点</span>
+          <span>把与数据相关、但非业务逻辑本身的工作从 CPU 中"剥离并加速"。</span>
+        </div>
+        <ul>
+          <li><strong>定位</strong>：数据中心原生组件，承担网络/存储/安全/虚拟化的卸载与加速。</li>
+          <li><strong>价值</strong>：释放 CPU 给业务计算，提升整体 TCO 与能效。</li>
+          <li><strong>关系</strong>：与 CPU/GPU 构成「通用 + 加速 + 数据」的铁三角。</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="card span-5" aria-labelledby="sec-von">
+      <div class="inner">
+        <header style="display:flex; align-items:center; gap:12px;">
+          <div class="icon i-purple" aria-hidden="true">🧠</div>
+          <div>
+            <div class="eyebrow">von neumann</div>
+            <h2 id="sec-von">冯诺依曼经典架构 · 演进脉络</h2>
+          </div>
+        </header>
+        <figure aria-label="架构示意">
+          <!-- 占位示意（如需可替换为实际图片） -->
+          <div style="text-align:center;">
+            <div style="font-weight:700; color:#334155;">[ 图片占位 · 计算/存储/IO · 演进到 GPU/DPU ]</div>
+          </div>
+        </figure>
+        <figcaption>示意：从 CPU+内存+外设 → 图形加速（GPU） → 数据路径加速（DPU）。</figcaption>
+        <ul style="margin-top:10px;">
+          <li>早期以 <strong>CPU+内存+硬盘</strong> 为核心，外设为键鼠/显示等。</li>
+          <li>多媒体繁荣催生 <strong>GPU</strong>，分担图形相关的高并行运算。</li>
+          <li><strong>DPU</strong> 的出现与之类似：分担网络/存储/安全等数据通道计算。</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- =======================
+         Row 2 · 6 + 6
+         ======================= -->
+    <article class="card span-6" aria-labelledby="sec-do">
+      <div class="inner">
+        <header style="display:flex; align-items:center; gap:12px;">
+          <div class="icon i-cyan" aria-hidden="true">⚙️</div>
+          <div>
+            <div class="eyebrow">capability</div>
+            <h2 id="sec-do">2. DPU 能做什么？</h2>
+          </div>
+        </header>
+        <p>
+          DPU 的典型工作负载可用四个关键词归纳：<strong>虚拟化、网络、存储、安全</strong>。
+          均是数据中心中最消耗 CPU、对延迟/吞吐敏感的任务。
+        </p>
+
+        <div class="grid">
+          <div class="span-12" style="display:grid; grid-template-columns: repeat(12,1fr); gap:10px;">
+            <div class="stat" style="grid-column: span 6;">
+              <div class="k">虚拟化 <small>vSwitch / vRouter</small></div>
+              <div class="d">vNIC、Overlay、封装/解封装、流表与隔离。</div>
+            </div>
+            <div class="stat" style="grid-column: span 6;">
+              <div class="k">网络 <small>协议栈卸载</small></div>
+              <div class="d">L2–L4/L7 处理、负载均衡、遥测与速率整形。</div>
+            </div>
+            <div class="stat" style="grid-column: span 6;">
+              <div class="k">存储 <small>数据路径</small></div>
+              <div class="d">NVMe-oF、压缩/去重、校验、快照/复制。</div>
+            </div>
+            <div class="stat" style="grid-column: span 6;">
+              <div class="k">安全 <small>内置加速</small></div>
+              <div class="d">TLS/IPsec、ACL、微分段、零信任端点。</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="callout" style="margin-top:10px;">
+          <span class="lead">收益</span>
+          <span>减少 CPU 上的系统性开销，提升集群可用核心数与整体吞吐，降低能耗。</span>
+        </div>
+        <div class="tags" style="margin-top:6px;">
+          <span class="tag">云原生</span>
+          <span class="tag">SR-IOV/SmartNIC</span>
+          <span class="tag">可观测性</span>
+          <span class="tag">QoS/隔离</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="card span-6" aria-labelledby="sec-where">
+      <div class="inner">
+        <header style="display:flex; align-items:center; gap:12px;">
+          <div class="icon i-orange" aria-hidden="true">🏭</div>
+          <div>
+            <div class="eyebrow">where it shines</div>
+            <h2 id="sec-where">应用场景与部署边界</h2>
+          </div>
+        </header>
+        <p>
+          <strong>DPU 面向数据中心与云计算</strong>等大规模算力场景（而非当前的个人设备）。
+          通过把"公共的数据通道任务"集中到 DPU，使得业务计算更聚焦、性能更稳定。
+        </p>
+        <ul>
+          <li>公有云/私有云：多租户隔离、Overlay 网络、对象/块存储网关。</li>
+          <li>AI 集群：海量数据预处理、分布式训练的数据面搬运与加密。</li>
+          <li>高安全场景：内置加密/微分段，降低侧信道与横向移动风险。</li>
+        </ul>
+        <div class="callout" style="margin-top:10px;">
+          <span class="lead">提示</span>
+          <span>DPU 不是取代 CPU/GPU，而是让它们<strong>各司其职</strong>，系统整体更省更快。</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- =======================
+         Row 3 · 5 + 7
+         ======================= -->
+    <article class="card span-5" aria-labelledby="sec-compare">
+      <div class="inner">
+        <header style="display:flex; align-items:center; gap:12px;">
+          <div class="icon i-blue" aria-hidden="true">🔀</div>
+          <div>
+            <div class="eyebrow">cpu vs. dpu</div>
+            <h2 id="sec-compare">3. DPU 与 CPU 的异同</h2>
+          </div>
+        </header>
+        <ul>
+          <li><strong>CPU · 通用性</strong>：几乎"什么任务都能接"，但在数据路径上开销偏高。</li>
+          <li><strong>DPU · 专注度</strong>：专长网络协议、路由交换、加解密、压缩等固定模式任务。</li>
+          <li><strong>协同</strong>：DPU 卸载公共数据面，CPU 聚焦业务逻辑，GPU 负责并行加速。</li>
+        </ul>
+        <div class="tags" style="margin-top:10px;">
+          <span class="tag">专用加速器</span>
+          <span class="tag">可编程管线</span>
+          <span class="tag">零拷贝/直通</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="card span-7" aria-labelledby="sec-future">
+      <div class="inner">
+        <header style="display:flex; align-items:center; gap:12px;">
+          <div class="icon i-purple" aria-hidden="true">🚀</div>
+          <div>
+            <div class="eyebrow">outlook</div>
+            <h2 id="sec-future">4. 前景：走向「CPU + DPU + GPU」的系统范式</h2>
+          </div>
+        </header>
+        <p>
+          作为新型可编程多核处理器，DPU 具备<strong>行业标准接口</strong>与<strong>高性能网络</strong>，
+          能<strong>高速解析/处理/转发数据</strong>并与 CPU/GPU 高效协同。
+        </p>
+        <div class="stat-row" style="margin-top:4px;">
+          <div class="stat">
+            <div class="k">↑ 集群吞吐 <small>+20–60%</small></div>
+            <div class="d">数据路径卸载，链路更通畅（示例值，随业务不同而异）。</div>
+          </div>
+          <div class="stat">
+            <div class="k">↓ CPU 占用 <small>-30–70%</small></div>
+            <div class="d">把通用核还给应用层，提高每核产出。</div>
+          </div>
+          <div class="stat">
+            <div class="k">↓ TCO/能耗 <small>-10–35%</small></div>
+            <div class="d">减少无谓轮询/拷贝/上下文切换的能耗。</div>
+          </div>
+        </div>
+        <ul style="margin-top:8px;">
+          <li><strong>体系化价值</strong>：性能可预期、隔离可度量、观测更细粒。</li>
+          <li><strong>工程落地</strong>：配合云原生 CNI/CSI、服务网格、可观测性栈。</li>
+          <li><strong>演进方向</strong>：更强的可编程性（eBPF/DPDK/硬件 offload 融合）。</li>
+        </ul>
+        <div class="callout" style="margin-top:10px;">
+          <span class="lead">结论</span>
+          <span><strong>DPU 将与 CPU、GPU 形成「铁三角」</strong>，重塑数据中心的运算模式与成本结构。</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- =======================
+         Footnote (Optional lightweight)
+         ======================= -->
+    <section class="card span-12" aria-label="延伸阅读">
+      <div class="inner" style="align-items:flex-start;">
+        <div class="badge" style="background:linear-gradient(180deg, rgba(124,58,237,0.12), rgba(124,58,237,0.08)); color:var(--accent-2);">
+          glossary · quick recap
+        </div>
+        <div class="grid" style="width:100%; margin-top:10px;">
+          <div class="span-6">
+            <h3 style="font-size:var(--fs-h3); margin:0 0 4px 0;">核心术语</h3>
+            <ul>
+              <li><strong>数据路径(Data Path)</strong>：数据包/块在系统中的传输与处理流程。</li>
+              <li><strong>卸载(Offload)</strong>：把特定工作迁移至专用硬件/引擎执行。</li>
+              <li><strong>微分段</strong>：以工作负载/服务为边界实施更细粒度的网络安全策略。</li>
+            </ul>
+          </div>
+          <div class="span-6">
+            <h3 style="font-size:var(--fs-h3); margin:0 0 4px 0;">速览清单</h3>
+            <ul>
+              <li>何时考虑 DPU：多租户、密集网络、强安全、AI 数据搬运。</li>
+              <li>如何验证价值：基线对比 <em>CPU 占用/延迟/吞吐/TCO</em>。</li>
+              <li>落地关键：可编程性、生态兼容、可观测与运维工具链。</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
