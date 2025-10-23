@@ -4,7 +4,7 @@ description: "深入探索 Prompt Engineering 的核心原理、实用技巧与�
 pubDate: "2025-10-07"
 updateDate: "2025-10-07"
 author: "Eric"
-category: "技术实践"
+category: "提示词工程"
 categorySlug: "tech-tutorial"
 tags: ["AI", "Prompt Engineering", "ChatGPT", "技术教程"]
 cover: "/assets/blog/prompt-engineering-cover.jpg"

@@ -35,7 +35,7 @@ const posts = [
     slug: "prompt-engineering",
     pubDate: new Date("2025-10-07"),
     author: "AI小孩",
-    category: "技术实践",
+    category: "提示词工程",
     tags: ["AI", "Prompt Engineering", "ChatGPT", "技术教程"]
   },
   {
